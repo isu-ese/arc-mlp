@@ -14,14 +14,14 @@ follow these steps.
 
     sudo apt-get install haskell-platform
 
-### Add Cabal to path
-
-    echo "alias cabal='~/.cabal/bin/cabal'" >> .bashrc
-    source .bashrc
-
 ### Update Cabal
 
     cabal install cabal-install
+
+### Set bash to use updated cabal by default
+
+    echo "alias cabal='~/.cabal/bin/cabal'" >> .bashrc
+    source .bashrc
 
 ### Configure location of installed binaries and set path
 
