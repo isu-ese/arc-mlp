@@ -238,7 +238,7 @@ $endif$
 }
 \hypersetup{
   linkcolor=ISUGreen,
-  hidelinks=false,
+  % hidelinks=false, % Hidelinks is not a boolean option. Simply omit to set to false.
   urlcolor=ISUGreen,
   colorlinks=true
 }
