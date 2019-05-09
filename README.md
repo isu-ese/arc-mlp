@@ -27,6 +27,7 @@ follow these steps.
 
     sed -e '/-- symlink-bindir/c symlink-bindir = ~/.cabal/bin' ~/.cabal/config > ~/.cabal/config
     cat "export PATH="$PATH:~/.cabal/bin" >> .bashrc
+    source .bashrc
 
 ### Install pandoc and extensions
 
