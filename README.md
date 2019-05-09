@@ -16,7 +16,7 @@ follow these steps.
 
 ### Add Cabal to path
 
-    cat "alias cabal='~/.cabal/bin/cabal'" >> .bashrc
+    echo "alias cabal='~/.cabal/bin/cabal'" >> .bashrc
     source .bashrc
 
 ### Update Cabal
@@ -26,7 +26,7 @@ follow these steps.
 ### Configure location of installed binaries and set path
 
     sed -e '/-- symlink-bindir/c symlink-bindir = ~/.cabal/bin' ~/.cabal/config > ~/.cabal/config
-    cat "export PATH="$PATH:~/.cabal/bin" >> .bashrc
+    echo "export PATH="$PATH:~/.cabal/bin" >> .bashrc
     source .bashrc
 
 ### Install pandoc and extensions
