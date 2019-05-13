@@ -1,17 +1,18 @@
 ---
-title:
-title-running:
-authors-running:
-affiliations: [{
-  authors: "",
-  city: "",
-  state: "",
-  country: "",
-  postcode: ""
-}]
+title: Towards the Automated Generation of Island Grammars
+title-running: Towards the Automated Generation of Island Grammars
+authors-running: Roberts and Griffith
+affiliations:
+  authors: "Rosetta Roberts and Isaac Griffith"
+  department: Informatics and Computer Science
+  institute: Idaho State University
+  city: "Pocatello"
+  state: "Idaho"
+  country: "United States"
+  postcode: "83208"
 acm-doi:
-  copyrightyear: 2018
-  acmYear: 2018
+  copyrightyear: 2019
+  acmYear: 2019
   setcopyright: acmlicensed
   acmConference:
     shortTitle: "Woodstock '18"
