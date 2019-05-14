@@ -16,18 +16,20 @@ follow these steps.
 
 #### Update Cabal
 
+    cabal update
     cabal install cabal-install
 
 #### Set bash to use updated cabal by default
 
-    echo "alias cabal='~/.cabal/bin/cabal'" >> .bashrc
-    source .bashrc
+    echo 'alias cabal="~/.cabal/bin/cabal"' >> ~/.bashrc
+    source ~/.bashrc
 
 #### Configure location of installed binaries and set path
 
-    sed -e '/-- symlink-bindir/c symlink-bindir = ~/.cabal/bin' ~/.cabal/config > ~/.cabal/config
-    echo "export PATH="$PATH:~/.cabal/bin" >> .bashrc
-    source .bashrc
+    cp ~/.cabal/config ~/.cabal/config.backup
+    sed -e '/-- symlink-bindir/c symlink-bindir = ~/.cabal/bin' ~/.cabal/config.backup > ~/.cabal/config
+    echo 'export PATH="$PATH:~/.cabal/bin"' >> ~/.bashrc
+    source ~/.bashrc
 
 #### Install pandoc and extensions
 
@@ -46,6 +48,10 @@ Make sure to use the sudo command so that the package is available on the path.
 This project uses the Futura LT BT font. To install, execute the following command:
 
     mkdir -p ~/.fonts && curl https://www.cufonfonts.com/download/font/futura-lt-bt > /tmp/futura-lt-bt-fonts.zip && unzip /tmp/futura-lt-bt-fonts.zip -d ~/.fonts
+
+### LaTeX files
+
+    sudo apt install texlive-xelatex texlive-publishers texlive-science
 
 ## Building the document
 

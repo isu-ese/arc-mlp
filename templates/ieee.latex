@@ -42,8 +42,8 @@ $endif$
 $for(affiliations)$
 \IEEEauthorblockN{$affiliations.authors$}
 \IEEEauthorblockA{$if(affiliations.lab)$$affiliations.lab$\\$endif$
-$if(affiliations.deptartment$$affiliations.department$\\$endif$
-$if(affiliations.institute$$affiliations.institute$\\$endif$
+$if(affiliations.department)$$affiliations.department$\\$endif$
+$if(affiliations.institute)$$affiliations.institute$\\$endif$
 $if(affiliations.city)$$affiliations.city$, $endif$$if(affiliations.state)$$affiliations.state$, $endif$$if(affiliations.postcode)$$affiliations.postcode$$endif$\\
 $if(affiliations.email)$Email: \{$affiliations.email$\}}$endif$
 $endfor$
