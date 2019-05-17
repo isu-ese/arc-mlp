@@ -1,6 +1,6 @@
 ## Context Free Grammars
 
-A context free grammar can be described as $G = (V,\Sigma,P,S)$ \cite{haoxiang_languages_1988}. $V$ is the set of non-terminal symbols. $\Sigma$ is the set of terminal symbols. $P \subseteq V \times (V\cup\Sigma)^*$ is the set of productions describing how the symbols of $V$ can be substituted for other symbols. These productions are written as $a \rightarrow b$ with $a \in V$ and $b \in (V\cup\Sigma)^*$. When $b$ is empty, the production is denoted by $a \rightarrow \varepsilon$. $S \in V$ is the starting symbol. A valid string is represented by a grammar if it can created by repeatedly applying productions \cite{moonen_generating_2001}. $L(G)$ is used to denote the set of all valid sentences, or language, of grammar $G$.
+A context free grammar can be described as $G = (V,\Sigma{},P,S)$ \cite{haoxiang_languages_1988}. $V$ is the set of non-terminal symbols. $\Sigma$ is the set of terminal symbols. $P \subseteq V \times (V\cup\Sigma)^*$ is the set of productions describing how the symbols of $V$ can be substituted for other symbols. These productions are written as $a \rightarrow b$ with $a \in V$ and $b \in (V\cup\Sigma)^*$. When $b$ is empty, the production is denoted by $a \rightarrow \varepsilon$. $S \in V$ is the starting symbol. A valid string is represented by a grammar if it can created by repeatedly applying productions \cite{moonen_generating_2001}. $L(G)$ is used to denote the set of all valid sentences, or language, of grammar $G$.
 
 ## Abstract Syntax Trees
 

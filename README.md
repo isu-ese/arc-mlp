@@ -21,15 +21,14 @@ follow these steps.
 
 #### Set bash to use updated cabal by default
 
-    echo 'alias cabal="~/.cabal/bin/cabal"' >> ~/.bashrc
-    source ~/.bashrc
+    echo 'alias cabal="$HOME/.cabal/bin/cabal"' >> ~/.bashrc
 
 #### Configure location of installed binaries and set path
 
     cp ~/.cabal/config ~/.cabal/config.backup
     sed -e '/-- symlink-bindir/c symlink-bindir = ~/.cabal/bin' ~/.cabal/config.backup > ~/.cabal/config
-    echo 'export PATH="$PATH:~/.cabal/bin"' >> ~/.bashrc
-    source ~/.bashrc
+    echo 'export PATH="$PATH:$HOME/.cabal/bin"' >> ~/.bashrc
+    . ~/.bashrc
 
 #### Install pandoc and extensions
 

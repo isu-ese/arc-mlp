@@ -11,6 +11,7 @@
 \usepackage{multirow}
 \usepackage{setspace}
 \usepackage{epstopdf}
+\usepackage[style=ieee]{biblatex}
 
 $if(graphics)$
 \usepackage{graphicx}
@@ -61,7 +62,6 @@ $keywords$
 
 $body$
 
-\bibliographystyle{IEEEtran}
-\bibliography{referneces}
+\printbibliography
 
 \end{document}
