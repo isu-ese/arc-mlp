@@ -12,6 +12,7 @@
 \usepackage{setspace}
 \usepackage{epstopdf}
 \usepackage[style=ieee]{biblatex}
+\addbibresource{isu-ese.bib}
 
 $if(graphics)$
 \usepackage{graphicx}
