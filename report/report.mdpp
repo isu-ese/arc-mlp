@@ -8,8 +8,6 @@
 !INCLUDE "discussion/discussion.mdpp"
 !INCLUDE "conclusion/conclusion.mdpp"
 
-\printbibliography
-
 \appendix
 
 !INCLUDE "appendices.md"

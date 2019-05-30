@@ -1,9 +1,9 @@
+\RequirePackage[T1]{fontenc}
 \documentclass[conference,compsoc]{IEEEtran}
 \IEEEoverridecommandlockouts
 % The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
 % \usepackage{cite}
 \usepackage{amsmath,amssymb,amsfonts}
-\usepackage[T1]{fontenc}
 \usepackage{algorithmic}
 \usepackage{textcomp}
 \usepackage{xcolor}
@@ -11,12 +11,10 @@
 \usepackage{hyperref}
 \usepackage{multirow}
 \usepackage{setspace}
-\usepackage{epstopdf}
-\usepackage[style=ieee]{biblatex}
-\addbibresource{isu-ese.bib}
 
 $if(graphics)$
 \usepackage{graphicx}
+\usepackage{epstopdf}
 % Redefine \includegraphics so that, unless explicit options are
 % given, the image width will not exceed the width of the page.
 % Images get their normal width if they fit onto the page, but
@@ -63,7 +61,5 @@ $keywords$
 \end{IEEEkeywords}
 
 $body$
-
-\printbibliography
 
 \end{document}

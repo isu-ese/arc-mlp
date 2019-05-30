@@ -10,11 +10,11 @@ pandoc report.gen.md \
   --metadata-file=metadata.gen.yml \
   --template=../templates/ieee.latex \
   --top-level-division=section \
+  --bibliography=../isu-ese.json \
+  --csl=../ieee.csl \
   -F pandoc-crossref \
-  -F pandoc-citeproc \
   -f markdown+fenced_code_attributes \
   -f markdown+multiline_tables \
+  -f markdown+tex_math_single_backslash \
   -o report.gen.tex
-xelatex report.gen
-biber report.gen
 xelatex report.gen
