@@ -1,0 +1,7 @@
+#!/bin/bash
+
+set -e
+
+./build_latex $1
+
+latexmk -pdf -pdflatex="xelatex %O %S" $1.gen # would add -c but a bug makes it not work in version 4.41. Fixed in later version of latexmk.

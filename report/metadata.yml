@@ -26,12 +26,8 @@ acm-doi:
   acmISBN: 978-1-4503-9999-9/18/06
 submission_id:
 abstract: |
-!INCLUDE "indented-abstract.gen.md"
+!indent(!include(abstract.md))
 acks: |
-!INCLUDE "acknowledgments.md"
+!indent(!include(acknowledgements.md))
 keywords:
-ccsxml: |
-  ```{=latex}
-!INCLUDE "ccsxml.md"
-  ```
 ...
