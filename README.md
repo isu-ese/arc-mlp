@@ -86,6 +86,10 @@ To build the presentation you will need the same dependencies as noted above
 
 You can then build the presentation via the following command:
 
-```
+```bash
 $ presentation/build.sh
 ```
+
+## Cleanup generated files
+
+The `clean.sh` script will cleanup files generated in any directory.
