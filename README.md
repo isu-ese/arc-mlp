@@ -4,60 +4,80 @@
 
 This project has several dependencies. Here are instructions to install each one:
 
+### Haskell platform
+
+This installs the newest version of the haskell platform on the system.
+
+```bash
+# install ghc and cabal
+curl -sSf https://get-ghcup.haskell.org | sh
+
+# add ghc environmental settings on start of terminal session
+echo ". $HOME/.ghcup/env" >> ~/.bashrc
+
+# effectively reload bash (restarting terminal is also an option)
+. ~/.bashrc
+
+# update cabal
+cabal new-install cabal-install
+
+# install stack
+curl -sSL https://get.haskellstack.org/ | sh
+```
+
 ### Pandoc and extensions
 
-Pandoc can be installed using the default package installer on many linux systems. On ubuntu,
-this project uses features that the default version does not have. To install the newest version on ubuntu,
-follow these steps.
+We use cabal to install the newest version of pandoc and extensions.
 
-#### Install the Haskall Platform
+```bash
+cabal new-install pandoc pandoc-crossref pandoc-citeproc
+```
 
-    sudo apt-get install haskell-platform
+### LaTeX dependencies
 
-#### Update Cabal
+Ubuntu:
 
-    cabal update
-    cabal install cabal-install
+```bash
+sudo apt install texlive-xelatex texlive-publishers texlive-science
+```
 
-#### Set bash to use updated cabal by default
+### PP
 
-    echo 'alias cabal="$HOME/.cabal/bin/cabal"' >> ~/.bashrc
+PP is a preprocessor designed for use with pandoc. PP can be installed from source. Instructions: https://github.com/CDSoft/pp.
 
-#### Configure location of installed binaries and set path
+```bash
+git clone git@github.com:CDSoft/pp.git
+cd pp
+make
+make install
+```
 
-    cp ~/.cabal/config ~/.cabal/config.backup
-    sed -e '/-- symlink-bindir/c symlink-bindir = ~/.cabal/bin' ~/.cabal/config.backup > ~/.cabal/config
-    echo 'export PATH="$PATH:$HOME/.cabal/bin"' >> ~/.bashrc
-    . ~/.bashrc
-
-#### Install pandoc and extensions
-
-    cabal new-install pandoc pandoc-crossref pandoc-citeproc
-
-### Markdown Pre Processor
-
-The markdown pre-processor is a python package. To install with pip do:
-
-    sudo pip install MarkdownPP
-
-Make sure to use the sudo command so that the package is available on the path.
+*Note: There is a healthy chance that you'll get errors regarding Rscript or other missing programs. These errors can be safely ignored. They are only used to build the README.md file which is not needed to use the tool.*
 
 ### Fonts
 
 This project uses the Futura LT BT font. To install, execute the following command:
 
-    mkdir -p ~/.fonts && curl https://www.cufonfonts.com/download/font/futura-lt-bt > /tmp/futura-lt-bt-fonts.zip && unzip /tmp/futura-lt-bt-fonts.zip -d ~/.fonts
-
-### LaTeX files
-
-    sudo apt install texlive-xelatex texlive-publishers texlive-science
-
-## Building the document
-
-Then execute the following command:
-
+```bash
+mkdir -p ~/.fonts && curl https://www.cufonfonts.com/download/font/futura-lt-bt > /tmp/futura-lt-bt-fonts.zip && unzip /tmp/futura-lt-bt-fonts.zip -d ~/.fonts
 ```
-$ report/build.sh
+
+## Building the documents
+
+To build the report or the proposal, first switch to the `report` directory.
+
+```bash
+# Build report
+./build report
+
+# Build proposal
+./build proposal
+
+# Build report intermediary files
+./build_latex report
+
+# Build proposal intermediary files
+./build_latex proposal
 ```
 
 ## Building the presentation
