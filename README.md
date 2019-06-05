@@ -69,16 +69,16 @@ To build the report or the proposal, first switch to the `report` directory.
 
 ```bash
 # Build report
-./build report
+./build.sh report
 
 # Build proposal
-./build proposal
+./build.sh proposal
 
 # Build report intermediary files
-./build_latex report
+./build_latex.sh report
 
 # Build proposal intermediary files
-./build_latex proposal
+./build_latex.sh proposal
 ```
 
 ## Building the presentation
