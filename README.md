@@ -34,13 +34,19 @@ follow these steps.
 
     cabal new-install pandoc pandoc-crossref pandoc-citeproc
 
-### Markdown Pre Processor
+### Pre-Processor
 
-The markdown pre-processor is a python package. To install with pip do:
+To install the preprocessor, you have to build and install from source. Make sure you have Haskell's Stack installed first.
 
-    sudo pip install MarkdownPP
+```bash
+curl -sSL https://get.haskellstack.org/ | sh
+git clone git@github.com:CDSoft/pp.git
+cd pp
+make
+make install
+```
 
-Make sure to use the sudo command so that the package is available on the path.
+Errors from trying to run Graphviz, blockdiag, Asymptote, R, or Java can be safely ignored when running `make`. These are used to generate documentation which is not needed to use the tool.
 
 ### Fonts
 
