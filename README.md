@@ -103,3 +103,13 @@ Install Zettlr: https://www.zettlr.com
 
 Follow instructions to integrate Zotero with Zettlr: https://docs.zettlr.com/academic/citations/.
 Have the exported library overwrite `isu-ese.json`. In the preferences > export settings of Zettlr, use the `isu-ese.json` and `ieee.csl` files for CSL JSON Database and CSL-Style.
+
+## Important changes from template
+
+* Addition of `.gitignore` and `clean.sh` to create a cleaner repository.
+* Addition of `ieee.csl` and `isu-ese.json` to shift citation handling from bibtex to pandoc.
+* Bug fixes in `presentation/template.latex`, `templates/ieee.latex`, and `report/metadata.yml.mdpp`.
+* Replacement of `markdown-pp` with `pp` because `pp` is better suited and supports indenting included code and includes many other useful features such as allowing graphviz files to be embedded.
+* Refactor of build scripts to eliminate code duplication.
+* Renamed directory aggregate files to `all.md`. This is to make it easier to tell which files are merely aggregating other files by convention.
+* Converted all `mdpp` extensions to `md`. This is so that Zettlr will allow opening such files.
