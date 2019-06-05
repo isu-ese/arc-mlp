@@ -13,6 +13,7 @@ This installs the newest version of the haskell platform on the system.
 curl -sSf https://get-ghcup.haskell.org | sh
 
 # add ghc environmental settings on start of terminal session
+cp ~/.bashrc ~/.bashrc.backup
 echo ". $HOME/.ghcup/env" >> ~/.bashrc
 
 # effectively reload bash (restarting terminal is also an option)
@@ -52,7 +53,7 @@ make
 make install
 ```
 
-*Note: There is a healthy chance that you'll get errors regarding Rscript or other missing programs. These errors can be safely ignored. They are only used to build the README.md file which is not needed to use the tool.*
+*Note: There is a healthy chance that you'll get errors regarding Rscript or other missing programs. These errors can be safely ignored. They are only used to build the README.md file of the pp project which is not needed to use the tool.*
 
 ### Fonts
 
@@ -93,3 +94,12 @@ $ presentation/build.sh
 ## Cleanup generated files
 
 The `clean.sh` script will cleanup files generated in any directory.
+
+## Setting up Zettlr and Zotero workflow
+
+Install Zotero: https://www.zotero.org/download/
+
+Install Zettlr: https://www.zettlr.com
+
+Follow instructions to integrate Zotero with Zettlr: https://docs.zettlr.com/academic/citations/.
+Have the exported library overwrite `isu-ese.json`. In the preferences > export settings of Zettlr, use the `isu-ese.json` and `ieee.csl` files for CSL JSON Database and CSL-Style.
