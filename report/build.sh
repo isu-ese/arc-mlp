@@ -2,7 +2,7 @@
 
 set -e
 
-./build_latex $1
+./build_latex.sh $1
 tempdir=$(mktemp -d)
 
 latexmk -pdf -pdflatex="xelatex %O %S" $1.gen -outdir=$tempdir # would add -c but a bug makes it not work in version 4.41. Fixed in later version of latexmk.
