@@ -1,1 +1,5 @@
 ### Design Choices
+
+A trivial grammar combining \(G_1\) and \(G_2\) can easily be created by simply concatenating the productions and symbols of the grammar and merging the productions of the start symbols. \(G_m = (R_1\cup R_2 \cup \{r_m\}, T, P_1 \cup P_2 \cup \{r_m\rightarrow r_1, r_m \rightarrow r_2\}, r_m)\).
+
+First of all, it is impossible to achieve all of our goals. A grammar \(G_m\) can be trivially created that maintains the validity constraint. But it is impossible to guarantee the compatibility constraint is followed. Given two grammars \(G_1\) and \(G_2\) that are weakly equivalent but not structurally equivalent [@paullStructuralEquivalenceContextfree1968], it's trivial to see that the compatibility constraint cannot be applied. To see if this is a problem, we must test our method on existing grammars and code.
