@@ -7,6 +7,12 @@
 !include(discussion/all.md)
 !include(conclusion/all.md)
 
+# References {-}
+
+<!-- Inserts the bibliography here. -->
+::: {#refs}
+:::
+
 \appendix
 
 !include(appendices.md)

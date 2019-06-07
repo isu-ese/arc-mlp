@@ -39,7 +39,7 @@ cabal new-install pandoc pandoc-crossref pandoc-citeproc
 Ubuntu:
 
 ```bash
-sudo apt install texlive-xelatex texlive-publishers texlive-science
+sudo apt install texlive-xelatex texlive-publishers texlive-science latexmk
 ```
 
 ### PP
@@ -79,6 +79,13 @@ To build the report or the proposal, first switch to the `report` directory.
 
 # Build proposal intermediary files
 ./build_latex.sh proposal
+```
+
+If you have problems when building related to `pp` not being found, append `~/.local/bin` to your path. You can do that with the following commands:
+
+```bash
+cp ~/.bashrc ~/.bashrc.backup
+echo 'export PATH="$PATH:$HOME/.local/bin"' >> ~/.bashrc
 ```
 
 ## Building the presentation

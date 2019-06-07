@@ -6,6 +6,12 @@
 !include(conclusion/all.md)
 !include(acknowledgements.md)
 
+# References {-}
+
+<!-- Inserts the bibliography here. -->
+::: {#refs}
+:::
+
 \appendix
 
 !include(appendices.md)
