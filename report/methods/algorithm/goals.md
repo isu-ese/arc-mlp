@@ -14,4 +14,4 @@ The abstract syntax trees produced for sentences in \(G_1\) or \(G_2\) should be
 
 #### Equivalence Maximization
 
-Finally, we want tools designed around one language to be able to parse equivalent structures in the other language. This means that we want the abstract syntax trees produced for different sentences to share as much structure with the other language as possible. We can measure the amount of shared structure for a sentence \(l\) by measuring the total fraction of nodes in the AST that have a mapping to symbols in both \(G_1\) and \(G_2\). 
+Finally, we want tools designed around one language to be able to parse equivalent structures in the other language. This means that we want the abstract syntax trees produced for different sentences to share as much structure with the other language as possible. We can measure the amount of shared structure for a sentence \(l\) by measuring the total fraction of nodes in an AST that have a mapping to symbols in both \(G_1\) and \(G_2\). 

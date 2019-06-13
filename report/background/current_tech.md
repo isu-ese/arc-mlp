@@ -2,6 +2,8 @@
 
 A context free grammar can be described as \(G = (V,\Sigma{},P,S)\) [@haoxiangLanguagesMachinesIntroduction1988]. \(V\) is the set of non-terminal symbols. \(\Sigma\) is the set of terminal symbols. \(P \subseteq V \times (V\cup\Sigma)^* \) is the set of productions describing how the symbols of \(V\) can be substituted for other symbols. These productions are written as \(a \rightarrow b\) with \(a \in V\) and \(b \in (V\cup\Sigma)^* \). When \(b\) is empty, the production is denoted by \(a \rightarrow \varepsilon\). \(S \in V\) is the starting symbol. A valid string is represented by a grammar if it can created by repeatedly applying productions [@moonenGeneratingRobustParsers2001]. \(L(G)\) is used to denote the set of all valid sentences, or language, of grammar \(G\).
 
+## Grammar Compatibility
+
 ## Abstract Syntax Trees
 
 An abstract syntax tree is an ordered tree describing the symbols and productions of a grammar that are applied for a given sentence in the grammar. An ordered tree is a tree for which the children of each node are numbered. Given a grammar \(G = (V,\Sigma,P,S)\), the leaf nodes of a tree must be elements from \(\Sigma\cup\{\varepsilon\}\) (\(\varepsilon\) represents the empty string). The concatenation from left to right of the leaf nodes should equal the sentence for which the parse tree is for. Each internal node must be a member of \(V\). For each internal node \(v\) with children \(c_1, c_2,...\), the production \(v \rightarrow c_1c_2...\) must be a member of \(P\). The root node of the tree must be \(S\). [@reinhardwilhelmCompilerDesign1995]

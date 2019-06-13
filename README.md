@@ -39,7 +39,7 @@ cabal new-install pandoc pandoc-crossref pandoc-citeproc
 Ubuntu:
 
 ```bash
-sudo apt install texlive-xelatex texlive-publishers texlive-science latexmk
+sudo apt install texlive-publishers texlive-science latexmk
 ```
 
 ### PP
