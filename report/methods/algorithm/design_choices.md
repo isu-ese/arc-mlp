@@ -1,5 +1,39 @@
 ### Design Choices
 
+In this paper, we focus on an approach for combining grammars that follows two steps. First, we extract out
+a skeleton grammar [@klusenerDerivingTolerantGrammars2003] containing the equivalent portions of both grammars. Then
+we merge the grammars on the skeleton grammar. To do the extraction process,
+we can use data mining algorithms for the maximum common subgraph problem
+if the grammars are first converted to a graph representation. There are many different ways
+to represent a grammar as a graph. We focus on representations where each symbol and each
+production in a grammar is represented by a node in the graph. Edges represent relationships
+between the productions and symbols and are directed.
+
+#### Maximum Common Subgraph Algorithm
+
+There are several different variations of the maximum common
+subgraph problem and the algorithms used to solve it. The main algorithms to do
+this can be classified into two categories. The first category relies on
+combinatorial expansion while the second relies on reduction to the maximal clique problem.
+Academic research on these methods has produced mixed evaluations on which category
+of algorithms are more efficient [@bunkeComparisonAlgorithmsMaximum2002; @conteComparisonThreeMaximum2003; @wellingPerformanceAnalysisMaximal2011]. The most recent research [@wellingPerformanceAnalysisMaximal2011]
+indicates that Koch's [@kochEnumeratingAllConnected2001] algorithms are the most efficient.
+Because of this, we chose to use Koch's algorithm.
+
+#### Graph Representation
+
+In order to represent our grammar as a graph, we have to represent the symbols and
+productions and the relationships between them with vertices and edges. Our goal
+is to create a mapping where the maximum common subgraph between two graphs extracts
+compatible parts of a grammar out. We decided to evaluate approaches where each symbol and production is mapped to a labeled vertex and the relationships between symbols and productions are
+expressed as labeled edges. We came up with two different ways to express
+symbols and productions as nodes and three different ways to express the relationships
+between them as edges.
+
+
+
+
+
 Different algorithms:
 
 Trivial: \(G_m = (R_1\cup R_2 \cup \{r_m\}, T, P_1 \cup P_2 \cup \{r_m\rightarrow r_1, r_m \rightarrow r_2\}, r_m)\).
@@ -14,65 +48,60 @@ Different ways to convert grammar into a graph:
 
 Let's use two very simple grammars as examples:
 
-::: {#fig:example_grammars}
-```
+!figures(example_grammars)(Two simple grammars)(
+  ```
 S1 = "" | "a" "b" "c" "d" "e"
-```
+  ```
 
-```
+  ```
 S2 = "" | "a" "c" "d" "e" "b"
-```
+  ```
+)
 
-Two simple grammars
-:::
+!figures(basic_parenthesis)(Simple method of combining grammars with shared parts highlighted)(
+  !dot(img/basic_parenthesis_1.gen.pdf { width=24% })
+  ~~~~~~~~~~~~~~~~~~~~
+    digraph S {
+      rankdir=LR
+      S -> P1[color=lightskyblue]
+      S->P2[color=lightskyblue]
+      P2->a[label=0,color=lightskyblue]
+      P2->b[label=1]
+      P2->c[label=2]
+      P2->d[label=3]
+      P2->e[label=4]
+      S[label="S1"]
+      P1[label=""]
+      P2[label=""]
 
-::: {#fig:basic_parenthesis}
+      a[fillcolor=lightblue, style=filled]
+      S[fillcolor=lightblue, style=filled]
+      P1[fillcolor=lightblue, style=filled]
+      P2[fillcolor=lightblue, style=filled]
+    }
+  ~~~~~~~~~~~~~~~~~~~~
+  !dot(img/basic_parenthesis_2.gen.pdf { width=24% })
+  ~~~
+    digraph S2 {
+      rankdir=RL
+      S -> P1[color=lightskyblue]
+      S->P2[color=lightskyblue]
+      P2->a[label=0,color=lightskyblue]
+      P2->c[label=1]
+      P2->d[label=2]
+      P2->e[label=3]
+      P2->b[label=4]
+      S[label="S2"]
+      P1[label=""]
+      P2[label=""]
 
-!dot(img/basic_parenthesis_1.gen.pdf { width=24% })
-~~~~~~~~~~~~~~~~~~~~
-digraph S {
-rankdir=LR
-    S -> P1[color=lightskyblue]
-    S->P2[color=lightskyblue]
-    P2->a[label=0,color=lightskyblue]
-    P2->b[label=1]
-    P2->c[label=2]
-    P2->d[label=3]
-    P2->e[label=4]
-    S[label="S1"]
-    P1[label=""]
-    P2[label=""]
-    
-    a[fillcolor=lightblue, style=filled]
-    S[fillcolor=lightblue, style=filled]
-    P1[fillcolor=lightblue, style=filled]
-    P2[fillcolor=lightblue, style=filled]
-}
-~~~~~~~~~~~~~~~~~~~~
-!dot(img/basic_parenthesis_2.gen.pdf { width=24% })
-~~~
-digraph S2 {
-rankdir=RL
-    S -> P1[color=lightskyblue]
-    S->P2[color=lightskyblue]
-    P2->a[label=0,color=lightskyblue]
-    P2->c[label=1]
-    P2->d[label=2]
-    P2->e[label=3]
-    P2->b[label=4]
-    S[label="S2"]
-    P1[label=""]
-    P2[label=""]
-  
-    a[fillcolor=lightblue, style=filled]
-    S[fillcolor=lightblue, style=filled]
-    P1[fillcolor=lightblue, style=filled]
-    P2[fillcolor=lightblue, style=filled]
-}
-~~~
-
-Simple method of combining grammars with shared parts highlighted.
-:::
+      a[fillcolor=lightblue, style=filled]
+      S[fillcolor=lightblue, style=filled]
+      P1[fillcolor=lightblue, style=filled]
+      P2[fillcolor=lightblue, style=filled]
+    }
+  ~~~
+)
 
 Pros: Simple and easy to create.
 
@@ -80,148 +109,144 @@ Flaws: The children of similar productions won't match unless they start with th
 
 Linked list of children:
 
-::: {#fig:linked_list}
-!dot(img/linked_list_1.gen.pdf { width=24% })
-~~~~~~~~~~~~~~~~~~~~
-digraph S1 {
-rankdir=LR
-    S -> P1[color=lightskyblue]
-    S->P2[color=lightskyblue]
-    P2->a
-    P2->b
-    P2->c[color=lightskyblue]
-    P2->d[color=lightskyblue]
-    P2->e[color=lightskyblue]
-    S[label="S1"]
-    P1[label=""]
-    P2[label=""]
-    edge[penwidth=.5,arrowsize=.5]
-    a->b
-    b->c
-    c->d[color=lightskyblue]
-    d->e[color=lightskyblue]
-    {rank=same; a b c d e}
-  
-    c[fillcolor=lightblue, style=filled]
-    d[fillcolor=lightblue, style=filled]
-    e[fillcolor=lightblue, style=filled]
-    S[fillcolor=lightblue, style=filled]
-    P1[fillcolor=lightblue, style=filled]
-    P2[fillcolor=lightblue, style=filled]
-}
-~~~~~~~~~~~~~~~~~~~~
-!dot(img/linked_list_2.gen.pdf { width=24% })
-~~~~~~~~~~~~~~~~~~~~
-digraph S2 {
-rankdir=RL
-    S -> P1[color=lightskyblue]
-    S->P2[color=lightskyblue]
-    P2->a
-    P2->c[color=lightskyblue]
-    P2->d[color=lightskyblue]
-    P2->e[color=lightskyblue]
-    P2->b
-    S[label="S1"]
-    P1[label=""]
-    P2[label=""]
-    edge[penwidth=.5,arrowsize=.5]
-    a->c
-    c->d[color=lightskyblue]
-    d->e[color=lightskyblue]
-    e->b
-    {rank=same; a c d e b}
-  
-    c[fillcolor=lightblue, style=filled]
-    d[fillcolor=lightblue, style=filled]
-    e[fillcolor=lightblue, style=filled]
-    S[fillcolor=lightblue, style=filled]
-    P1[fillcolor=lightblue, style=filled]
-    P2[fillcolor=lightblue, style=filled]
-}
-~~~~~~~~~~~~~~~~~~~~
+!figures(linked_list_demo)(Linking children together with a linked list)(
+  !dot(img/linked_list_1.gen.pdf { width=24% })
+  ~~~~~~~~~~~~~~~~~~~~
+    digraph S1 {
+      rankdir=LR
+      S -> P1[color=lightskyblue]
+      S->P2[color=lightskyblue]
+      P2->a
+      P2->b
+      P2->c[color=lightskyblue]
+      P2->d[color=lightskyblue]
+      P2->e[color=lightskyblue]
+      S[label="S1"]
+      P1[label=""]
+      P2[label=""]
+      edge[penwidth=.5,arrowsize=.5]
+      a->b
+      b->c
+      c->d[color=lightskyblue]
+      d->e[color=lightskyblue]
+      {rank=same; a b c d e}
 
-Linking children together with a linked list
-:::
+      c[fillcolor=lightblue, style=filled]
+      d[fillcolor=lightblue, style=filled]
+      e[fillcolor=lightblue, style=filled]
+      S[fillcolor=lightblue, style=filled]
+      P1[fillcolor=lightblue, style=filled]
+      P2[fillcolor=lightblue, style=filled]
+    }
+  ~~~~~~~~~~~~~~~~~~~~
+  !dot(img/linked_list_2.gen.pdf { width=24% })
+  ~~~~~~~~~~~~~~~~~~~~
+    digraph S2 {
+      rankdir=RL
+      S -> P1[color=lightskyblue]
+      S->P2[color=lightskyblue]
+      P2->a
+      P2->c[color=lightskyblue]
+      P2->d[color=lightskyblue]
+      P2->e[color=lightskyblue]
+      P2->b
+      S[label="S2"]
+      P1[label=""]
+      P2[label=""]
+      edge[penwidth=.5,arrowsize=.5]
+      a->c
+      c->d[color=lightskyblue]
+      d->e[color=lightskyblue]
+      e->b
+      {rank=same; a c d e b}
+
+      c[fillcolor=lightblue, style=filled]
+      d[fillcolor=lightblue, style=filled]
+      e[fillcolor=lightblue, style=filled]
+      S[fillcolor=lightblue, style=filled]
+      P1[fillcolor=lightblue, style=filled]
+      P2[fillcolor=lightblue, style=filled]
+    }
+  ~~~~~~~~~~~~~~~~~~~~
+)
 
 Full connected children:
 
-::: {#fig:fully_connected}
-!dot(img/fully_connected_1.gen.pdf {width=24%})
-~~~~~~~~~~~~~~~~~~~~
-digraph S1 {
-    rankdir=LR
-    {rank=same; a b c d e}
-    S[label="S1"]
-    P1[label=""]
-    P2[label=""]
-    S->P2[color=lightskyblue]
-    S -> P1[color=lightskyblue]
-    P2->a[color=lightskyblue]
-    P2->c[color=lightskyblue]
-    P2->d[color=lightskyblue]
-    P2->e[color=lightskyblue]
-    P2->b
-    edge[penwidth=.5,arrowsize=.5]
-    c->d[color=lightskyblue]
-    d->e[color=lightskyblue]
-    a->c[color=lightskyblue]
-    b->d[color=lightskyblue]
-    c->e[color=lightskyblue]
-    a->d[color=lightskyblue]
-    a->e[color=lightskyblue]
-    a->b
-    b->c
-    b->e
-    
-    a[fillcolor=lightblue, style=filled]
-    c[fillcolor=lightblue, style=filled]
-    d[fillcolor=lightblue, style=filled]
-    e[fillcolor=lightblue, style=filled]
-    S[fillcolor=lightblue, style=filled]
-    P1[fillcolor=lightblue, style=filled]
-    P2[fillcolor=lightblue, style=filled]
-}
-~~~~~~~~~~~~~~~~~~~~
-!dot(img/fully_connected_2.gen.pdf {width=24%})
-~~~~~~~~~~~~~~~~~~~~
-digraph S2 {
-    rankdir=RL
-    {rank=same; a b c d e}
-    S[label="S2"]
-    P1[label=""]
-    P2[label=""]
-    S->P2[color=lightskyblue]
-    S -> P1[color=lightskyblue]
-    P2->a[color=lightskyblue]
-    P2->c[color=lightskyblue]
-    P2->d[color=lightskyblue]
-    P2->e[color=lightskyblue]
-    P2->b
-    edge[penwidth=.5,arrowsize=.5]
-    a->c[color=lightskyblue]
-    a->d[color=lightskyblue]
-    a->e[color=lightskyblue]
-    c->d[color=lightskyblue]
-    c->e[color=lightskyblue]
-    d->e[color=lightskyblue]
-    c->b
-    a->b
-    d->b
-    e->b
-    c->b
-    
-    a[fillcolor=lightblue, style=filled]
-    c[fillcolor=lightblue, style=filled]
-    d[fillcolor=lightblue, style=filled]
-    e[fillcolor=lightblue, style=filled]
-    S[fillcolor=lightblue, style=filled]
-    P1[fillcolor=lightblue, style=filled]
-    P2[fillcolor=lightblue, style=filled]
-}
-~~~~~~~~~~~~~~~~~~~~
+!figures(fully_connected)(Children of a node are fully connected)(
+  !dot(img/fully_connected_1.gen.pdf {width=24%})
+  ~~~~~~~~~~~~~~~~~~~~
+    digraph S1 {
+      rankdir=LR
+      {rank=same; a b c d e}
+      S[label="S1"]
+      P1[label=""]
+      P2[label=""]
+      S->P2[color=lightskyblue]
+      S -> P1[color=lightskyblue]
+      P2->a[color=lightskyblue]
+      P2->c[color=lightskyblue]
+      P2->d[color=lightskyblue]
+      P2->e[color=lightskyblue]
+      P2->b
+      edge[penwidth=.5,arrowsize=.5]
+      c->d[color=lightskyblue]
+      d->e[color=lightskyblue]
+      a->c[color=lightskyblue]
+      b->d[color=lightskyblue]
+      c->e[color=lightskyblue]
+      a->d[color=lightskyblue]
+      a->e[color=lightskyblue]
+      a->b
+      b->c
+      b->e
 
-Children of a node are fully connected.
-:::
+      a[fillcolor=lightblue, style=filled]
+      c[fillcolor=lightblue, style=filled]
+      d[fillcolor=lightblue, style=filled]
+      e[fillcolor=lightblue, style=filled]
+      S[fillcolor=lightblue, style=filled]
+      P1[fillcolor=lightblue, style=filled]
+      P2[fillcolor=lightblue, style=filled]
+    }
+  ~~~~~~~~~~~~~~~~~~~~
+  !dot(img/fully_connected_2.gen.pdf {width=24%})
+  ~~~~~~~~~~~~~~~~~~~~
+    digraph S2 {
+      rankdir=RL
+      {rank=same; a b c d e}
+      S[label="S2"]
+      P1[label=""]
+      P2[label=""]
+      S->P2[color=lightskyblue]
+      S -> P1[color=lightskyblue]
+      P2->a[color=lightskyblue]
+      P2->c[color=lightskyblue]
+      P2->d[color=lightskyblue]
+      P2->e[color=lightskyblue]
+      P2->b
+      edge[penwidth=.5,arrowsize=.5]
+      a->c[color=lightskyblue]
+      a->d[color=lightskyblue]
+      a->e[color=lightskyblue]
+      c->d[color=lightskyblue]
+      c->e[color=lightskyblue]
+      d->e[color=lightskyblue]
+      c->b
+      a->b
+      d->b
+      e->b
+      c->b
+
+      a[fillcolor=lightblue, style=filled]
+      c[fillcolor=lightblue, style=filled]
+      d[fillcolor=lightblue, style=filled]
+      e[fillcolor=lightblue, style=filled]
+      S[fillcolor=lightblue, style=filled]
+      P1[fillcolor=lightblue, style=filled]
+      P2[fillcolor=lightblue, style=filled]
+    }
+  ~~~~~~~~~~~~~~~~~~~~
+)
 
 We also have to consider how we connect productions to rules that they are children of. The trivial way would be to connect them as children. This has the problem though that it could create complicated nonsensical graphs, especially if the children of a production are fully connected. Here is an example of that for the grammar of nested parenthesis:
 

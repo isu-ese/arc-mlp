@@ -1,3 +1,4 @@
+!import(macros.md)
 !include(metadata.yml)
 
 !include(introduction/all.md)
