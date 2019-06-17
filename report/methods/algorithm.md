@@ -41,7 +41,11 @@ symbols are used in a production. You can see an example of each for the simple 
 S = "" | "a" S | "b" S
 ~~~
 
-in [@fig:symbol_representation].
+in [@fig:symbol_representation]. The advantages of using forwarding nodes is that
+it prevents problems from relationships between terms in different productions getting mixed up
+with each other. The disadvantage is that the extraction algorithm might decide
+to not equate two forwarding nodes as equal while equating the productions they
+point to as equal. This could complicate the merging process.
 
 !figures(symbol_representation)(Two different ways to represent symbols in grammars.)(
   !dot(img/no_forwarding_nodes.gen.pdf { width=24% })(No forwarding nodes.)
@@ -96,8 +100,8 @@ none of the terms to match. This can lead to confusing matchings where far bette
 matchings might be apparent.
 
 !figures(index_children)(Simple method of representing terms of a production.
-  The maximum common subgraph of these two productions is shown.)(
-  !dot(img/index_children_1.gen.pdf { width=24% })
+  The maximum common subgraph of these two productions is highlighted in blue.)(
+  !dot(img/index_children_1.gen.pdf { width=24% })(`"a" "b" "c" "d" "e"`)
   ~~~~~~~~~~~~~~~~~~~~
     digraph P1 {
       rankdir=LR
@@ -111,7 +115,7 @@ matchings might be apparent.
       P1[fillcolor=lightblue, style=filled]
     }
   ~~~~~~~~~~~~~~~~~~~~
-  !dot(img/index_children_2.gen.pdf { width=24% })
+  !dot(img/index_children_2.gen.pdf { width=24% })(`"a" "c" "d" "e" "b"`)
   ~~~
     digraph S2 {
       rankdir=RL
@@ -127,96 +131,20 @@ matchings might be apparent.
   ~~~
 )
 
-Different algorithms:
+The second method is to link the children of a production with a linked list.
+An example of this using the same grammars used for [@fig:index_children] is in [@fig:linked_list_children].
 
-Trivial: \(G_m = (R_1\cup R_2 \cup \{r_m\}, T, P_1 \cup P_2 \cup \{r_m\rightarrow r_1, r_m \rightarrow r_2\}, r_m)\).
 
-More complicated: Convert grammars into graphs. Extract similar parts out using maximum common subgraph algorithm. Combine the grammars merging the similar parts.
-
-- Problems: Many ways to convert a grammar into a graph.
-- Maximum common subgraph algorithm has many variations.
-- Merging process is difficult
-
-Different ways to convert grammar into a graph:
-
-Let's use two very simple grammars as examples:
-
-!figures(example_grammars)(Two simple grammars)(
-  ```
-S1 = "" | "a" "b" "c" "d" "e"
-  ```
-
-  ```
-S2 = "" | "a" "c" "d" "e" "b"
-  ```
-)
-
-!figures(basic_parenthesis)(Simple method of combining grammars with shared parts highlighted)(
-  !dot(img/basic_parenthesis_1.gen.pdf { width=24% })
+!figures(linked_list_children)(Linking children together with a linked list.)(
+  !dot(img/linked_list_1.gen.pdf { width=24% })(`"a" "b" "c" "d" "e"`)
   ~~~~~~~~~~~~~~~~~~~~
-    digraph S {
+    digraph P1 {
       rankdir=LR
-      S -> P1[color=lightskyblue]
-      S->P2[color=lightskyblue]
-      P2->a[label=0,color=lightskyblue]
-      P2->b[label=1]
-      P2->c[label=2]
-      P2->d[label=3]
-      P2->e[label=4]
-      S[label="S1"]
-      P1[label=""]
-      P2[label=""]
-
-      a[fillcolor=lightblue, style=filled]
-      S[fillcolor=lightblue, style=filled]
-      P1[fillcolor=lightblue, style=filled]
-      P2[fillcolor=lightblue, style=filled]
-    }
-  ~~~~~~~~~~~~~~~~~~~~
-  !dot(img/basic_parenthesis_2.gen.pdf { width=24% })
-  ~~~
-    digraph S2 {
-      rankdir=RL
-      S -> P1[color=lightskyblue]
-      S->P2[color=lightskyblue]
-      P2->a[label=0,color=lightskyblue]
-      P2->c[label=1]
-      P2->d[label=2]
-      P2->e[label=3]
-      P2->b[label=4]
-      S[label="S2"]
-      P1[label=""]
-      P2[label=""]
-
-      a[fillcolor=lightblue, style=filled]
-      S[fillcolor=lightblue, style=filled]
-      P1[fillcolor=lightblue, style=filled]
-      P2[fillcolor=lightblue, style=filled]
-    }
-  ~~~
-)
-
-Pros: Simple and easy to create.
-
-Flaws: The children of similar productions won't match unless they start with the same symbols.
-
-Linked list of children:
-
-!figures(linked_list_demo)(Linking children together with a linked list)(
-  !dot(img/linked_list_1.gen.pdf { width=24% })
-  ~~~~~~~~~~~~~~~~~~~~
-    digraph S1 {
-      rankdir=LR
-      S -> P1[color=lightskyblue]
-      S->P2[color=lightskyblue]
-      P2->a
-      P2->b
-      P2->c[color=lightskyblue]
-      P2->d[color=lightskyblue]
-      P2->e[color=lightskyblue]
-      S[label="S1"]
-      P1[label=""]
-      P2[label=""]
+      P1->a
+      P1->b
+      P1->c[color=lightskyblue]
+      P1->d[color=lightskyblue]
+      P1->e[color=lightskyblue]
       edge[penwidth=.5,arrowsize=.5]
       a->b
       b->c
@@ -227,25 +155,18 @@ Linked list of children:
       c[fillcolor=lightblue, style=filled]
       d[fillcolor=lightblue, style=filled]
       e[fillcolor=lightblue, style=filled]
-      S[fillcolor=lightblue, style=filled]
       P1[fillcolor=lightblue, style=filled]
-      P2[fillcolor=lightblue, style=filled]
     }
   ~~~~~~~~~~~~~~~~~~~~
-  !dot(img/linked_list_2.gen.pdf { width=24% })
+  !dot(img/linked_list_2.gen.pdf { width=24% })(`"a" "c" "d" "e" "b"`)
   ~~~~~~~~~~~~~~~~~~~~
-    digraph S2 {
+    digraph P2 {
       rankdir=RL
-      S -> P1[color=lightskyblue]
-      S->P2[color=lightskyblue]
       P2->a
       P2->c[color=lightskyblue]
       P2->d[color=lightskyblue]
       P2->e[color=lightskyblue]
       P2->b
-      S[label="S2"]
-      P1[label=""]
-      P2[label=""]
       edge[penwidth=.5,arrowsize=.5]
       a->c
       c->d[color=lightskyblue]
@@ -256,8 +177,6 @@ Linked list of children:
       c[fillcolor=lightblue, style=filled]
       d[fillcolor=lightblue, style=filled]
       e[fillcolor=lightblue, style=filled]
-      S[fillcolor=lightblue, style=filled]
-      P1[fillcolor=lightblue, style=filled]
       P2[fillcolor=lightblue, style=filled]
     }
   ~~~~~~~~~~~~~~~~~~~~
