@@ -55,6 +55,15 @@ make install
 
 *Note: There is a healthy chance that you'll get errors regarding Rscript or other missing programs. These errors can be safely ignored. They are only used to build the README.md file of the pp project which is not needed to use the tool.*
 
+In order for the build process to use `pp`, it has to be on your PATH. By default, the `pp` binary is installed to `~/.local/bin` on
+linux systems. You can move this binary to a preferred location if you wish. If `~/.local/bin` is not on your PATH,
+you can add it by running this command and restarting the terminal.
+
+```bash
+cp ~/.bashrc ~/.bashrc.backup.1
+echo "export PATH=\"\$PATH:$HOME/.local/bin\"" >> ~/.bashrc
+```
+
 ### Graphviz
 
 Graphviz is used to produce images of graphs given a textual representation. PP is integrated with Graphviz and allows
