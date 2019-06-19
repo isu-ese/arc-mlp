@@ -27,7 +27,7 @@ $if(graphics)$
 \setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
 % Set default figure placement to htbp
 \makeatletter
-\def\fps@figure{htbp}
+\def\fps@figure{tbp}
 \makeatother
 $endif$
 
