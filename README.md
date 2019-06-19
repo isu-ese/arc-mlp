@@ -55,6 +55,15 @@ make install
 
 *Note: There is a healthy chance that you'll get errors regarding Rscript or other missing programs. These errors can be safely ignored. They are only used to build the README.md file of the pp project which is not needed to use the tool.*
 
+### Graphviz
+
+Graphviz is used to produce images of graphs given a textual representation. PP is integrated with Graphviz and allows
+you to embed graphviz images directly in markdown. To install graphviz on ubuntu, run the following:
+
+```bash
+sudo apt install graphviz
+```
+
 ### Fonts
 
 This project uses the Futura LT BT font. To install, execute the following command:
@@ -102,14 +111,16 @@ $ presentation/build.sh
 
 The `clean.sh` script will cleanup files generated in any directory.
 
-## Setting up Zettlr and Zotero workflow
+## Citation Autocomplete in Editors
 
 Install Zotero: https://www.zotero.org/download/
 
-Install Zettlr: https://www.zettlr.com
+Install the Zotero Better BibTeX plugin: https://retorque.re/zotero-better-bibtex/installation/
 
-Follow instructions to integrate Zotero with Zettlr: https://docs.zettlr.com/academic/citations/.
-Have the exported library overwrite `isu-ese.json`. In the preferences > export settings of Zettlr, use the `isu-ese.json` and `ieee.csl` files for CSL JSON Database and CSL-Style.
+Editors
+- Zettlr - https://www.zettlr.com - In the preference > export settings menu, select isu-ese.json and ieee.csl for CSL JSON Database and CSL-style fields.
+- Atom - Install the zotero-citations package.
+- VS Code - Install the "Citation Picker for Zotero" extension 
 
 ## Important changes from template
 
@@ -120,3 +131,4 @@ Have the exported library overwrite `isu-ese.json`. In the preferences > export 
 * Refactor of build scripts to eliminate code duplication.
 * Renamed directory aggregate files to `all.md`. This is to make it easier to tell which files are merely aggregating other files by convention.
 * Converted all `mdpp` extensions to `md`. This is so that Zettlr will allow opening such files.
+* Addition of img directory
