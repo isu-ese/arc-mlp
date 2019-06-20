@@ -35,3 +35,14 @@ You can reference the figure like this: `[@fig:<name>]`.
 !def(calc)(
     Calculates the expression using bc
 ) (!bash(echo '!1' | bc -l))
+
+!def(bib)(
+    Inserts the bibliography at the specified location
+)(
+
+# References {-}
+
+::: {#refs}
+:::
+
+)
