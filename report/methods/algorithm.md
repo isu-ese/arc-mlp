@@ -284,7 +284,7 @@ D2 = "0" | D1
 
 !dot(img/labeled_grammar_graph.gen.pdf {#fig:labeled_grammar_graph})(Labeled grammar. Each color is its own label. Yellow
 nodes are non-terminal symbols. Red nodes represent productions. Purple nodes represent forwarding nodes. The varying shades
-of turquoise nodes are terminal symbols. TODO: Color edges, update to match grammar)
+of turquoise nodes are terminal symbols.)
 ~~~~~~~~~~~~~~~~~~~~
 digraph S {
   node[style=filled,fillcolor="#ffff89"]
@@ -411,3 +411,22 @@ digraph S {
   {rank=same; N1, D1 }
 }
 ~~~~~~~~~~~~~~~~~~~~
+
+### Grammar Merging
+
+Using Koch's algorithm, we can extract out a maximum common subgraph between two grammars.
+This will produce a partial mapping \(M: V_1 \leftrightarrow V_2\) between non-terminal symbols of each grammar.
+To ease the merging process, we'll create a full mapping that maps symbols not in \(M\) to themselves.
+\[M_f(v) = \begin{cases}
+  M(v) & v \in M \\
+  v & v \notin M
+\end{cases}\]
+We can produce a merged grammar compatible with \(G_1\) by mapping symbols in \(G_2\) to their
+equivalent in \(G_1\) and then concatenating their productions. We don't have to change the start node
+at all because \(S_1\) and \(S_2\) will always be mapped together in our implementation of Koch's algorithm.
+
+\begin{align*}
+  V_{m_1}' &= V_1 \cup \{M_f(v) | v \in V_2\} \\
+  P_{m_1}&= \{P_1 \cup \{M_f(p_0) \rightarrow M_f(p_1)M_f(p_2)... | (p_0 \rightarrow p_1p_2...) \in P_2\} \\
+  G_{m_1} &= (V_{m_1}, \Sigma, P_{m_1}, S_1)
+\end{align*}
