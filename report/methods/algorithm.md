@@ -99,8 +99,10 @@ If the difference between two productions is a single leading term, this will ca
 none of the terms to match. This can lead to confusing matchings where far better
 matchings might be apparent.
 
-!figures(index_children)(Simple method of representing terms of a production.
-  The maximum common subgraph of these two productions is highlighted in blue.)(
+!figures(index_children)(
+  Simple method of representing terms of a production.
+  The maximum common subgraph of these two productions is highlighted in blue.
+)(
   !dot(img/index_children_1.gen.pdf { width=24% })(`"a" "b" "c" "d" "e"`)
   ~~~~~~~~~~~~~~~~~~~~
     digraph P1 {
@@ -132,7 +134,13 @@ matchings might be apparent.
 )
 
 The second method is to link the children of a production with a linked list.
-An example of this using the same grammars used for [@fig:index_children] is in [@fig:linked_list_children].
+An example of this using the same grammars as before is in [@fig:linked_list_children].
+This method allows terms of productions to be matched with each other regardless of position.
+But, it does't work well with runs of terms that are shared between productions with holes
+in them, such as the run `"a" "c" "d" "e"` in [@fig:linked_list_children]. Finally,
+different runs can match even if they're in different orders. We predict
+that allowing these different runs to match even in different orders will have a negative
+affect on the ability of the merged grammar.
 
 
 !figures(linked_list_children)(Linking children together with a linked list.)(
@@ -141,20 +149,23 @@ An example of this using the same grammars used for [@fig:index_children] is in 
     digraph P1 {
       rankdir=LR
       P1->a
+      P1->f[color=lightskyblue]
       P1->b
       P1->c[color=lightskyblue]
       P1->d[color=lightskyblue]
       P1->e[color=lightskyblue]
       edge[penwidth=.5,arrowsize=.5]
-      a->b
+      a->f
+      f->b
       b->c
       c->d[color=lightskyblue]
       d->e[color=lightskyblue]
-      {rank=same; a b c d e}
+      {rank=same; a f b c d e}
 
       c[fillcolor=lightblue, style=filled]
       d[fillcolor=lightblue, style=filled]
       e[fillcolor=lightblue, style=filled]
+      f[fillcolor=lightblue, style=filled]
       P1[fillcolor=lightblue, style=filled]
     }
   ~~~~~~~~~~~~~~~~~~~~
@@ -167,13 +178,16 @@ An example of this using the same grammars used for [@fig:index_children] is in 
       P2->d[color=lightskyblue]
       P2->e[color=lightskyblue]
       P2->b
+      P2->f[color=lightskyblue]
       edge[penwidth=.5,arrowsize=.5]
       a->c
       c->d[color=lightskyblue]
       d->e[color=lightskyblue]
       e->b
-      {rank=same; a c d e b}
+      b->f
+      {rank=same; a c d e b f}
 
+      f[fillcolor=lightblue, style=filled]
       c[fillcolor=lightblue, style=filled]
       d[fillcolor=lightblue, style=filled]
       e[fillcolor=lightblue, style=filled]
@@ -182,55 +196,49 @@ An example of this using the same grammars used for [@fig:index_children] is in 
   ~~~~~~~~~~~~~~~~~~~~
 )
 
-Full connected children:
+A third approach that we are evaluating is to fully connect the terms in a production.
+This will allow runs of terms with holes to match with each other. An example of this is in [@fig:fully_connected]. It will also not allow
+runs to be reordered as in the previous method. The problems with this method is that the addition
+of extra edges might increase the running time of our algorithms. 
+Overall we predict this to be the most effective method.
 
-!figures(fully_connected)(Children of a node are fully connected)(
+!figures(fully_connected)(Fully connecting terms of a production.)(
   !dot(img/fully_connected_1.gen.pdf {width=24%})
   ~~~~~~~~~~~~~~~~~~~~
-    digraph S1 {
-      rankdir=LR
+    digraph P1 {
+      rankdir=RL
       {rank=same; a b c d e}
-      S[label="S1"]
-      P1[label=""]
-      P2[label=""]
-      S->P2[color=lightskyblue]
-      S -> P1[color=lightskyblue]
-      P2->a[color=lightskyblue]
-      P2->c[color=lightskyblue]
-      P2->d[color=lightskyblue]
-      P2->e[color=lightskyblue]
-      P2->b
+      a->P1[style=invis,weight=0] // Forces P1 to be on opposite side of children
+      P1->a[color=lightskyblue]
+      P1->c[color=lightskyblue]
+      P1->d[color=lightskyblue]
+      P1->e[color=lightskyblue]
+      P1->b
       edge[penwidth=.5,arrowsize=.5]
       c->d[color=lightskyblue]
       d->e[color=lightskyblue]
       a->c[color=lightskyblue]
-      b->d[color=lightskyblue]
       c->e[color=lightskyblue]
       a->d[color=lightskyblue]
       a->e[color=lightskyblue]
       a->b
       b->c
+      b->d
       b->e
 
       a[fillcolor=lightblue, style=filled]
       c[fillcolor=lightblue, style=filled]
       d[fillcolor=lightblue, style=filled]
       e[fillcolor=lightblue, style=filled]
-      S[fillcolor=lightblue, style=filled]
       P1[fillcolor=lightblue, style=filled]
-      P2[fillcolor=lightblue, style=filled]
     }
   ~~~~~~~~~~~~~~~~~~~~
   !dot(img/fully_connected_2.gen.pdf {width=24%})
   ~~~~~~~~~~~~~~~~~~~~
     digraph S2 {
-      rankdir=RL
+      rankdir=LR
       {rank=same; a b c d e}
-      S[label="S2"]
-      P1[label=""]
-      P2[label=""]
-      S->P2[color=lightskyblue]
-      S -> P1[color=lightskyblue]
+      a->P2[style=invis,weight=0] // Forces P2 to be on opposite side of children.
       P2->a[color=lightskyblue]
       P2->c[color=lightskyblue]
       P2->d[color=lightskyblue]
@@ -247,68 +255,159 @@ Full connected children:
       a->b
       d->b
       e->b
-      c->b
 
       a[fillcolor=lightblue, style=filled]
       c[fillcolor=lightblue, style=filled]
       d[fillcolor=lightblue, style=filled]
       e[fillcolor=lightblue, style=filled]
-      S[fillcolor=lightblue, style=filled]
-      P1[fillcolor=lightblue, style=filled]
       P2[fillcolor=lightblue, style=filled]
     }
   ~~~~~~~~~~~~~~~~~~~~
 )
 
-We also have to consider how we connect productions to rules that they are children of. The trivial way would be to connect them as children. This has the problem though that it could create complicated nonsensical graphs, especially if the children of a production are fully connected. Here is an example of that for the grammar of nested parenthesis:
+### Graph Labels
+
+To make sure only the right kinds of nodes and relationships are merged with each other,
+each type of node and relationship will recieve it's own label. In addition, terminal
+nodes are all labeled with the letter of their alphabet. An example graph for the
+following grammar is in [@fig:labeled_grammar_graph].
 
 ```
-S = "" | "(" S ")"
+S = N | N O S
+O = "+" | "-"
+N = "0" | D1 N1
+D1 = "1" | "2" | "3" | "4" | "5" |
+     "6" | "7" | "8" | "9"
+N1 = "" | D2 N1
+D2 = "0" | D1
 ```
 
-!dot(img/confusing.gen.pdf)
-~~~
+!dot(img/labeled_grammar_graph.gen.pdf {#fig:labeled_grammar_graph})(Labeled grammar. Each color is its own label. Yellow
+nodes are non-terminal symbols. Red nodes represent productions. Purple nodes represent forwarding nodes. The varying shades
+of turquoise nodes are terminal symbols. TODO: Color edges, update to match grammar)
+~~~~~~~~~~~~~~~~~~~~
 digraph S {
-    S -> P1
-    S->P2
-    {rank=same; "(" ")"}
-    P2->"("[label=child]
-    P2->S[label=child]
-    P2->")"[	label=child]
-    S[label="Rule: S"]
-    P1[label="Production"]
-    P2[label="Production"]
-    "(" -> S[label=next]
-    "("->")"[label=next]
-    S->")"[label=next]
+  node[style=filled,fillcolor="#ffff89"]
+  S
+  O
+  N
+  D1
+  N1
+  D2
+
+  node[label="",style=filled,fillcolor="#ff8989"]
+  P1
+  P2
+  P3
+  P4
+  P5
+  P6
+  P7
+  P8
+  P9
+  P10
+  P11
+  P12
+  P13
+  P14
+  P15
+  P16
+  P17
+  P18
+  P19
+
+  node[style=filled,fillcolor="#ac89ff"]
+  F1
+  F2
+  F3
+  F4
+  F5
+  F6
+  F7
+  F8
+  F9
+  
+  node[label="0",fillcolor=".444 .46 1"]
+  "01"
+  "02"
+  node[label="\N"]
+  "+"[fillcolor=".444 .46 !calc(11/12)"]
+  "-"[fillcolor=".444 .46 !calc(10/12)"]
+  "1"[fillcolor=".444 .46 !calc(9/12)"]
+  "2"[fillcolor=".444 .46 !calc(8/12)"]
+  "3"[fillcolor=".444 .46 !calc(7/12)"]
+  "4"[fillcolor=".444 .46 !calc(6/12)"]
+  node[fontcolor=white]
+  "5"[fillcolor=".444 .46 !calc(5/12)"]
+  "6"[fillcolor=".444 .46 !calc(4/12)"]
+  "7"[fillcolor=".444 .46 !calc(3/12)"]
+  "8"[fillcolor=".444 .46 !calc(2/12)"]
+  "9"[fillcolor=".444 .46 !calc(1/12)"]
+
+  node[label="\N"]
+  rankdir=LR
+  S -> P1
+  S -> P2
+  P1 -> F1
+  P2 -> F2
+  P2 -> F3
+  P2 -> F4
+  F1 -> N
+  F2 -> N
+  F3 -> O
+  F4 -> S
+  F2 -> F3 -> F4
+  {rank=same; F2 F3 F4}
+
+  O -> P3
+  O -> P4
+  P3 -> "+"
+  P4 -> "-"
+
+  N -> P5
+  N -> P6
+  P5 -> "01"
+  P6 -> F5
+  P6 -> F6
+  F5 -> D1
+  F6 -> N1
+  F5 -> F6
+  {rank=same; F5 F6 }
+
+  D1 -> P9
+  D1 -> P10
+  D1 -> P11
+  D1 -> P12
+  D1 -> P13
+  D1 -> P14
+  D1 -> P15
+  D1 -> P16
+  D1 -> P17
+  P9 -> "1"
+  P10 -> "2"
+  P11 -> "3"
+  P12 -> "4"
+  P13 -> "5"
+  P14 -> "6"
+  P15 -> "7"
+  P16 -> "8"
+  P17 -> "9"
+
+  N1 -> P18
+  N1 -> P19
+  P19 -> F8
+  P19 -> F9
+  F8 -> D2
+  F9 -> N1
+  F8 -> F9
+  {rank=same; F8 F9}
+
+  D2 -> P7
+  D2 -> P8
+  P7 -> "02"
+  P8 -> F7
+  F7 -> D1
+
+  {rank=same; N1, D1 }
 }
-~~~
-
-In case this is problematic, we'll also test using link nodes so that productions don't connect directly to rules except for their parent rule.
-
-!dot(img/links.gen.pdf)
-~~~
-digraph S {
-    S -> P1
-    S->P2
-    {rank=same; "(" L ")"}
-    P2->"("[label=child]
-    P2->L[label=child]
-    P2->")"[	label=child]
-    S[label="Rule: S"]
-    P1[label="Production"]
-    P2[label="Production"]
-    L[label="label: S"]
-    L->S[label=link]
-    edge[constraint=false]
-    "(" -> L[label=next]
-    "("->")"[label=next]
-    L->")"[label=next]
-}
-~~~
-
-
-
-A trivial grammar combining \(G_1\) and \(G_2\) can easily be created by simply concatenating the productions and symbols of the grammar and merging the productions of the start symbols. \(G_m = (R_1\cup R_2 \cup \{r_m\}, T, P_1 \cup P_2 \cup \{r_m\rightarrow r_1, r_m \rightarrow r_2\}, r_m)\).
-
-First of all, it is impossible to achieve all of our goals. A grammar \(G_m\) can be trivially created that maintains the validity constraint. But it is impossible to guarantee the compatibility constraint is followed. Given two grammars \(G_1\) and \(G_2\) that are weakly equivalent but not structurally equivalent [@paullStructuralEquivalenceContextfree1968], it's trivial to see that the compatibility constraint cannot be applied. To see if this is a problem, we must test our method on existing grammars and code.
+~~~~~~~~~~~~~~~~~~~~

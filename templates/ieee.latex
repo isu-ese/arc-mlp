@@ -1,4 +1,4 @@
-\documentclass[conference,compsoc]{IEEEtran}
+\documentclass[conference]{IEEEtran}
 \IEEEoverridecommandlockouts
 % The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
 % \usepackage{cite}
@@ -12,8 +12,17 @@
 \usepackage{hyperref}
 \usepackage{multirow}
 \usepackage{setspace}
-\usepackage{subfig}
+\ifCLASSOPTIONcompsoc
+  \usepackage[caption=false, font=normalsize, labelfont=sf, textfont=sf]{subfig}
+\else
+  \usepackage[caption=false, font=footnotesize]{subfig}
+\fi
 \usepackage{grffile}
+\usepackage{upquote}
+
+\pdfsuppresswarningpagegroup=1
+
+\newenvironment{widefig}{\renewenvironment{figure}{\begin{figure*}\centering}{\end{figure*}}}
 
 $if(graphics)$
 \usepackage{graphicx,grffile,svg,epstopdf}
