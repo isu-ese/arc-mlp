@@ -1,6 +1,6 @@
 # Methods
 
-!include(algorithm.md)
+!include(algorithm/all.md)
 
 !include(design/all.md)
 

@@ -63,40 +63,7 @@ with each other. The disadvantage is that the extraction algorithm might decide
 to not equate two forwarding nodes as equal while equating the productions they
 point to as equal. This could complicate the merging process.
 
-!figures(symbol_representation)(Two different ways to represent symbols in grammars.)(
-  !dot(img/no_forwarding_nodes.gen.pdf { width=24% })(No forwarding nodes.)
-  ~~~
-  digraph S {
-    S -> P1
-    S -> P2
-    S -> P3
-    P2 -> a
-    P2 -> S1
-    P3 -> b
-    P3 -> S2
-    S1[label=S]
-    S2[label=S]
-  }
-  ~~~
-  !dot(img/forwarding_nodes.gen.pdf { width=24% })(Forwarding nodes highlighted in blue.)
-  ~~~
-  digraph S {
-    S -> P1
-    S -> P2
-    S -> P3
-    P2 -> a
-    P2 -> F1
-    P3 -> b
-    P3 -> F2
-    F1->S1
-    F2->S2
-    F1[fillcolor=lightblue,style=filled]
-    F2[fillcolor=lightblue,style=filled]
-    S1[label=S]
-    S2[label=S]
-  }
-  ~~~
-)
+!figures(symbol_representation)(Two different ways to represent symbols in grammars.)(!include(symbol_representation_figure.md))
 
 
 The three different ways to express the relationships differ only on how to express
@@ -118,36 +85,7 @@ matchings might be apparent.
 !figures(index_children)(
   Simple method of representing terms of a production.
   The maximum common subgraph of these two productions is highlighted in blue.
-)(
-  !dot(img/index_children_1.gen.pdf { width=24% })(`"a" "b" "c" "d" "e"`)
-  ~~~~~~~~~~~~~~~~~~~~
-    digraph P1 {
-      rankdir=LR
-      P1->a[label=0,color=lightskyblue]
-      P1->b[label=1]
-      P1->c[label=2]
-      P1->d[label=3]
-      P1->e[label=4]
-
-      a[fillcolor=lightblue, style=filled]
-      P1[fillcolor=lightblue, style=filled]
-    }
-  ~~~~~~~~~~~~~~~~~~~~
-  !dot(img/index_children_2.gen.pdf { width=24% })(`"a" "c" "d" "e" "b"`)
-  ~~~
-    digraph S2 {
-      rankdir=RL
-      P2->a[label=0,color=lightskyblue]
-      P2->c[label=1]
-      P2->d[label=2]
-      P2->e[label=3]
-      P2->b[label=4]
-
-      a[fillcolor=lightblue, style=filled]
-      P2[fillcolor=lightblue, style=filled]
-    }
-  ~~~
-)
+)(!include(index_children_figure.md))
 
 The second method is to link the children of a production with a linked list.
 An example of this using the same grammars as before is in [@fig:linked_list_children].
@@ -158,59 +96,7 @@ different runs can match even if they're in different orders. We predict
 that allowing these different runs to match even in different orders will have a negative
 affect on the ability of the merged grammar.
 
-
-!figures(linked_list_children)(Linking children together with a linked list.)(
-  !dot(img/linked_list_1.gen.pdf { width=24% })(`"a" "b" "c" "d" "e"`)
-  ~~~~~~~~~~~~~~~~~~~~
-    digraph P1 {
-      rankdir=LR
-      P1->a
-      P1->f[color=lightskyblue]
-      P1->b
-      P1->c[color=lightskyblue]
-      P1->d[color=lightskyblue]
-      P1->e[color=lightskyblue]
-      edge[penwidth=.5,arrowsize=.5]
-      a->f
-      f->b
-      b->c
-      c->d[color=lightskyblue]
-      d->e[color=lightskyblue]
-      {rank=same; a f b c d e}
-
-      c[fillcolor=lightblue, style=filled]
-      d[fillcolor=lightblue, style=filled]
-      e[fillcolor=lightblue, style=filled]
-      f[fillcolor=lightblue, style=filled]
-      P1[fillcolor=lightblue, style=filled]
-    }
-  ~~~~~~~~~~~~~~~~~~~~
-  !dot(img/linked_list_2.gen.pdf { width=24% })(`"a" "c" "d" "e" "b"`)
-  ~~~~~~~~~~~~~~~~~~~~
-    digraph P2 {
-      rankdir=RL
-      P2->a
-      P2->c[color=lightskyblue]
-      P2->d[color=lightskyblue]
-      P2->e[color=lightskyblue]
-      P2->b
-      P2->f[color=lightskyblue]
-      edge[penwidth=.5,arrowsize=.5]
-      a->c
-      c->d[color=lightskyblue]
-      d->e[color=lightskyblue]
-      e->b
-      b->f
-      {rank=same; a c d e b f}
-
-      f[fillcolor=lightblue, style=filled]
-      c[fillcolor=lightblue, style=filled]
-      d[fillcolor=lightblue, style=filled]
-      e[fillcolor=lightblue, style=filled]
-      P2[fillcolor=lightblue, style=filled]
-    }
-  ~~~~~~~~~~~~~~~~~~~~
-)
+!figures(linked_list_children)(Linking children together with a linked list.)(!include(linked_list_figure.md))
 
 A third approach that we are evaluating is to fully connect the terms in a production.
 This will allow runs of terms with holes to match with each other. An example of this is in [@fig:fully_connected]. It will also not allow
@@ -218,68 +104,7 @@ runs to be reordered as in the previous method. The problems with this method is
 of extra edges might increase the running time of our algorithms. 
 Overall we predict this to be the most effective method.
 
-!figures(fully_connected)(Fully connecting terms of a production.)(
-  !dot(img/fully_connected_1.gen.pdf {width=24%})
-  ~~~~~~~~~~~~~~~~~~~~
-    digraph P1 {
-      rankdir=RL
-      {rank=same; a b c d e}
-      a->P1[style=invis,weight=0] // Forces P1 to be on opposite side of children
-      P1->a[color=lightskyblue]
-      P1->c[color=lightskyblue]
-      P1->d[color=lightskyblue]
-      P1->e[color=lightskyblue]
-      P1->b
-      edge[penwidth=.5,arrowsize=.5]
-      c->d[color=lightskyblue]
-      d->e[color=lightskyblue]
-      a->c[color=lightskyblue]
-      c->e[color=lightskyblue]
-      a->d[color=lightskyblue]
-      a->e[color=lightskyblue]
-      a->b
-      b->c
-      b->d
-      b->e
-
-      a[fillcolor=lightblue, style=filled]
-      c[fillcolor=lightblue, style=filled]
-      d[fillcolor=lightblue, style=filled]
-      e[fillcolor=lightblue, style=filled]
-      P1[fillcolor=lightblue, style=filled]
-    }
-  ~~~~~~~~~~~~~~~~~~~~
-  !dot(img/fully_connected_2.gen.pdf {width=24%})
-  ~~~~~~~~~~~~~~~~~~~~
-    digraph S2 {
-      rankdir=LR
-      {rank=same; a b c d e}
-      a->P2[style=invis,weight=0] // Forces P2 to be on opposite side of children.
-      P2->a[color=lightskyblue]
-      P2->c[color=lightskyblue]
-      P2->d[color=lightskyblue]
-      P2->e[color=lightskyblue]
-      P2->b
-      edge[penwidth=.5,arrowsize=.5]
-      a->c[color=lightskyblue]
-      a->d[color=lightskyblue]
-      a->e[color=lightskyblue]
-      c->d[color=lightskyblue]
-      c->e[color=lightskyblue]
-      d->e[color=lightskyblue]
-      c->b
-      a->b
-      d->b
-      e->b
-
-      a[fillcolor=lightblue, style=filled]
-      c[fillcolor=lightblue, style=filled]
-      d[fillcolor=lightblue, style=filled]
-      e[fillcolor=lightblue, style=filled]
-      P2[fillcolor=lightblue, style=filled]
-    }
-  ~~~~~~~~~~~~~~~~~~~~
-)
+!figures(fully_connected)(Fully connecting terms of a production.)(!include(fully_connected_figure.md))
 
 ### Graph Labels
 
@@ -298,135 +123,11 @@ N1 = "" | D2 N1
 D2 = "0" | D1
 ```
 
-!dot(img/labeled_grammar_graph.gen.pdf {#fig:labeled_grammar_graph})(Labeled grammar. Each color is its own label. Yellow
-nodes are non-terminal symbols. Red nodes represent productions. Purple nodes represent forwarding nodes. The varying shades
-of turquoise nodes are terminal symbols.)
-~~~~~~~~~~~~~~~~~~~~
-digraph S {
-  node[style=filled,fillcolor="#ffff89"]
-  S
-  O
-  N
-  D1
-  N1
-  D2
-
-  node[label="",style=filled,fillcolor="#ff8989"]
-  P1
-  P2
-  P3
-  P4
-  P5
-  P6
-  P7
-  P8
-  P9
-  P10
-  P11
-  P12
-  P13
-  P14
-  P15
-  P16
-  P17
-  P18
-  P19
-
-  node[style=filled,fillcolor="#ac89ff"]
-  F1
-  F2
-  F3
-  F4
-  F5
-  F6
-  F7
-  F8
-  F9
-  
-  node[label="0",fillcolor=".444 .46 1"]
-  "01"
-  "02"
-  node[label="\N"]
-  "+"[fillcolor=".444 .46 !calc(11/12)"]
-  "-"[fillcolor=".444 .46 !calc(10/12)"]
-  "1"[fillcolor=".444 .46 !calc(9/12)"]
-  "2"[fillcolor=".444 .46 !calc(8/12)"]
-  "3"[fillcolor=".444 .46 !calc(7/12)"]
-  "4"[fillcolor=".444 .46 !calc(6/12)"]
-  node[fontcolor=white]
-  "5"[fillcolor=".444 .46 !calc(5/12)"]
-  "6"[fillcolor=".444 .46 !calc(4/12)"]
-  "7"[fillcolor=".444 .46 !calc(3/12)"]
-  "8"[fillcolor=".444 .46 !calc(2/12)"]
-  "9"[fillcolor=".444 .46 !calc(1/12)"]
-
-  node[label="\N"]
-  rankdir=LR
-  S -> P1
-  S -> P2
-  P1 -> F1
-  P2 -> F2
-  P2 -> F3
-  P2 -> F4
-  F1 -> N
-  F2 -> N
-  F3 -> O
-  F4 -> S
-  F2 -> F3 -> F4
-  {rank=same; F2 F3 F4}
-
-  O -> P3
-  O -> P4
-  P3 -> "+"
-  P4 -> "-"
-
-  N -> P5
-  N -> P6
-  P5 -> "01"
-  P6 -> F5
-  P6 -> F6
-  F5 -> D1
-  F6 -> N1
-  F5 -> F6
-  {rank=same; F5 F6 }
-
-  D1 -> P9
-  D1 -> P10
-  D1 -> P11
-  D1 -> P12
-  D1 -> P13
-  D1 -> P14
-  D1 -> P15
-  D1 -> P16
-  D1 -> P17
-  P9 -> "1"
-  P10 -> "2"
-  P11 -> "3"
-  P12 -> "4"
-  P13 -> "5"
-  P14 -> "6"
-  P15 -> "7"
-  P16 -> "8"
-  P17 -> "9"
-
-  N1 -> P18
-  N1 -> P19
-  P19 -> F8
-  P19 -> F9
-  F8 -> D2
-  F9 -> N1
-  F8 -> F9
-  {rank=same; F8 F9}
-
-  D2 -> P7
-  D2 -> P8
-  P7 -> "02"
-  P8 -> F7
-  F7 -> D1
-
-  {rank=same; N1, D1 }
-}
-~~~~~~~~~~~~~~~~~~~~
+!dot(img/labeled_grammar_graph.gen.pdf {#fig:labeled_grammar_graph})(
+    Labeled grammar. Each color is its own label. Yellow
+    nodes are non-terminal symbols. Red nodes represent productions. Purple nodes represent forwarding nodes. The varying shades
+    of turquoise nodes are terminal symbols.
+)(!include(labeled_grammar_figure.dot))
 
 ### Grammar Merging
 
