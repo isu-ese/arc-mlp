@@ -20,7 +20,23 @@ combinatorial expansion while the second relies on reduction to the maximal cliq
 Academic research on these methods has produced mixed evaluations on which category
 of algorithms are more efficient [@bunkeComparisonAlgorithmsMaximum2002; @conteComparisonThreeMaximum2003; @wellingPerformanceAnalysisMaximal2011]. The most recent research [@wellingPerformanceAnalysisMaximal2011]
 indicates that Koch's [@kochEnumeratingAllConnected2001] algorithms are the most efficient.
-Because of this, we chose to use Koch's algorithm.
+Because of this, we chose to use Koch's algorithm [@kochEnumeratingAllConnected2001].
+
+Koch's algorithm by itself isn't quite what we need. Namely, it doesn't immediately work
+for directed graphs. In addition, we wish for it to ensure that the start nodes
+of two grammars are equated. These two changes are simple enough to make. To allow it
+to work for directed graphs, we can modify the definition of c-edges (connected edge) and d-edges
+(disconnected edge) [@kochEnumeratingAllConnected2001, p. 14] to the following.
+
+Definition (c-edge): Let \((e_1,e_2)\) and \((f_1, f_2)\) be two edge pairs of
+two graphs \(G_1\) and \(G_2\) . An edge of the modular product graph \(G\) between the vertices \((e_1, e_2)\)
+and \((f_1, f_2)\) is called a c-edge if there is a directed edge from \(e_1\) to \(f_1\) in \(G_1\) or there is
+a directed edge from \(e_2\) to \(f_2\) in \(G_2\), otherwise the edge is called a d-edge.
+
+The change ensuring that the start symbols are equated is even simpler. Koch's algorithm
+begins with an initialization routine [@kochEnumeratingAllConnected2001, p. 16] that
+iterates over every pair of nodes to initially equate. We can easily modify this initialization
+routine by only considering the start case where the start symbols are equated.
 
 ### Graph Representation
 
