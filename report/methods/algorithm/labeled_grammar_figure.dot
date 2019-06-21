@@ -39,12 +39,12 @@ digraph S {
   F8
   F9
   
-  node[label="0",fillcolor=".444 .46 1"]
+  node[label="0",fillcolor=".444 .46 !calc(10/12)"]
   "01"
   "02"
   node[label="\N"]
-  "+"[fillcolor=".444 .46 !calc(11/12)"]
-  "-"[fillcolor=".444 .46 !calc(10/12)"]
+  "+"[fillcolor=".444 .46 1"]
+  "-"[fillcolor=".444 .46 !calc(11/12)"]
   "1"[fillcolor=".444 .46 !calc(9/12)"]
   "2"[fillcolor=".444 .46 !calc(8/12)"]
   "3"[fillcolor=".444 .46 !calc(7/12)"]
