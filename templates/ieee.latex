@@ -5,7 +5,11 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{amsmath,amssymb,amsfonts}
-\usepackage{algorithmic}
+
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\algnewcommand{\LineComment}[1]{\State \(\triangleright\) #1}
+
 \usepackage{textcomp}
 \usepackage{xcolor}
 \usepackage{listings}
@@ -17,11 +21,14 @@
 \else
   \usepackage[caption=false, font=footnotesize]{subfig}
 \fi
-\usepackage{grffile}
 \usepackage{upquote}
+% nounderscore added so that this package doesn't break underscores in references.
+\usepackage[nounderscore]{syntax}
 
+% Used to suppress useless warnings when including our generated figures
 \pdfsuppresswarningpagegroup=1
 
+% Used to get around pandoc not supporting wide figures by default.
 \newenvironment{widefig}{\renewenvironment{figure}{\begin{figure*}\centering}{\end{figure*}}}
 
 $if(graphics)$
@@ -67,6 +74,9 @@ $abstract$
 \begin{IEEEkeywords}
 $keywords$
 \end{IEEEkeywords}
+
+% Decreases the vertical distance between rules in grammars from the syntax package
+\setlength{\grammarparsep}{1pt}
 
 $body$
 

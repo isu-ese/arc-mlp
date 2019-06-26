@@ -1,42 +1,22 @@
 ## Algorithm
 
-Our goal is to find a way to calculate a merged grammar \(G_m\) from two grammars \( G_1 \) and \(G_2\). We wish for it to be as compatible as possible with tools that use \(G_1\) and to be able to process all sentences that are valid for both \(G_1\) and \(G_2\). To better express this, we created the following desired properties.
+We focus on an island grammar based approach to merging grammars.
+First, we detect portions of the grammars that are structurally similar to each other.
+We then extract the constructs in the grammars that differ from each other. These constructs
+of interest are our islands. The similar parts are our water. We can then merge our
+water and islands together to produce an island grammar describing both grammars.
 
-We focus on an approach for combining grammars that follows two steps. First, we extract out
-a skeleton grammar [@klusenerDerivingTolerantGrammars2003] containing the equivalent portions of both grammars. Then
-we merge the grammars on the skeleton grammar. To do the extraction process,
-we can use data mining algorithms for the maximum common subgraph problem
-if the grammars are first converted to a graph representation. There are many different ways
-to represent a grammar as a graph. We focus on representations where each symbol and each
-production in a grammar is represented by a node in the graph. Edges represent relationships
-between the productions and symbols and are directed.
+Detecting parts of the grammars that are similar to each other is a difficult problem.
+If we model our grammars as graphs, our problem is equivalent to the problem
+of identifying maximal equivalent subgraphs shared between the graphs representing each
+grammar. If we limit ourselves to two grammars being combined, this is the Maximum
+Common Subgraph (MCS) problem. In the case of multiple grammars, this becomes the Maximal
+Frequent Subgraph problem. In this paper, we focus on only combining two grammars at a
+time.
 
-### Maximum Common Subgraph Algorithm
-
-There are several different variations of the maximum common
-subgraph problem and the algorithms used to solve it. The main algorithms to do
-this can be classified into two categories. The first category relies on
-combinatorial expansion while the second relies on reduction to the maximal clique problem.
-Academic research on these methods has produced mixed evaluations on which category
-of algorithms are more efficient [@bunkeComparisonAlgorithmsMaximum2002; @conteComparisonThreeMaximum2003; @wellingPerformanceAnalysisMaximal2011]. The most recent research [@wellingPerformanceAnalysisMaximal2011]
-indicates that Koch's [@kochEnumeratingAllConnected2001] algorithms are the most efficient.
-Because of this, we chose to use Koch's algorithm [@kochEnumeratingAllConnected2001].
-
-Koch's algorithm by itself isn't quite what we need. Namely, it doesn't immediately work
-for directed graphs. In addition, we wish for it to ensure that the start nodes
-of two grammars are equated. These two changes are simple enough to make. To allow it
-to work for directed graphs, we can modify the definition of c-edges (connected edge) and d-edges
-(disconnected edge) [@kochEnumeratingAllConnected2001, p. 14] to the following.
-
-Definition (c-edge): Let \((e_1,e_2)\) and \((f_1, f_2)\) be two edge pairs of
-two graphs \(G_1\) and \(G_2\) . An edge of the modular product graph \(G\) between the vertices \((e_1, e_2)\)
-and \((f_1, f_2)\) is called a c-edge if there is a directed edge from \(e_1\) to \(f_1\) in \(G_1\) or there is
-a directed edge from \(e_2\) to \(f_2\) in \(G_2\), otherwise the edge is called a d-edge.
-
-The change ensuring that the start symbols are equated is even simpler. Koch's algorithm
-begins with an initialization routine [@kochEnumeratingAllConnected2001, p. 16] that
-iterates over every pair of nodes to initially equate. We can easily modify this initialization
-routine by only considering the start case where the start symbols are equated.
+In order to use algorithms for MCS on our grammars, we have to convert them into a graph
+form. The details for converting them to a graph form, extracting the MCS, and then
+merging the grammars is detailed in the following sections.
 
 ### Graph Representation
 
@@ -63,7 +43,7 @@ with each other. The disadvantage is that the extraction algorithm might decide
 to not equate two forwarding nodes as equal while equating the productions they
 point to as equal. This could complicate the merging process.
 
-!figures(symbol_representation)(Two different ways to represent symbols in grammars.)(!include(symbol_representation_figure.md))
+!figures(symbol_representation)(Two different ways of representing non-terminal symbols in terms.)(!include(symbol_representation_figure.md))
 
 
 The three different ways to express the relationships differ only on how to express
@@ -113,37 +93,108 @@ each type of node and relationship will recieve it's own label. In addition, ter
 nodes are all labeled with the letter of their alphabet. An example graph for the
 following grammar is in [@fig:labeled_grammar_graph].
 
-```
-S = N | N O S
-O = "+" | "-"
-N = "0" | D1 N1
-D1 = "1" | "2" | "3" | "4" | "5" |
-     "6" | "7" | "8" | "9"
-N1 = "" | D2 N1
-D2 = "0" | D1
-```
+!latex
+~~~~~~~~~~~~~~~~~~~~~
+\begin{grammar}
+<S> ::= <N> | <N> <O> <S>
+
+<O> ::= `+' | `-'
+
+<N> ::= `0' | <D1> <D2>
+
+<D1> ::= `1' | `2' | `3' | `4' | `5' | `6' | `7' | `8' | `9'
+
+<N1> ::= $\varepsilon$ | <D2> <N1>
+
+<D2> ::= `0' | <D1>
+\end{grammar}
+~~~~~~~~~~~~~~~~~~~~~
 
 !dot(img/labeled_grammar_graph.gen.pdf {#fig:labeled_grammar_graph})(
     Labeled grammar. Each color is its own label. Yellow
     nodes are non-terminal symbols. Red nodes represent productions. Purple nodes represent forwarding nodes. The varying shades
-    of turquoise nodes are terminal symbols.
+    of turquoise nodes are terminal symbols. Note that we are using forwarding nodes and linking terms of productions
+    with a linked list in this graph.
 )(!include(labeled_grammar_figure.dot))
+
+
+### Maximum Common Subgraph Algorithm
+
+We want the similar parts identified to have a number of properties.
+First of all, we want the symbols to form a skeleton grammar in respect
+to both grammars being merged. A skeleton
+grammar is a grammar where all symbols and productions
+
+There are several different variations of the maximum common
+subgraph problem and the algorithms used to solve it. The main algorithms to do
+this can be classified into two categories. The first category relies on
+combinatorial expansion while the second relies on reduction to the maximal clique problem.
+Academic research on these methods has produced mixed evaluations on which category
+of algorithms are more efficient [@bunkeComparisonAlgorithmsMaximum2002; @conteComparisonThreeMaximum2003; @wellingPerformanceAnalysisMaximal2011]. The most recent research [@wellingPerformanceAnalysisMaximal2011]
+indicates that Koch's [@kochEnumeratingAllConnected2001] algorithms are the most efficient.
+Because of this, we chose to use Koch's algorithm [@kochEnumeratingAllConnected2001].
+
+Koch's algorithm by itself isn't quite what we need. Namely, it doesn't immediately work
+for directed graphs. In addition, we wish for it to ensure that the start nodes
+of two grammars are equated. These two changes are simple enough to make. To allow it
+to work for directed graphs, we can modify the definition of c-edges (connected edge) and d-edges
+(disconnected edge) [@kochEnumeratingAllConnected2001, p. 14] to the following.
+
+Definition (c-edge): Let \((e_1,e_2)\) and \((f_1, f_2)\) be two edge pairs of
+two graphs \(G_1\) and \(G_2\) . An edge of the modular product graph \(G\) between the vertices \((e_1, e_2)\)
+and \((f_1, f_2)\) is called a c-edge if there is a directed edge from \(e_1\) to \(f_1\) in \(G_1\) or there is
+a directed edge from \(e_2\) to \(f_2\) in \(G_2\), otherwise the edge is called a d-edge.
+
+The change ensuring that the start symbols are equated is even simpler. Koch's algorithm
+begins with an initialization routine [@kochEnumeratingAllConnected2001, p. 16] that
+iterates over every pair of nodes to initially equate. We can easily modify this initialization
+routine by only considering the start case where the start symbols are equated.
+
+
 
 ### Grammar Merging
 
-Using Koch's algorithm, we can extract out a maximum common subgraph between two grammars.
-This will produce a partial mapping \(M: V_1 \leftrightarrow V_2\) between non-terminal symbols of each grammar.
-To ease the merging process, we'll create a full mapping that maps symbols not in \(M\) to themselves.
-\[M_f(v) = \begin{cases}
-  M(v) & v \in M \\
-  v & v \notin M
-\end{cases}\]
-We can produce a merged grammar compatible with \(G_1\) by mapping symbols in \(G_2\) to their
-equivalent in \(G_1\) and then concatenating their productions. We don't have to change the start node
-at all because \(S_1\) and \(S_2\) will always be mapped together in our implementation of Koch's algorithm.
+Using Koch's algorithm, we can extract out a maximum common subgraph between the symbols in
+the two grammars. Using this mapping, we can merge two graphs together by first mapping
+the symbols and productions from the second grammar to their equivalents in the first grammar. Then
+we can simply append the symbols and productions of the second grammar to the first grammar.
+This procedure is detailed in [alg. @alg:merge_grammar].
 
-\begin{align*}
-  V_{m_1}' &= V_1 \cup \{M_f(v) | v \in V_2\} \\
-  P_{m_1}&= \{P_1 \cup \{M_f(p_0) \rightarrow M_f(p_1)M_f(p_2)... | (p_0 \rightarrow p_1p_2...) \in P_2\} \\
-  G_{m_1} &= (V_{m_1}, \Sigma, P_{m_1}, S_1)
-\end{align*}
+!latex
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{algorithm}
+\caption{Algorithm describing the procedure for merging grammars.}\label{alg:merge_grammar}
+\begin{algorithmic}[1]
+\LineComment{$G_1$ and $G_2$ are the grammars to be merged.}
+\LineComment{$M \subseteq V(G_1) \times V(G_2)$ maps similar symbols between $G_1$ and $G_2$.
+Symbols from either grammar map to at most one symbol in the other grammar.}
+\Procedure{MergeGrammars}{$G_1, G_2, M$}
+  \State $V_m \gets V(G_1)$
+  \ForAll{$v \in V(G_2)$}
+    \State $V_m \gets V_m \cup \{\Call{MapSymbol}{v}\}$
+  \EndFor
+  \State $P_m \gets P(G_1)$
+  \ForAll{$p \in P(G_2)$}
+    \State Let $p$ be the production $p_0 \rightarrow p_1p_2...p_n$
+    \State Let $p_{m_i}$ be \Call{MapSymbol}{$p_i$}
+    \State $p_m \gets (p_{m_0} \rightarrow p_{m_1}p_{m_2}...p_{m_n})$
+    \State $P_m \gets P_m \cup \{p_m\}$
+  \EndFor
+  \LineComment{$\Sigma$ should be the same in $G_1$ and $G_2$.}
+  \LineComment{$S_2$ should always map to $S_1$.}
+  \State $G_m = (V_m, \Sigma, P_m, S_1)$
+  \State \textbf{return} $G_m$
+\EndProcedure
+\Statex
+\LineComment{Maps $v_2 \in V(G_2) \cup \Sigma$ to the equivalent symbol in $G_1$ unless
+$v_2$ doesn't have an equivalent.}
+\Procedure{MapSymbol}{$M, v_2$}
+  \If{$\exists v_1: (v_1, v_2) \in M$}
+    \State \textbf{return} $v_1$
+  \Else
+    \State \textbf{return} $v_2$
+  \EndIf
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -119,6 +119,5 @@ digraph S {
   P7 -> "02"
   P8 -> F7
   F7 -> D1
-
   {rank=same; N1, D1 }
 }

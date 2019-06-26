@@ -31,6 +31,14 @@ You can reference the figure like this: `[@fig:<name>]`.
 
 )
 
+!def(latex)(
+    Executes the following as latex.
+)(
+```{=latex}
+!1
+```
+)
+
 
 !def(calc)(
     Calculates the expression using bc
