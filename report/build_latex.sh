@@ -2,7 +2,8 @@
 
 set -e
 
-pp $1.md -img=img.gen.pp > $1.gen.md
+mkdir -p ./img
+pp $1.md > $1.gen.md
 
 pandoc $1.gen.md \
   --template=../templates/ieee.latex \

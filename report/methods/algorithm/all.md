@@ -1,164 +1,189 @@
 ## Algorithm
 
-We focus on an island grammar based approach to merging grammars.
-First, we detect portions of the grammars that are structurally similar to each other.
-We then extract the constructs in the grammars that differ from each other. These constructs
-of interest are our islands. The similar parts are our water. We can then merge our
-water and islands together to produce an island grammar describing both grammars.
+Our algorithm merges two grammars to produce a grammar that approximates
+both input grammars. This approximation relationship is described 
+in [@klusenerDerivingTolerantGrammars2003]. [@klusenerDerivingTolerantGrammars2003]
+describes a process by which one can approximate a base grammar using an
+island grammar. Based off of this process, we can create a grammar
+that approximates multiple grammars.EMCG
 
-Detecting parts of the grammars that are similar to each other is a difficult problem.
-If we model our grammars as graphs, our problem is equivalent to the problem
-of identifying maximal equivalent subgraphs shared between the graphs representing each
-grammar. If we limit ourselves to two grammars being combined, this is the Maximum
-Common Subgraph (MCS) problem. In the case of multiple grammars, this becomes the Maximal
-Frequent Subgraph problem. In this paper, we focus on only combining two grammars at a
-time.
+In [@klusenerDerivingTolerantGrammars2003], they derive their approximation
+grammar by first starting with an island grammar, the base grammar of the
+language the island grammar is extracting constructs of interest from,
+and a partial mapping between the symbols in each of these grammars. They
+then perform a process called root-completion which adds the productions
+and symbols that are needed to reach the start symbol from the constructs of
+interest. They then provide default values for non-terminals that are not completely
+defined in the partial root-completed grammar.
 
-In order to use algorithms for MCS on our grammars, we have to convert them into a graph
-form. The details for converting them to a graph form, extracting the MCS, and then
-merging the grammars is detailed in the following sections.
+Our approach is heavily inspired by this process. However, rather than
+starting with an island grammar, we extract out an island grammar
+from the input grammars. In this case, we wish to identify the different parts
+of the input grammars as our island grammar.  We can identify the different parts
+by first identifying the similar parts, or the water, of the input grammars.
+We perform this process by starting with a minimal root-completed grammar of just
+the start symbols of each grammar. We then iteratively increase its size until we
+cannot increase its size anymore.
 
-### Graph Representation
+### Extracting Common Partial Grammars
+ 
+For extracting the maximum common root-completed grammars, we first
+start with a minimal root-completed grammar and then iteratively increase its
+size. A minimal root-completed grammar can easily be formed by mapping the
+start symbols of the input grammars. Increasing the size of the root-completed
+grammar is a more difficult problem.
 
-In order to represent our grammar as a graph, we have to represent the symbols and
-productions and the relationships between them with vertices and edges. Our goal
-is to create a mapping where the maximum common subgraph between two graphs extracts
-compatible parts of a grammar out. We decided to evaluate approaches where each symbol and production is mapped to a labeled vertex and the relationships between symbols and productions are
-expressed as labeled edges. We came up with two different ways to express
-symbols and productions as nodes and three different ways to express the relationships
-between them as edges.
+To ensure that the root-completed grammar stays root completed, we have
+to make sure that if a symbol from the input grammar is in the root-completed
+grammar, that all symbols that depend on it are also in the input grammar.
+To maintain this property, we can only add symbols to our root-completed
+grammar that already have this property. However, this would fail to consider
+all possible root completed grammars. Namely, when a symbol indirectly depends
+on itself, it and none of the symbols that depend on that can be added to the
+root completed grammar. To resolve this issue, we can transform the dependency
+graph of the input grammars into a strongly connected components graph. Instead of
+adding one symbol at a time to our root-completed grammar, we'll add strongly
+connected components one at a time. Since the strongly connected component graph
+is acyclic, we won't run into the previous issue.
 
-There are two different ways to represent the symbols and productions of a graph
-as vertices in both cases, each symbol and production is represented by a node.
-But what differs is the introduction of a forwarding node for when non-terminal
-symbols are used in a production. You can see an example of each for the simple grammar
+Because we're adding connected components, there can be multiple
+ways that we can map these components to each other across the different input
+grammars. We have to consider each possible way to ensure that we fully
+explore the problem space.
 
-~~~
-S = "" | "a" S | "b" S
-~~~
-
-in [@fig:symbol_representation]. The advantages of using forwarding nodes is that
-it prevents problems from relationships between terms in different productions getting mixed up
-with each other. The disadvantage is that the extraction algorithm might decide
-to not equate two forwarding nodes as equal while equating the productions they
-point to as equal. This could complicate the merging process.
-
-!figures(symbol_representation)(Two different ways of representing non-terminal symbols in terms.)(!include(symbol_representation_figure.md))
-
-
-The three different ways to express the relationships differ only on how to express
-the terms in productions. The order of these terms is important, so we can't
-simple leave unlabeled edges between a production and each term in it. This could
-allow our algorithm to match content that is ordered differently. To prevent this,
-we have come up with three different ways to express the terms in a production.
-
-The first approach that we are evaluating is to simply label the edges between
-productions and their terms with a number to indicate its order. An example of this
-using the two productions `"a" "b" "c" "d" "e"` and `"a" "c" "d" "e" "b"` is in
-[@fig:index_children]. While this representation is simple and does make
-sure that order of terms is preserved in a matching, it does have flaws. The biggest
-is that this only matches terms that are in the same position of a production.
-If the difference between two productions is a single leading term, this will cause
-none of the terms to match. This can lead to confusing matchings where far better
-matchings might be apparent.
-
-!figures(index_children)(
-  Simple method of representing terms of a production.
-  The maximum common subgraph of these two productions is highlighted in blue.
-)(!include(index_children_figure.md))
-
-The second method is to link the children of a production with a linked list.
-An example of this using the same grammars as before is in [@fig:linked_list_children].
-This method allows terms of productions to be matched with each other regardless of position.
-But, it does't work well with runs of terms that are shared between productions with holes
-in them, such as the run `"a" "c" "d" "e"` in [@fig:linked_list_children]. Finally,
-different runs can match even if they're in different orders. We predict
-that allowing these different runs to match even in different orders will have a negative
-affect on the ability of the merged grammar.
-
-!figures(linked_list_children)(Linking children together with a linked list.)(!include(linked_list_figure.md))
-
-A third approach that we are evaluating is to fully connect the terms in a production.
-This will allow runs of terms with holes to match with each other. An example of this is in [@fig:fully_connected]. It will also not allow
-runs to be reordered as in the previous method. The problems with this method is that the addition
-of extra edges might increase the running time of our algorithms. 
-Overall we predict this to be the most effective method.
-
-!figures(fully_connected)(Fully connecting terms of a production.)(!include(fully_connected_figure.md))
-
-### Graph Labels
-
-To make sure only the right kinds of nodes and relationships are merged with each other,
-each type of node and relationship will recieve it's own label. In addition, terminal
-nodes are all labeled with the letter of their alphabet. An example graph for the
-following grammar is in [@fig:labeled_grammar_graph].
 
 !latex
-~~~~~~~~~~~~~~~~~~~~~
-\begin{grammar}
-<S> ::= <N> | <N> <O> <S>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{algorithm}
+\caption{Enumerates all maximal root-completed mappings between the symbols of $G_1$ and $G_2$.}
+\begin{algorithmic}
+    \Procedure{EMRCM-Init}{$G_1, G_2$}
+        \LineComment Calculate the dependency graphs of $G_1$ and $G_2$.
+        \State $H_1 \gets \{V(G_1), \{(v_1, v_2) \mid \exists a, b: v_1 \Rightarrow_{G_1} a v_2 b \}\}$
+        \State $H_2 \gets \{V(G_2), \{(v_1, v_2) \mid \exists a, b: v_1 \Rightarrow_{G_2} a v_2 b\}\}$
+        \State
+        \State $C_1 \gets \Call{StronglyConnectedComponents}{H_1}$
+        \State $C_2 \gets \Call{StronglyConnectedComponents}{H_2}$
+        \State
+        \LineComment Construct the initial root-completed mapping.
+        \State let $c_1$ be an element of $C_1$ so that $S(G_1) \in c_1$
+        \State let $c_2$ be an element of $C_2$ so that $S(G_2) \in c_2$
+        \If{$|c_1| \neq |c_2|$}
+            \State \textbf{return} \Comment{No valid initial mapping.}
+        \EndIf
+        \State $M \gets \{S(G_1) \rightarrow S(G_2)\}$
+        \State $c_1' \gets c_1 \setminus \{S(G_1)\}$
+        \State $c_2' \gets c_2 \setminus \{S(G_2)\}$
+        \State $C_1' \gets C_1 \setminus \{c_1\}$
+        \State $C_2' \gets C_2 \setminus \{c_2\}$
+        \ForAll{$M' \in \Call{ACC}{G_1, G_2, M, c_1', c_2'}$}
+            \State \textbf{yield all} \Call{EMRCM}{$G_1, G_2, M', C_1', C_2', \{c_1\}, \{c_2\}, \{\}, \{\}$}
+        \EndFor
+    \EndProcedure
+\end{algorithmic}
+\end{algorithm}
 
-<O> ::= `+' | `-'
-
-<N> ::= `0' | <D1> <D2>
-
-<D1> ::= `1' | `2' | `3' | `4' | `5' | `6' | `7' | `8' | `9'
-
-<N1> ::= $\varepsilon$ | <D2> <N1>
-
-<D2> ::= `0' | <D1>
-\end{grammar}
-~~~~~~~~~~~~~~~~~~~~~
-
-!dot(img/labeled_grammar_graph.gen.pdf {#fig:labeled_grammar_graph})(
-    Labeled grammar. Each color is its own label. Yellow
-    nodes are non-terminal symbols. Red nodes represent productions. Purple nodes represent forwarding nodes. The varying shades
-    of turquoise nodes are terminal symbols. Note that we are using forwarding nodes and linking terms of productions
-    with a linked list in this graph.
-)(!include(labeled_grammar_figure.dot))
-
-
-### Maximum Common Subgraph Algorithm
-
-We want the similar parts identified to have a number of properties.
-First of all, we want the symbols to form a skeleton grammar in respect
-to both grammars being merged. A skeleton
-grammar is a grammar where all symbols and productions
-
-There are several different variations of the maximum common
-subgraph problem and the algorithms used to solve it. The main algorithms to do
-this can be classified into two categories. The first category relies on
-combinatorial expansion while the second relies on reduction to the maximal clique problem.
-Academic research on these methods has produced mixed evaluations on which category
-of algorithms are more efficient [@bunkeComparisonAlgorithmsMaximum2002; @conteComparisonThreeMaximum2003; @wellingPerformanceAnalysisMaximal2011]. The most recent research [@wellingPerformanceAnalysisMaximal2011]
-indicates that Koch's [@kochEnumeratingAllConnected2001] algorithms are the most efficient.
-Because of this, we chose to use Koch's algorithm [@kochEnumeratingAllConnected2001].
-
-Koch's algorithm by itself isn't quite what we need. Namely, it doesn't immediately work
-for directed graphs. In addition, we wish for it to ensure that the start nodes
-of two grammars are equated. These two changes are simple enough to make. To allow it
-to work for directed graphs, we can modify the definition of c-edges (connected edge) and d-edges
-(disconnected edge) [@kochEnumeratingAllConnected2001, p. 14] to the following.
-
-Definition (c-edge): Let \((e_1,e_2)\) and \((f_1, f_2)\) be two edge pairs of
-two graphs \(G_1\) and \(G_2\) . An edge of the modular product graph \(G\) between the vertices \((e_1, e_2)\)
-and \((f_1, f_2)\) is called a c-edge if there is a directed edge from \(e_1\) to \(f_1\) in \(G_1\) or there is
-a directed edge from \(e_2\) to \(f_2\) in \(G_2\), otherwise the edge is called a d-edge.
-
-The change ensuring that the start symbols are equated is even simpler. Koch's algorithm
-begins with an initialization routine [@kochEnumeratingAllConnected2001, p. 16] that
-iterates over every pair of nodes to initially equate. We can easily modify this initialization
-routine by only considering the start case where the start symbols are equated.
+\begin{algorithm}
+\caption{Enumerates all maximal root-completed mappings between the non-terminal symbols of $G_1$ and $G_2$.
+}
+\begin{algorithmic}
+    \LineComment $M$: The current root-completed mapping
+    \LineComment $C_1, C_2$: The connected components that haven't been added.
+    \LineComment $D_1, D_2$: The connected components that have been added to $M$.
+    \LineComment $T$: A set of pairs of components that have already been evaluated
+    in a different subtree of the search space. We do not expand these nodes to
+    ensure that we don't explore the same solution twice.
+    \LineComment $U$: A subset of $T$ which can't be added to the current mapping. 
+    \LineComment $Q(c)$: A function that returns the parent nodes of $c$ in one of the $H$ graphs. 
+    \Procedure{EMRCM}{$G_1, G_2, M, C_1, C_2, D_1, D_2, T, U$}
+        \State $T' \gets T$
+        \State $U' \gets U$
+        \State $S \gets \top$
+        \ForAll{$c_1 \in C_1$}
+        \If{$Q_1(c_1) \not\subseteq D_1$}
+            \State \textbf{continue}
+        \EndIf
+        \ForAll{$c_2 \in C_2$}
+            \If{$Q_2(c_2) \not\subseteq D_2 \lor |c_1| \neq |c_2|$}
+                \State \textbf{continue}
+            \EndIf
+            \If{$S \land (c_1, c_2) \in T \setminus U$}
+                \If{$|\Call{ACC}{ G_1, G_2}| > 0$}
+                    \State $S \gets \bot$
+                \Else
+                    \State $U' \gets U' \cup \{(c_1, c_2)\}$
+                \EndIf
+            \ElsIf{$(c_1,c_2) \notin T$}
+                \State $R \gets \top$
+                \State $C_1' \gets C_1 \setminus \{c_1\}$
+                \State $C_2' \gets C_2 \setminus \{c_2\}$
+                \State $D_1' \gets D_1 \cup \{c_1\}$
+                \State $D_2' \gets D_2 \cup \{c_2\}$
+                \ForAll{$M' \in \Call{ACC}{G_1, G_2, M, c_1, c_2}$}
+                    \State $R \gets \bot$
+                    \State $S \gets \bot$
+                    \State \textbf{yield all} \Call{EMRCM}{$G_1, G_2, M', C_1', C_2', D_1', D_2', T', U'$}
+                \EndFor
+                \State $T' \gets T' \cup \{(c_1, c_2)\}$
+                \If{$R$}
+                    \State $U' \gets U' \cup \{(c_1, c_2)\}$
+                \EndIf
+            \EndIf
+        \EndFor
+        \EndFor
+        \If{$S$}
+            \State \textbf{yield} $M$
+        \EndIf
+    \EndProcedure
+\end{algorithmic}
+\end{algorithm}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    
+!latex
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{algorithm}
+\caption{Enumerates all possible ways of adding the symbols in the connected components $c_1$ and $c_2$ to $M$ in
+such a way that $M$ remains a valid partial mapping from $G_1$ to $G_2$}
+\begin{algorithmic}
+    \Procedure{ACC}{$G_1, G_2, M, c_1, c_2$}
+        \If{$|c_1|=|c_2|=0$}
+            \State \textbf{yield} $M$
+            \State \textbf{return}
+        \EndIf
+        \State let $u$ be a symbol from $c_1$.
+        \ForAll{$v \in c_2$}
+            \If{\Call{CanAdd}{$G_1, G_2, M, u, v$}}
+                \State \textbf{yield all} \Call{ACC}{$G_1, G_2, M \cup \{u\rightarrow v\}, c_1 \setminus v_1, c_2 \setminus v_2$}
+            \EndIf
+        \EndFor
+    \EndProcedure
+\end{algorithmic}
+\end{algorithm}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    
+!latex
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{algorithm}
+\caption{Determines if the specified symbols can be added to the mapping. Basically checks that the set of productions using $v_1$ and $v_2$ are equivalent. In this part, we apply $M$ to productions in addition to symbols. We use this to denote mapping every symbol in the production via $M$. If a symbol doesn't have a mapping in $M$, we remove that symbol from the term.}
+\begin{algorithmic}
+    \Procedure{CanAdd}{$G_1, G_2, M, v_1, v_2$}
+        \State $M' \gets M \cup (v_1 \rightarrow v_2)$
+        \State $P_1' \gets \{p \mid p \in P(G_1) \land M'(p_0) \neq \varnothing \land \exists p_i:p_i = v_1\}$
+        \State $P_2' \gets \{p \mid p \in P(G_2) \land M'^{-1}(p_0) \neq \varnothing \land \exists p_i:p_i=v_2\}$
+        \State \textbf{return} $M'(P_1') = M'(M'^{-1}(P_2'))$
+    \EndProcedure
+\end{algorithmic}
+\end{algorithm}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
 
 ### Grammar Merging
 
-Using Koch's algorithm, we can extract out a maximum common subgraph between the symbols in
-the two grammars. Using this mapping, we can merge two graphs together by first mapping
+Using the mapping created above, we can merge two graphs together by first mapping
 the symbols and productions from the second grammar to their equivalents in the first grammar. Then
 we can simply append the symbols and productions of the second grammar to the first grammar.
-This procedure is detailed in [alg. @alg:merge_grammar].
+This procedure is detailed in alg. \ref{alg:merge_grammar}.
 
 !latex
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -166,33 +191,26 @@ This procedure is detailed in [alg. @alg:merge_grammar].
 \caption{Algorithm describing the procedure for merging grammars.}\label{alg:merge_grammar}
 \begin{algorithmic}[1]
 \LineComment{$G_1$ and $G_2$ are the grammars to be merged.}
-\LineComment{$M \subseteq V(G_1) \times V(G_2)$ maps similar symbols between $G_1$ and $G_2$.
+\LineComment{$M: V(G_1) \rightarrow V(G_2)$ maps similar symbols between $G_1$ and $G_2$.
 Symbols from either grammar map to at most one symbol in the other grammar.}
+\LineComment{\textsc{MapProd} is a function that maps every symbol in the production
+through \textsc{MapSymbol}. It is ommitted for brevity.}
 \Procedure{MergeGrammars}{$G_1, G_2, M$}
-  \State $V_m \gets V(G_1)$
-  \ForAll{$v \in V(G_2)$}
-    \State $V_m \gets V_m \cup \{\Call{MapSymbol}{v}\}$
-  \EndFor
-  \State $P_m \gets P(G_1)$
-  \ForAll{$p \in P(G_2)$}
-    \State Let $p$ be the production $p_0 \rightarrow p_1p_2...p_n$
-    \State Let $p_{m_i}$ be \Call{MapSymbol}{$p_i$}
-    \State $p_m \gets (p_{m_0} \rightarrow p_{m_1}p_{m_2}...p_{m_n})$
-    \State $P_m \gets P_m \cup \{p_m\}$
-  \EndFor
+  \State $V_m \gets V(G_1) \cup \{\Call{MapSymbol}{v} \mid v \in V(G_2)\}$
+  \State $P_m \gets P(G_1) \cup \{\Call{MapProd}{p} \mid p \in P(G_1)\}$
   \LineComment{$\Sigma$ should be the same in $G_1$ and $G_2$.}
   \LineComment{$S_2$ should always map to $S_1$.}
   \State $G_m = (V_m, \Sigma, P_m, S_1)$
   \State \textbf{return} $G_m$
 \EndProcedure
 \Statex
-\LineComment{Maps $v_2 \in V(G_2) \cup \Sigma$ to the equivalent symbol in $G_1$ unless
-$v_2$ doesn't have an equivalent.}
-\Procedure{MapSymbol}{$M, v_2$}
-  \If{$\exists v_1: (v_1, v_2) \in M$}
-    \State \textbf{return} $v_1$
+\LineComment{Maps $v_1 \in V(G_1) \cup \Sigma$ to the equivalent symbol in $G_2$ unless
+$v_1$ doesn't have an equivalent.}
+\Procedure{MapSymbol}{$M, v_1$}
+  \If{$M(v_1) \neq \varnothing $}
+    \State \textbf{return} $M(v_1)$
   \Else
-    \State \textbf{return} $v_2$
+    \State \textbf{return} $v_1$
   \EndIf
 \EndProcedure
 \end{algorithmic}
