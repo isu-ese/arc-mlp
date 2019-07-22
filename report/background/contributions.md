@@ -1,13 +1,4 @@
 
 ## Contributions
 
-Grammars are used to derive parsers used for several applications including testing, quality analysis, extraction, mutation-based testing, and graph based testing. These applications are tightly coupled to the grammar they use to extract the abstract syntax tree from code. To apply these applications for multilingual code bases, language specific grammars have to be developed by hand [citation needed] for each language the tool wishes to support. Our proposal to automatically combine grammars allows these applications to be built on top of a single grammar created from already existing grammars.
-
-Mutation-based testing is a varient of 
-
-Applications
-
-- Testing
-- Quality Analysis
-- Extraction
-- Mutation, graph based testing
+In this paper, we contribute an automatic method for creating multilingual grammars. Using these grammars, one can create multilingual parsers and source code analysis tools. Current multilingual tools mostly either use an intermediate representation such as java bytecode which doesn't easily allow manipulations of the original source, rely on using multiple existing parsers which are difficult to hook up together, or by handwriting grammars for each language combination the tool supports. Our method still allows manipulation of the original source code whilst providing an automatic way of building automatic multilingual grammars and parsers. Applications that we expect to be able to use our tool include quality analysis, mutation testing, static code analysis, graph based testing, and refactoring.
