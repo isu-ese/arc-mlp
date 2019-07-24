@@ -3,6 +3,7 @@
 
 !include(introduction/all.md)
 !include(background/all.md)
+!include(approach/all.md)
 !include(methods/all.md)
 !include(results/all.md)
 !include(discussion/all.md)

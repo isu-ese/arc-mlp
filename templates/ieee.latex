@@ -52,6 +52,7 @@ $endif$
 
 \begin{document}
 
+
 \title{$title$}
 
 \author{%
@@ -74,6 +75,20 @@ $abstract$
 \begin{IEEEkeywords}
 $keywords$
 \end{IEEEkeywords}
+
+
+$if(toc)$
+$if(toc-title)$
+\renewcommand*\contentsname{$toc-title$}
+$endif$
+{
+$if(colorlinks)$
+\hypersetup{linkcolor=$if(toccolor)$$toccolor$$else$$endif$}
+$endif$
+\setcounter{tocdepth}{$toc-depth$}
+\tableofcontents
+}
+$endif$
 
 % Decreases the vertical distance between rules in grammars from the syntax package
 \setlength{\grammarparsep}{1pt}
