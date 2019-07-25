@@ -1,4 +1,4 @@
-## Current Technologies
+## Theoretical Foundations
 
 ### Context Free Grammars
 
@@ -10,4 +10,4 @@ An abstract syntax tree is an ordered tree describing the symbols and production
 
 ### Island Grammars
 
-Island grammars are specialized grammars designed to match certain constructs of interest, called islands [@moonenGeneratingRobustParsers2001]. They are also designed to blindly match surrounding content that is not of interest as water. They offer several advantages over regular grammars for many applications including faster development time, lower complexity, and better error tolerance. Island grammars have been used for many applications including documentation extraction and processing [@deursenBuildingDocumentationGenerators1999], impact analysis [@moonenLightweightImpactAnalysis2002], and extracting code embedded in natural language documents [@bettenburgWhatMakesGood2008] [@bacchelliExtractingStructuredData2011]. Of particular interest to our research is their use for creating multilingual parsers [@synytskyyRobustMultilingualParsing2003], which inspired this research, and the development of tolerant grammars [@klusenerDerivingTolerantGrammars2003] [@goloveshkinTolerantParsingSpecial2018] [@kursBoundedSeas2015].
+Island grammars are specialized grammars designed to match certain constructs of interest, called islands [@moonenGeneratingRobustParsers2001]. They are also designed to blindly match surrounding content that is not of interest as water. They offer several advantages over regular grammars for many applications including faster development time, lower complexity, and better error tolerance. Island grammars have been used for many applications including documentation extraction and processing [@deursenBuildingDocumentationGenerators1999], impact analysis [@moonenLightweightImpactAnalysis2002], and extracting code embedded in natural language documents [@bettenburgWhatMakesGood2008; @bacchelliExtractingStructuredData2011]. Of particular interest to our research is their use for creating multilingual parsers [@synytskyyRobustMultilingualParsing2003], which inspired this research, and the development of tolerant grammars [@klusenerDerivingTolerantGrammars2003; @goloveshkinTolerantParsingSpecial2018; @kursBoundedSeas2015].

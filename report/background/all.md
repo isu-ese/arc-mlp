@@ -1,5 +1,5 @@
 # Background and Related Work
 
-!include(current_tech.md)
-!include(alternate_tech.md)
+!include(theoretical_foundations.md)
+!include(related_studies.md)
 !include(contributions.md)
