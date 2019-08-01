@@ -30,4 +30,5 @@ abstract: |
 acks: |
 !indent(!include(acknowledgements.md))
 keywords:
+codeBlockCaptions: true
 ...
