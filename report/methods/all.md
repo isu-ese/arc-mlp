@@ -1,4 +1,4 @@
-# Methods
+# Methods {#sec:methods}
 
 In this section, we explain the approach we used to evaluate our approach
 for merging grammars. First, we chose a small number of grammars. Then
