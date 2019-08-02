@@ -1,4 +1,4 @@
-# Approach - SIGMA
+# Approach - SIGMA {#sec:approach}
 
 In this section, we go in depth into each step of our approach. Our approach is
 presented in [@fig:approach]. [@Sec:parsing] explains how SIGMA parses input grammars.
@@ -231,7 +231,11 @@ is then calculated as $\frac{2*3}{8} = .75$.
 Once we have detected the two most similar productions using the above method,
 we merge them together. Just like for measuring similarity, we have two different
 processes for merging similar productions. These measures also differ for the forms
-that we merge together. 
+that we merge together.
+
+In our process, we have to define a minimal similarity $M_s$ score
+before we merge similar productions. We only merge productions if their similarity score
+is above or equal to this threshold.
 
 ### Merging Similar Terms
 
