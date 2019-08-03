@@ -1,4 +1,0 @@
-
-## Contributions
-
-In this paper, we contribute an automatic method for creating multilingual grammars. Using these grammars, one can create multilingual parsers and source code analysis tools. Current multilingual tools mostly either use an intermediate representation such as java bytecode which doesn't easily allow manipulations of the original source, rely on using multiple existing parsers which are difficult to hook up together, or by handwriting grammars for each language combination the tool supports. Our method still allows manipulation of the original source code whilst providing an automatic way of building automatic multilingual grammars and parsers. Applications that we expect to be able to use our tool include quality analysis, mutation testing, static code analysis, graph based testing, and refactoring.

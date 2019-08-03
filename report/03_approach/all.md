@@ -1,4 +1,4 @@
-# Approach
+# Approach {#sec:approach}
 
 ![Diagram of Approach](img/SIGMA-DFD.pdf)
 

@@ -1,4 +1,4 @@
-# Methods
+# Methods {#sec:methods}
 
 To evaluate our approach, we tested it on three different grammars.
 These grammars are the grammars for Java, C#, and Brainfuck. Our grammars
@@ -55,4 +55,3 @@ We also merged the Java and C# grammars together to see how well our grammar
 detects similar structures between the grammars. We were especially interested
 in how effective our algorithm was at detecting classes, methods,
 expressions, and statements as similar structures between Java and C#.
-

@@ -1,4 +1,4 @@
-## Theoretical Foundations
+## Theoretical Foundations {#sec:foundations}
 
 ### Context Free Grammars
 
