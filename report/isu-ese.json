@@ -1,0 +1,2842 @@
+[
+	{
+		"id": "http://zotero.org/groups/2324381/items/VZFVXW4G",
+		"type": "article-journal",
+		"title": "An efficient algorithm for similarity analysis of molecules",
+		"container-title": "Internet Journal of Chemistry",
+		"page": "1–16",
+		"volume": "2",
+		"issue": "17",
+		"source": "Google Scholar",
+		"author": [
+			{
+				"family": "Durand",
+				"given": "Paul J."
+			},
+			{
+				"family": "Pasari",
+				"given": "Rohit"
+			},
+			{
+				"family": "Baker",
+				"given": "Johnnie W."
+			},
+			{
+				"family": "Tsai",
+				"given": "Chun-che"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"1999"
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/DCMB2DUB",
+		"type": "paper-conference",
+		"title": "A Performance Analysis on Maximal Common Subgraph Algorithms",
+		"source": "Semantic Scholar",
+		"abstract": "Graphs can be used as a tool to determine similarity between structured objects. The maximal common subgraph of two graphs G and H is the largest graph in terms of edges that is isomorphic to a subgraph of G and H. Finding the maximal common subgraph is an NP-complete problem. It is useful in many areas like (bio)chemistry, file versioning and artificial intelligence. There are many papers that evaluate algorithms for finding maximal common induced subgraphs, but little research has been done on the maximal common subgraph that is not an induced subgraph. We have implemented and benchmarked two maximal common (not induced) subgraph algorithms: a backtrack search algorithm (McGregor), and an algorithm that transforms the maximal common subgraph problem to the largest clique problem (Koch). We created generators for randomly connected and mesh structured graphs, these generators have been used to create a database of graph pairs to benchmark the two algorithms. The results of our benchmark have shown that in most cases Koch is more efficient, because after creating the edge product graph needed for the clique detection. The actual clique detection is a relatively simple search.",
+		"author": [
+			{
+				"family": "Welling",
+				"given": "Ruud"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2011"
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/JCTTSHMD",
+		"type": "article-journal",
+		"title": "Challenging Complexity of Maximum Common Subgraph Detection Algorithms: A Performance Analysis of Three Algorithms on a Wide Database of Graphs",
+		"container-title": "J. Graph Algorithms Appl.",
+		"page": "99-143",
+		"volume": "11",
+		"source": "Semantic Scholar",
+		"abstract": "Graphs are an extremely general and powerful data structure. In pattern recognition and computer vision, graphs are used to represent patterns to be recognized or classified. Detection of maximum common subgraph (MCS) is useful for matching, comparing and evaluate the similarity of patterns. MCS is a well known NP-complete problem for which optimal and suboptimal algorithms are known from the literature. Nevertheless, until now no effort has been done for characterizing their performance. The lack of a large database of graphs makes the task of comparing the performance of different graph matching algorithms difficult, and often the selection of an algorithm is made on the basis of a few experimental results available. In this paper, three optimal and well-known algorithms for maximum common subgraph detection are described. Moreover a large database containing various categories of pairs of graphs (e.g. random graphs, meshes, bounded valence graphs), is presented, and the performance of the three algorithms is evaluated on this database. Article Type Communicated by Submitted Revised Regular Paper U. Brandes September 2005 January 2007 D. Conte et al., Maximum Common Subgraph, JGAA, 11(1) 99–143 (2007) 100",
+		"DOI": "10.7155/jgaa.00139",
+		"shortTitle": "Challenging Complexity of Maximum Common Subgraph Detection Algorithms",
+		"author": [
+			{
+				"family": "Conte",
+				"given": "Donatello"
+			},
+			{
+				"family": "Foggia",
+				"given": "Pasquale"
+			},
+			{
+				"family": "Vento",
+				"given": "Mario"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2007"
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/HG9T34IH",
+		"type": "paper-conference",
+		"title": "A Comparison of Three Maximum Common Subgraph Algorithms on a Large Database of Labeled Graphs",
+		"container-title": "Proceedings of the 4th IAPR International Conference on Graph Based Representations in Pattern Recognition",
+		"collection-title": "GbRPR'03",
+		"publisher": "Springer-Verlag",
+		"publisher-place": "Berlin, Heidelberg",
+		"page": "130–141",
+		"source": "ACM Digital Library",
+		"event-place": "Berlin, Heidelberg",
+		"abstract": "A graph g is called a maximum common subgraph of two graphs, g1 and g2, if there exists no other common subgraph of g1 and g2 that has more nodes than g. For the maximum common subgraph problem, exact and inexact algorithms are known from the literature. Nevertheless, until now no effort has been done for characterizing their performance, mainly for the lack of a large database of graphs. In this paper, three exact and well-known algorithms for maximum common subgraph detection are described. Moreover, a large database containing various categories of pairs of graphs (e.g. randomly connected graphs, meshes, bounded valence graphs...), having a maximum common subgraph of at least two nodes, is presented, and the performance of the three algorithms is evaluated on this database.",
+		"URL": "http://dl.acm.org/citation.cfm?id=1757868.1757884",
+		"ISBN": "978-3-540-40452-1",
+		"note": "event-place: York, UK",
+		"author": [
+			{
+				"family": "Conte",
+				"given": "D."
+			},
+			{
+				"family": "Guidobaldi",
+				"given": "C."
+			},
+			{
+				"family": "Sansone",
+				"given": "C."
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2003"
+				]
+			]
+		},
+		"accessed": {
+			"date-parts": [
+				[
+					"2019",
+					5,
+					10
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/ESKAPGKT",
+		"type": "article-journal",
+		"title": "Maximum common subgraph isomorphism algorithms for the matching of chemical structures",
+		"page": "13",
+		"source": "Zotero",
+		"abstract": "The maximum common subgraph (MCS) problem has become increasingly important in those aspects of chemoinformatics that involve the matching of 2D or 3D chemical structures. This paper provides a classiﬁcation and a review of the many MCS algorithms, both exact and approximate, that have been described in the literature, and makes recommendations regarding their applicability to typical chemoinformatics tasks.",
+		"language": "en",
+		"author": [
+			{
+				"family": "Raymond",
+				"given": "John W"
+			},
+			{
+				"family": "Willett",
+				"given": "Peter"
+			}
+		]
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/25TLRUBN",
+		"type": "article-journal",
+		"title": "The worst-case time complexity for generating all maximal cliques and computational experiments",
+		"container-title": "Theoretical Computer Science",
+		"collection-title": "Computing and Combinatorics",
+		"page": "28-42",
+		"volume": "363",
+		"issue": "1",
+		"source": "ScienceDirect",
+		"abstract": "We present a depth-first search algorithm for generating all maximal cliques of an undirected graph, in which pruning methods are employed as in the Bron–Kerbosch algorithm. All the maximal cliques generated are output in a tree-like form. Subsequently, we prove that its worst-case time complexity is O(3n/3) for an n-vertex graph. This is optimal as a function of n, since there exist up to 3n/3 maximal cliques in an n-vertex graph. The algorithm is also demonstrated to run very fast in practice by computational experiments.",
+		"URL": "http://www.sciencedirect.com/science/article/pii/S0304397506003586",
+		"DOI": "10.1016/j.tcs.2006.06.015",
+		"ISSN": "0304-3975",
+		"journalAbbreviation": "Theoretical Computer Science",
+		"author": [
+			{
+				"family": "Tomita",
+				"given": "Etsuji"
+			},
+			{
+				"family": "Tanaka",
+				"given": "Akira"
+			},
+			{
+				"family": "Takahashi",
+				"given": "Haruhisa"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2006",
+					10,
+					25
+				]
+			]
+		},
+		"accessed": {
+			"date-parts": [
+				[
+					"2019",
+					5,
+					9
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/BYWQ7I43",
+		"type": "paper-conference",
+		"title": "What makes a good bug report?",
+		"container-title": "Proceedings of the 16th ACM SIGSOFT International Symposium on Foundations of software engineering",
+		"publisher": "ACM",
+		"page": "308–318",
+		"source": "Google Scholar",
+		"author": [
+			{
+				"family": "Bettenburg",
+				"given": "Nicolas"
+			},
+			{
+				"family": "Just",
+				"given": "Sascha"
+			},
+			{
+				"family": "Schröter",
+				"given": "Adrian"
+			},
+			{
+				"family": "Weiss",
+				"given": "Cathrin"
+			},
+			{
+				"family": "Premraj",
+				"given": "Rahul"
+			},
+			{
+				"family": "Zimmermann",
+				"given": "Thomas"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2008"
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/SPD9K3RE",
+		"type": "paper-conference",
+		"title": "Synthesizing program input grammars",
+		"container-title": "Proceedings of the 38th ACM SIGPLAN Conference on Programming Language Design and Implementation  - PLDI 2017",
+		"publisher": "ACM Press",
+		"publisher-place": "Barcelona, Spain",
+		"page": "95-110",
+		"source": "DOI.org (Crossref)",
+		"event": "the 38th ACM SIGPLAN Conference",
+		"event-place": "Barcelona, Spain",
+		"abstract": "We present an algorithm for synthesizing a context-free grammar encoding the language of valid program inputs from a set of input examples and blackbox access to the program. Our algorithm addresses shortcomings of existing grammar inference algorithms, which both severely overgeneralize and are prohibitively slow. Our implementation, GLADE, leverages the grammar synthesized by our algorithm to fuzz test programs with structured inputs. We show that GLADE substantially increases the incremental coverage on valid inputs compared to two baseline fuzzers.",
+		"URL": "http://dl.acm.org/citation.cfm?doid=3062341.3062349",
+		"DOI": "10.1145/3062341.3062349",
+		"ISBN": "978-1-4503-4988-8",
+		"language": "en",
+		"author": [
+			{
+				"family": "Bastani",
+				"given": "Osbert"
+			},
+			{
+				"family": "Sharma",
+				"given": "Rahul"
+			},
+			{
+				"family": "Aiken",
+				"given": "Alex"
+			},
+			{
+				"family": "Liang",
+				"given": "Percy"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2017"
+				]
+			]
+		},
+		"accessed": {
+			"date-parts": [
+				[
+					"2019",
+					4,
+					18
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/NF4MPGDZ",
+		"type": "article-journal",
+		"title": "Toward an engineering discipline for grammarware",
+		"container-title": "ACM Transactions on Software Engineering and Methodology",
+		"page": "331-380",
+		"volume": "14",
+		"issue": "3",
+		"source": "DOI.org (Crossref)",
+		"URL": "http://portal.acm.org/citation.cfm?doid=1072997.1073000",
+		"DOI": "10.1145/1072997.1073000",
+		"ISSN": "1049331X",
+		"language": "en",
+		"author": [
+			{
+				"family": "Klint",
+				"given": "Paul"
+			},
+			{
+				"family": "Lämmel",
+				"given": "Ralf"
+			},
+			{
+				"family": "Verhoef",
+				"given": "Chris"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2005",
+					7,
+					1
+				]
+			]
+		},
+		"accessed": {
+			"date-parts": [
+				[
+					"2019",
+					4,
+					18
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/7SEN8PUL",
+		"type": "article-journal",
+		"title": "Tolerant parsing with a special kind of «Any» symbol: the algorithm and practical application",
+		"container-title": "Proceedings of the Institute for System Programming of the RAS",
+		"page": "7-28",
+		"volume": "30",
+		"issue": "4",
+		"source": "DOI.org (Crossref)",
+		"abstract": "Tolerant parsing is a form of syntax analysis aimed at capturing the structure of certain points of interest presented in a source code. While these points should be welldescribed in the corresponding language grammar, other parts of the program are allowed to be not presented in the grammar or to be described coarse-grained, thereby parser remains tolerant to the possible inconsistencies in the irrelevant area. Island grammars are one of the basic tolerant parsing techniques. “Island” is used as the relevant code alias, while the irrelevant code is called “water”. In the paper, a modified LL(1) parsing algorithm with built-in “Any” symbol processing is described. The “Any” symbol matches implicitly defined token sequences. The use of the algorithm for island grammars allows one to reduce irrelevant code description as well as to simplify patterns for relevant code matching. Our “Any” implementation is more accurate and less restrictive in comparison with the closest analogues implemented in Coco/R and LightParse parser generators. It also has potentially lower overhead than the “bounded seas” concept implemented in PetitParser. As shown in the experimental section, the tolerant parser generated by the C# island grammar is proven to be applicable for large-scale software projects analysis.",
+		"URL": "http://www.ispras.ru/en/proceedings/isp_30_2018_4/isp_30_2018_4_7/",
+		"DOI": "10.15514/ISPRAS-2018-30(4)-1",
+		"ISSN": "20798156, 22206426",
+		"shortTitle": "Tolerant parsing with a special kind of «Any» symbol",
+		"language": "en",
+		"author": [
+			{
+				"family": "Goloveshkin",
+				"given": "A.V."
+			},
+			{
+				"family": "Mikhalkovich",
+				"given": "S.S."
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2018"
+				]
+			]
+		},
+		"accessed": {
+			"date-parts": [
+				[
+					"2019",
+					4,
+					19
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/ZX3UPBPB",
+		"type": "article-journal",
+		"title": "Taming verification hardness: an efficient algorithm for testing subgraph isomorphism",
+		"container-title": "Proceedings of the VLDB Endowment",
+		"page": "364–375",
+		"volume": "1",
+		"issue": "1",
+		"source": "Google Scholar",
+		"shortTitle": "Taming verification hardness",
+		"author": [
+			{
+				"family": "Shang",
+				"given": "Haichuan"
+			},
+			{
+				"family": "Zhang",
+				"given": "Ying"
+			},
+			{
+				"family": "Lin",
+				"given": "Xuemin"
+			},
+			{
+				"family": "Yu",
+				"given": "Jeffrey Xu"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2008"
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/Y3KD4LRN",
+		"type": "paper-conference",
+		"title": "Robust multilingual parsing using island grammars",
+		"container-title": "Proceedings of the 2003 conference of the Centre for Advanced Studies on Collaborative research",
+		"publisher": "IBM Press",
+		"page": "266–278",
+		"source": "Google Scholar",
+		"author": [
+			{
+				"family": "Synytskyy",
+				"given": "Nikita"
+			},
+			{
+				"family": "Cordy",
+				"given": "James R."
+			},
+			{
+				"family": "Dean",
+				"given": "Thomas R."
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2003"
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/549ESI8G",
+		"type": "article-journal",
+		"title": "Identification of tertiary structure resemblance in proteins using a maximal common subgraph isomorphism algorithm",
+		"container-title": "Journal of molecular biology",
+		"page": "707–721",
+		"volume": "229",
+		"issue": "3",
+		"source": "Google Scholar",
+		"author": [
+			{
+				"family": "Grindley",
+				"given": "Helen M."
+			},
+			{
+				"family": "Artymiuk",
+				"given": "Peter J."
+			},
+			{
+				"family": "Rice",
+				"given": "David W."
+			},
+			{
+				"family": "Willett",
+				"given": "Peter"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"1993"
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/IW3YKRM7",
+		"type": "paper-conference",
+		"title": "Extracting structured data from natural language documents with island parsing",
+		"container-title": "Automated Software Engineering (ASE), 2011 26th IEEE/ACM International Conference on",
+		"publisher": "IEEE",
+		"page": "476–479",
+		"source": "Google Scholar",
+		"author": [
+			{
+				"family": "Bacchelli",
+				"given": "Alberto"
+			},
+			{
+				"family": "Cleve",
+				"given": "Anthony"
+			},
+			{
+				"family": "Lanza",
+				"given": "Michele"
+			},
+			{
+				"family": "Mocci",
+				"given": "Andrea"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2011"
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/JYAP9KF5",
+		"type": "paper-conference",
+		"title": "Cross-language program analysis and refactoring",
+		"container-title": "2006 Sixth IEEE International Workshop on Source Code Analysis and Manipulation",
+		"publisher": "IEEE",
+		"page": "207–216",
+		"source": "Google Scholar",
+		"author": [
+			{
+				"family": "Strein",
+				"given": "Dennis"
+			},
+			{
+				"family": "Kratz",
+				"given": "Hans"
+			},
+			{
+				"family": "Lowe",
+				"given": "Welf"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2006"
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/9FB9LL7Z",
+		"type": "book",
+		"title": "Compiler Design",
+		"publisher": "Addison-Wesley",
+		"publisher-place": "Boston, United States",
+		"number-of-pages": "606",
+		"event-place": "Boston, United States",
+		"ISBN": "0-201-42290-5",
+		"author": [
+			{
+				"family": "Reinhard Wilhelm",
+				"given": "Dieter Maurer"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"1995",
+					1,
+					1
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/X6NBWFXG",
+		"type": "paper-conference",
+		"title": "Building documentation generators",
+		"container-title": "Proceedings IEEE International Conference on Software Maintenance - 1999 (ICSM'99). 'Software Maintenance for Business Change' (Cat. No.99CB36360)",
+		"page": "40-49",
+		"source": "IEEE Xplore",
+		"event": "Proceedings IEEE International Conference on Software Maintenance - 1999 (ICSM'99). 'Software Maintenance for Business Change' (Cat. No.99CB36360)",
+		"abstract": "In order to maintain the consistency between sources and documentation, while at the same time providing documentation at the design level, it is necessary to generate documentation from sources in such a way that it can be integrated with hand-written documentation. In order to simplify the construction of documentation generators, we introduce island grammars, which only define those syntactic structures needed for (re)documentation purposes. We explain how they can be used to obtain various forms of documentation, such as data dependency diagrams for mainframe batch jobs. Moreover, we discuss how the derived information can be made available via a hypertext structure. We conclude with an industrial case study in which a 600,000 LOC COBOL legacy system is redocumented using the techniques presented in the paper.",
+		"DOI": "10.1109/ICSM.1999.792497",
+		"author": [
+			{
+				"family": "Deursen",
+				"given": "A. Van"
+			},
+			{
+				"family": "Kuipers",
+				"given": "T."
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"1999",
+					8
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/2FIQP9CC",
+		"type": "article-journal",
+		"title": "An algorithm for subgraph isomorphism",
+		"container-title": "Journal of the ACM (JACM)",
+		"page": "31–42",
+		"volume": "23",
+		"issue": "1",
+		"source": "Google Scholar",
+		"author": [
+			{
+				"family": "Ullmann",
+				"given": "Julian R."
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"1976"
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/HER3EN8Q",
+		"type": "article-journal",
+		"title": "A new algorithm for error-tolerant subgraph isomorphism detection",
+		"container-title": "IEEE Transactions on Pattern Analysis and Machine Intelligence",
+		"page": "493–504",
+		"volume": "20",
+		"issue": "5",
+		"source": "Google Scholar",
+		"author": [
+			{
+				"family": "Messmer",
+				"given": "Bruno T."
+			},
+			{
+				"family": "Bunke",
+				"given": "Horst"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"1998"
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/83NIMBYK",
+		"type": "paper-conference",
+		"title": "A comparison of algorithms for maximum common subgraph on randomly connected graphs",
+		"container-title": "Joint IAPR International Workshops on Statistical Techniques in Pattern Recognition (SPR) and Structural and Syntactic Pattern Recognition (SSPR)",
+		"publisher": "Springer",
+		"page": "123–132",
+		"source": "Google Scholar",
+		"author": [
+			{
+				"family": "Bunke",
+				"given": "Horst"
+			},
+			{
+				"family": "Foggia",
+				"given": "Pasquale"
+			},
+			{
+				"family": "Guidobaldi",
+				"given": "Corrado"
+			},
+			{
+				"family": "Sansone",
+				"given": "Carlo"
+			},
+			{
+				"family": "Vento",
+				"given": "Mario"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2002"
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/NCTI6Q5P",
+		"type": "article-journal",
+		"title": "A (sub) graph isomorphism algorithm for matching large graphs",
+		"container-title": "IEEE transactions on pattern analysis and machine intelligence",
+		"page": "1367–1372",
+		"volume": "26",
+		"issue": "10",
+		"source": "Google Scholar",
+		"author": [
+			{
+				"family": "Cordella",
+				"given": "Luigi P."
+			},
+			{
+				"family": "Foggia",
+				"given": "Pasquale"
+			},
+			{
+				"family": "Sansone",
+				"given": "Carlo"
+			},
+			{
+				"family": "Vento",
+				"given": "Mario"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2004"
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/8IUHZJ62",
+		"type": "chapter",
+		"title": "Subgraph isomorphism in planar graphs and related problems",
+		"container-title": "Graph Algorithms And Applications I",
+		"publisher": "World Scientific",
+		"page": "283–309",
+		"source": "Google Scholar",
+		"author": [
+			{
+				"family": "Eppstein",
+				"given": "David"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2002"
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/9S9STHF2",
+		"type": "paper-conference",
+		"title": "Lightweight Impact Analysis using Island Grammars.",
+		"container-title": "IWPC",
+		"publisher": "Citeseer",
+		"page": "219–228",
+		"source": "Google Scholar",
+		"author": [
+			{
+				"family": "Moonen",
+				"given": "Leon"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2002"
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/X6MBZV7X",
+		"type": "book",
+		"title": "Languages and Machines An Introduction to the Theory of Computer Science",
+		"publisher": "Addison-Wesley Longman Publishing Co. Inc.",
+		"publisher-place": "Boston, MA, USA",
+		"edition": "3rd",
+		"event-place": "Boston, MA, USA",
+		"abstract": "Preface The objective of the third edition of Languages and Machines: An Introduction to the Theory of Computer Science remains the same as that of the first two editions, to provide a mathematically sound presentation of the theory of computer",
+		"ISBN": "0-201-15768-3",
+		"language": "en",
+		"author": [
+			{
+				"family": "Haoxiang",
+				"given": "Ma"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"1988"
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/MA8DFHLG",
+		"type": "paper-conference",
+		"title": "Generating robust parsers using island grammars",
+		"container-title": "Proceedings Eighth Working Conference on Reverse Engineering",
+		"page": "13-22",
+		"source": "IEEE Xplore",
+		"event": "Proceedings Eighth Working Conference on Reverse Engineering",
+		"abstract": "Source model extraction, the automated extraction of information from system artifacts, is a common phase in reverse engineering tools. One of the major challenges of this phase is creating extractors that can deal with irregularities in the artifacts that are typical for the reverse engineering domain (for example, syntactic errors, incomplete source code, language dialects and embedded languages). The paper proposes a solution in the form of island grammars, a special kind of grammar that combines the detailed specification possibilities of grammars with the liberal behavior of lexical approaches. We show how island grammars can be used to generate robust parsers that combine the accuracy of syntactical analysis with the speed, flexibility and tolerance usually only found in lexical analysis. We conclude with a discussion of the development of MANGROVE, a generator for source model extractors based on island grammars and describe its application to a number of case studies.",
+		"DOI": "10.1109/WCRE.2001.957806",
+		"author": [
+			{
+				"family": "Moonen",
+				"given": "L."
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2001",
+					10
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/N8FZBZZ8",
+		"type": "book",
+		"title": "Fundamentals of Software Engineering",
+		"publisher": "Prentice Hall PTR",
+		"publisher-place": "Upper Saddle River, NJ, USA",
+		"edition": "2nd",
+		"source": "ACM Digital Library",
+		"event-place": "Upper Saddle River, NJ, USA",
+		"abstract": "From the Publisher:This book provides selective, in-depth coverage of the fundamentals of software engineering by stressing principles and methods through rigorous formal and informal approaches. In contrast to other books which are based on the lifecycle model of software development, the authors emphasize identifying and applying fundamental principles that are applicable throughout the software lifecycle. This emphasis enables readers to respond to the rapid changes in technology that are common today. Principles and techniques are emphasized rather than specific tools—users learn why particular techniques should or should not be used. Understanding the principles and techniques on which tools are based makes mastering a variety of specific tools easier. The authors discuss principles such as design, specification, verification, production, management and tools. Now coverage includes: more detailed analysis and explanation of object-oriented techniques; the use of Unified Modeling Language (UML); requirements analysis and software architecture; Model checking—a technique that provides automatic support to the human activity of software verification; GQM—used to evaluate software quality and help improve the software process; Z specification language. For software engineers.",
+		"ISBN": "978-0-13-305699-0",
+		"author": [
+			{
+				"family": "Ghezzi",
+				"given": "Carlo"
+			},
+			{
+				"family": "Jazayeri",
+				"given": "Mehdi"
+			},
+			{
+				"family": "Mandrioli",
+				"given": "Dino"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2002"
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/B9KPVX6N",
+		"type": "paper-conference",
+		"title": "Frequent subgraph discovery",
+		"container-title": "Data Mining, 2001. ICDM 2001, Proceedings IEEE international conference on",
+		"publisher": "IEEE",
+		"page": "313–320",
+		"source": "Google Scholar",
+		"author": [
+			{
+				"family": "Kuramochi",
+				"given": "Michihiro"
+			},
+			{
+				"family": "Karypis",
+				"given": "George"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2001"
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/N7N3XFLS",
+		"type": "paper-conference",
+		"title": "Efficient mining of frequent subgraphs in the presence of isomorphism",
+		"container-title": "null",
+		"publisher": "IEEE",
+		"page": "549",
+		"source": "Google Scholar",
+		"author": [
+			{
+				"family": "Huan",
+				"given": "Jun"
+			},
+			{
+				"family": "Wang",
+				"given": "Wei"
+			},
+			{
+				"family": "Prins",
+				"given": "Jan"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2003"
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/YYZJW933",
+		"type": "paper-conference",
+		"title": "Deriving tolerant grammars from a base-line grammar",
+		"container-title": "Software Maintenance, 2003. ICSM 2003. Proceedings. International Conference on",
+		"publisher": "IEEE",
+		"page": "179–188",
+		"source": "Google Scholar",
+		"author": [
+			{
+				"family": "Klusener",
+				"given": "Steven"
+			},
+			{
+				"family": "Lammel",
+				"given": "Ralf"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2003"
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/567MCUU2",
+		"type": "article-journal",
+		"title": "Bounded seas",
+		"container-title": "Computer languages, systems & structures",
+		"page": "114–140",
+		"volume": "44",
+		"source": "Google Scholar",
+		"author": [
+			{
+				"family": "Kurš",
+				"given": "Jan"
+			},
+			{
+				"family": "Lungu",
+				"given": "Mircea"
+			},
+			{
+				"family": "Iyadurai",
+				"given": "Rathesan"
+			},
+			{
+				"family": "Nierstrasz",
+				"given": "Oscar"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2015"
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/ICDSNZ57",
+		"type": "paper-conference",
+		"title": "An XML-based lightweight C++ fact extractor",
+		"container-title": "Program Comprehension, 2003. 11th IEEE International Workshop on",
+		"publisher": "IEEE",
+		"page": "134–143",
+		"source": "Google Scholar",
+		"author": [
+			{
+				"family": "Collard",
+				"given": "Michael L."
+			},
+			{
+				"family": "Kagdi",
+				"given": "Huzefa H."
+			},
+			{
+				"family": "Maletic",
+				"given": "Jonathan I."
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2003"
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/2PZWAGNQ",
+		"type": "paper-conference",
+		"title": "An island parsing interpreter for the full augmented transition network formalism",
+		"container-title": "Proceedings of the first conference on European chapter of the Association for Computational Linguistics",
+		"publisher": "Association for Computational Linguistics",
+		"page": "101–105",
+		"source": "Google Scholar",
+		"author": [
+			{
+				"family": "Carroll",
+				"given": "John A."
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"1983"
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/CBU5F5W2",
+		"type": "report",
+		"title": "An island parsing interpreter for Augmented Transition Networks",
+		"publisher": "University of Cambridge, Computer Laboratory",
+		"source": "www.cl.cam.ac.uk",
+		"URL": "https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-33.html",
+		"number": "UCAM-CL-TR-33",
+		"language": "en",
+		"author": [
+			{
+				"family": "Carroll",
+				"given": "John A."
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"1982"
+				]
+			]
+		},
+		"accessed": {
+			"date-parts": [
+				[
+					"2019",
+					2,
+					3
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/X56BKYBG",
+		"type": "paper-conference",
+		"title": "A virtual network mapping algorithm based on subgraph isomorphism detection",
+		"container-title": "Proceedings of the 1st ACM workshop on Virtualized infrastructure systems and architectures",
+		"publisher": "ACM",
+		"page": "81–88",
+		"source": "Google Scholar",
+		"author": [
+			{
+				"family": "Lischka",
+				"given": "Jens"
+			},
+			{
+				"family": "Karl",
+				"given": "Holger"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2009"
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/XUJBYGSG",
+		"type": "book",
+		"title": "Computers and intractability: A  guide to the theory of NP-completeness",
+		"collection-title": "Series of books in the mathematical sciences",
+		"publisher": "W.H. Freeman",
+		"source": "EBSCOhost",
+		"archive_location": "Main Book Collection (2nd Floor) QA76.6",
+		"abstract": "Summary: \"Shows how to recognize NP-complete problems and offers proactical suggestions for dealing with them effectively. The book covers the basic theory of NP-completeness, provides an overview of alternative directions for further research, and contains and extensive list of NP-complete and NP-hard problems, with more than 300 main entries and several times as many results in total. [This book] is suitable as a supplement to courses in algorithm design, computational complexity, operations research, or combinatorial mathematics, and as a text for seminars on approximation algorithms or computational complexity. It provides not only a valuable source of information for students but also an essential reference work for professionals in computer science\"--Back cover.",
+		"ISBN": "978-0-7167-1045-5",
+		"shortTitle": "Computers and intractability",
+		"author": [
+			{
+				"family": "Garey",
+				"given": "Michael R."
+			},
+			{
+				"family": "Johnson",
+				"given": "David S."
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"1979"
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/HRTGXPPT",
+		"type": "article-journal",
+		"title": "Multilingual Source Code Analysis: A Systematic Literature Review",
+		"container-title": "IEEE Access",
+		"page": "11307-11336",
+		"volume": "5",
+		"source": "IEEE Xplore",
+		"abstract": "Contemporary software applications are developed using cross-language artifacts, which are interdependent with each other. The source code analysis of these applications requires the extraction and examination of artifacts, which are build using multiple programming languages along with their dependencies. A large number of studies presented on multilingual source code analysis and its applications in the last one and half decade. The objective of this systematic literature review (SLR) is to summarize state of the art and prominent areas for future research. This SLR is based on different techniques, tools, and methodologies to analyze multilingual source code applications. We finalized 56 multi-discipline published papers relevant to multilingual source code analysis and its applications out of 3820 papers, filtered through multi-stage search criterion. Based on our findings, we highlight research gaps and challenges in the field of multilingual applications. The research findings are presented in the form of research problems, research contributions, challenges, and future prospects. We identified 46 research issues and requirements for analyzing multilingual applications and grouped them in 13 different software engineering domains. We examined the research contributions and mapped them with individual research problems. We presented the research contributions in the form of tools techniques and approaches that are presented in the form of research models, platforms, frameworks, prototype models, and case studies. Every research has its limitations or prospects for future research. We highlighted the limitations and future perspectives and grouped them in various software engineering domains. Most of the research trends and potential research areas are identified in static source code analysis, program comprehension, refactoring, reverse engineering, detection, and traceability of cross-language links, code coverage, security analysis, cross-language parsing, and abstraction of source code models.",
+		"DOI": "10.1109/ACCESS.2017.2710421",
+		"ISSN": "2169-3536",
+		"note": "bibtex: mushtaqMultilingualSourceCode2017",
+		"shortTitle": "Multilingual Source Code Analysis",
+		"author": [
+			{
+				"family": "Mushtaq",
+				"given": "Z."
+			},
+			{
+				"family": "Rasool",
+				"given": "G."
+			},
+			{
+				"family": "Shehzad",
+				"given": "B."
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2017"
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/L5SCRWB9",
+		"type": "paper-conference",
+		"title": "MoDisco: A Generic and Extensible Framework for Model Driven Reverse Engineering",
+		"container-title": "Proceedings of the IEEE/ACM International Conference on Automated Software Engineering",
+		"collection-title": "ASE '10",
+		"publisher": "ACM",
+		"publisher-place": "New York, NY, USA",
+		"page": "173–174",
+		"source": "ACM Digital Library",
+		"event-place": "New York, NY, USA",
+		"abstract": "Nowadays, almost all companies, independently of their size and type of activity, are facing the problematic of having to manage, maintain or even replace their legacy systems. Many times, the first problem they need to solve is to really understand what are the functionalities, architecture, data, etc of all these often huge legacy applications. As a consequence, reverse engineering still remains a major challenge for software engineering today. This paper introduces MoDisco, a generic and extensible open source reverse engineering solution. MoDisco intensively uses MDE principles and techniques to improve existing approaches for reverse engineering.",
+		"URL": "http://doi.acm.org/10.1145/1858996.1859032",
+		"DOI": "10.1145/1858996.1859032",
+		"ISBN": "978-1-4503-0116-9",
+		"note": "event-place: Antwerp, Belgium",
+		"shortTitle": "MoDisco",
+		"author": [
+			{
+				"family": "Bruneliere",
+				"given": "Hugo"
+			},
+			{
+				"family": "Cabot",
+				"given": "Jordi"
+			},
+			{
+				"family": "Jouault",
+				"given": "Frédéric"
+			},
+			{
+				"family": "Madiot",
+				"given": "Frédéric"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2010"
+				]
+			]
+		},
+		"accessed": {
+			"date-parts": [
+				[
+					"2019",
+					6,
+					10
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/FD9ESNJM",
+		"type": "paper-conference",
+		"title": "Efficient Algorithms for Structural Similarity of Grammars",
+		"container-title": "Proceedings of the 7th ACM SIGPLAN-SIGACT Symposium on Principles of Programming Languages",
+		"collection-title": "POPL '80",
+		"publisher": "ACM",
+		"publisher-place": "New York, NY, USA",
+		"page": "213–219",
+		"source": "ACM Digital Library",
+		"event-place": "New York, NY, USA",
+		"abstract": "Efficient algorithms are presented for several grammar problems relevant to compiler construction. These problems include(i) testing, for a reduced context-free grammar G and an LL(k), uniquely invertible, or BRC(m,n) grammar H, if G is structurally contained by H, and(ii) testing, for a reduced context-free grammar G and a structurally unambiguous grammar H, if G is Reynolds covered by H or if there is an on to homomorphisem from G to H.Related complexity results are presented for several problems for the regular grammars, program schemes, and monadic program schemes.",
+		"URL": "http://doi.acm.org/10.1145/567446.567467",
+		"DOI": "10.1145/567446.567467",
+		"ISBN": "978-0-89791-011-8",
+		"note": "event-place: Las Vegas, Nevada",
+		"author": [
+			{
+				"family": "Hunt",
+				"given": "H. B.",
+				"suffix": "III"
+			},
+			{
+				"family": "Rosenkrantz",
+				"given": "D. J."
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"1980"
+				]
+			]
+		},
+		"accessed": {
+			"date-parts": [
+				[
+					"2019",
+					6,
+					10
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/GGJXE55J",
+		"type": "article-journal",
+		"title": "On solving cycle-free context-free grammar equivalence problem using numerical analysis",
+		"container-title": "Journal of Computer Languages",
+		"page": "48-56",
+		"volume": "51",
+		"source": "ScienceDirect",
+		"abstract": "In this paper we consider the problem of cycle-free context-free grammars equivalence. To every context-free grammar there corresponds a system of formal equations. Formally applying the iteration method to this system we obtain the grammar axiom in the form of a formal power series composed of the words generated by the grammar ”multiplied” by the respective ambiguities. We define a transform that attributes a matrix meaning to the system of formal equations and to formal power series: terminal symbols are substituted by matrices and formal sum and product are substituted by the matrix ones. In order to effectively compute the sum of a matrix series we numerically solve the system of matrix equations. We prove distinguishability theorems showing that if two formal power series generated by cycle-free context-free grammars are different, then there exists a matrix substitution such that the sums of the respective matrix series are different. Based on this result, we suggest a procedure that can resolve the problem of equivalence of cycle-free context-free grammars in many practical cases. The results obtained in this paper form a theoretical basis for algorithms oriented to automatic assessment of students’ answers in computer science. We present the respective algorithms. Then we compare our approach with a simple heuristic method based on CYK algorithm and discuss the limitations of our method.",
+		"URL": "http://www.sciencedirect.com/science/article/pii/S1045926X18301848",
+		"DOI": "10.1016/j.cola.2019.02.005",
+		"ISSN": "2590-1184",
+		"journalAbbreviation": "Journal of Computer Languages",
+		"author": [
+			{
+				"family": "Almeida",
+				"given": "José João"
+			},
+			{
+				"family": "Grande",
+				"given": "Eliana"
+			},
+			{
+				"family": "Smirnov",
+				"given": "Georgi"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2019",
+					4,
+					1
+				]
+			]
+		},
+		"accessed": {
+			"date-parts": [
+				[
+					"2019",
+					6,
+					10
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/5LAGYYHX",
+		"type": "article-journal",
+		"title": "Structural equivalence of context-free grammars",
+		"container-title": "Journal of Computer and System Sciences",
+		"page": "427-463",
+		"volume": "2",
+		"issue": "4",
+		"source": "ScienceDirect",
+		"abstract": "Two context-free grammars are defined as being structurally-equivalent if they generate the same sentences and assign similar parse trees (differing only in the labelling of the nodes) to each. It is argued that this type of equivalence is more significant than weak equivalence, which requires only that the same sentences be generated. While the latter type of equivalence is in general undecidable, it is shown here that there exists a finite algorithm for determining if two arbitrary context-free grammars are structurally equivalent. A related result is a procedure for converting an arbitrary context-free grammar into a structurally equivalent “simple” grammar (S-grammar) where this is possible, or else indicating that no such grammar exists. The question of structural ambiguity is also studied and a procedure is given for determining if an arbitrary context-free grammar can generate the same string in 2 different ways with similar parse trees.",
+		"URL": "http://www.sciencedirect.com/science/article/pii/S0022000068800376",
+		"DOI": "10.1016/S0022-0000(68)80037-6",
+		"ISSN": "0022-0000",
+		"journalAbbreviation": "Journal of Computer and System Sciences",
+		"author": [
+			{
+				"family": "Paull",
+				"given": "Marvin C."
+			},
+			{
+				"family": "Unger",
+				"given": "Stephen H."
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"1968",
+					12,
+					1
+				]
+			]
+		},
+		"accessed": {
+			"date-parts": [
+				[
+					"2019",
+					6,
+					7
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/2LUNY3DI",
+		"type": "article-journal",
+		"title": "Enumerating all connected maximal common subgraphs in two graphs",
+		"container-title": "Theoretical Computer Science",
+		"page": "1–30",
+		"volume": "250",
+		"issue": "1-2",
+		"source": "Google Scholar",
+		"author": [
+			{
+				"family": "Koch",
+				"given": "Ina"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2001"
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/PBG8GBQB",
+		"type": "article-journal",
+		"title": "Frequent pattern mining: current status and future directions",
+		"container-title": "Data mining and knowledge discovery",
+		"page": "55–86",
+		"volume": "15",
+		"issue": "1",
+		"source": "Google Scholar",
+		"shortTitle": "Frequent pattern mining",
+		"author": [
+			{
+				"family": "Han",
+				"given": "Jiawei"
+			},
+			{
+				"family": "Cheng",
+				"given": "Hong"
+			},
+			{
+				"family": "Xin",
+				"given": "Dong"
+			},
+			{
+				"family": "Yan",
+				"given": "Xifeng"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2007"
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/QBBA72I6",
+		"type": "article-journal",
+		"title": "Margin: Maximal frequent subgraph mining",
+		"container-title": "ACM Transactions on Knowledge Discovery from Data (TKDD)",
+		"page": "10",
+		"volume": "4",
+		"issue": "3",
+		"source": "Google Scholar",
+		"shortTitle": "Margin",
+		"author": [
+			{
+				"family": "Thomas",
+				"given": "Lini T."
+			},
+			{
+				"family": "Valluri",
+				"given": "Satyanarayana R."
+			},
+			{
+				"family": "Karlapalem",
+				"given": "Kamalakar"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2010"
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/L7N322PU",
+		"type": "paper-conference",
+		"title": "Large-scale frequent subgraph mining in MapReduce",
+		"container-title": "2014 IEEE 30th International Conference on Data Engineering",
+		"publisher": "IEEE",
+		"page": "844–855",
+		"source": "Google Scholar",
+		"author": [
+			{
+				"family": "Lin",
+				"given": "Wenqing"
+			},
+			{
+				"family": "Xiao",
+				"given": "Xiaokui"
+			},
+			{
+				"family": "Ghinita",
+				"given": "Gabriel"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2014"
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/JF39TSYU",
+		"type": "article-journal",
+		"title": "An efficient algorithm for detecting frequent subgraphs in biological networks",
+		"container-title": "Bioinformatics",
+		"page": "i200–i207",
+		"volume": "20",
+		"issue": "suppl_1",
+		"source": "Google Scholar",
+		"author": [
+			{
+				"family": "Koyutürk",
+				"given": "Mehmet"
+			},
+			{
+				"family": "Grama",
+				"given": "Ananth"
+			},
+			{
+				"family": "Szpankowski",
+				"given": "Wojciech"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2004"
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/AQFT78DI",
+		"type": "article-journal",
+		"title": "Mining closed and maximal frequent subtrees from databases of labeled rooted trees",
+		"container-title": "IEEE Transactions on Knowledge and Data Engineering",
+		"page": "190–202",
+		"volume": "17",
+		"issue": "2",
+		"source": "Google Scholar",
+		"author": [
+			{
+				"family": "Chi",
+				"given": "Yun"
+			},
+			{
+				"family": "Xia",
+				"given": "Yi"
+			},
+			{
+				"family": "Yang",
+				"given": "Yirong"
+			},
+			{
+				"family": "Muntz",
+				"given": "Richard R."
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2005"
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/W5CLDQB8",
+		"type": "paper-conference",
+		"title": "Spin: mining maximal frequent subgraphs from graph databases",
+		"container-title": "Proceedings of the tenth ACM SIGKDD international conference on Knowledge discovery and data mining",
+		"publisher": "ACM",
+		"page": "581–586",
+		"source": "Google Scholar",
+		"shortTitle": "Spin",
+		"author": [
+			{
+				"family": "Huan",
+				"given": "Jun"
+			},
+			{
+				"family": "Wang",
+				"given": "Wei"
+			},
+			{
+				"family": "Prins",
+				"given": "Jan"
+			},
+			{
+				"family": "Yang",
+				"given": "Jiong"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2004"
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/RR89GXI2",
+		"type": "article-journal",
+		"title": "A survey of frequent subgraph mining algorithms",
+		"container-title": "The Knowledge Engineering Review",
+		"page": "75–105",
+		"volume": "28",
+		"issue": "1",
+		"source": "Google Scholar",
+		"author": [
+			{
+				"family": "Jiang",
+				"given": "Chuntao"
+			},
+			{
+				"family": "Coenen",
+				"given": "Frans"
+			},
+			{
+				"family": "Zito",
+				"given": "Michele"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2013"
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/TRRBTDHU",
+		"type": "chapter",
+		"title": "How to Calculate Software Metrics for Multiple Languages Using Open Source Parsers",
+		"container-title": "Open Source Software: Quality Verification",
+		"publisher": "Springer Berlin Heidelberg",
+		"publisher-place": "Berlin, Heidelberg",
+		"page": "264-270",
+		"volume": "404",
+		"source": "DOI.org (Crossref)",
+		"event-place": "Berlin, Heidelberg",
+		"abstract": "Source code metrics help to evaluate the quality of the code, for example, to detect the most complex parts of the program. When writing a system which calculates metrics, especially when it has to support multiple source code languages, the biggest problem which arises is the creation of parsers for each supported language. In this paper we suggest an unusual Open Source solution, that avoids creating such parsers from scratch. We suggest and explain how to use parsers contained in the Eclipse IDE as parsers that support contemporary language features, are actively maintained, can recover from errors, and provide not just the abstract syntax tree, but the whole type information of the source program. The ﬁndings described in this paper provide to practitioners a way to use Open Source parsers without the need to deal with parser generators, or to write a parser from scratch.",
+		"URL": "http://link.springer.com/10.1007/978-3-642-38928-3_20",
+		"ISBN": "978-3-642-38927-6",
+		"note": "DOI: 10.1007/978-3-642-38928-3_20",
+		"language": "en",
+		"editor": [
+			{
+				"family": "Petrinja",
+				"given": "Etiel"
+			},
+			{
+				"family": "Succi",
+				"given": "Giancarlo"
+			},
+			{
+				"family": "El Ioini",
+				"given": "Nabil"
+			},
+			{
+				"family": "Sillitti",
+				"given": "Alberto"
+			}
+		],
+		"author": [
+			{
+				"family": "Janes",
+				"given": "Andrea"
+			},
+			{
+				"family": "Piatov",
+				"given": "Danila"
+			},
+			{
+				"family": "Sillitti",
+				"given": "Alberto"
+			},
+			{
+				"family": "Succi",
+				"given": "Giancarlo"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2013"
+				]
+			]
+		},
+		"accessed": {
+			"date-parts": [
+				[
+					"2019",
+					7,
+					22
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/Q47P3D5J",
+		"type": "article-journal",
+		"title": "FAMIX 2. 1-the FAMOOS information exchange model",
+		"source": "ResearchGate",
+		"author": [
+			{
+				"family": "Demeyer",
+				"given": "Serge"
+			},
+			{
+				"family": "Tichelaar",
+				"given": "S"
+			},
+			{
+				"family": "Ducasse",
+				"given": "Stéphane"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2001",
+					1,
+					1
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/JRVW4FQA",
+		"type": "paper-conference",
+		"title": "Pangea: A Workbench for Statically Analyzing Multi-language Software Corpora",
+		"container-title": "2014 IEEE 14th International Working Conference on Source Code Analysis and Manipulation",
+		"publisher": "IEEE",
+		"publisher-place": "Victoria, BC, Canada",
+		"page": "71-76",
+		"source": "DOI.org (Crossref)",
+		"event": "2014 IEEE 14th International Working Conference on Source Code Analysis and Manipulation (SCAM)",
+		"event-place": "Victoria, BC, Canada",
+		"abstract": "Software corpora facilitate reproducibility of analyses, however, static analysis for an entire corpus still requires considerable effort, often duplicated unnecessarily by multiple users. Moreover, most corpora are designed for single languages increasing the effort for cross-language analysis. To address these aspects we propose Pangea, an infrastructure allowing fast development of static analyses on multi-language corpora. Pangea uses language-independent meta-models stored as object model snapshots that can be directly loaded into memory and queryed without any parsing overhead. To reduce the effort of performing static analyses, Pangea provides out-of-the box support for: creating and reﬁning analyses in a dedicated environment, deploying an analysis on an entire corpus, using a runner that supports parallel execution, and exporting results in various formats. In this tool demonstration we introduce Pangea and provide several usage scenarios that illustrate how it reduces the cost of analysis.",
+		"URL": "http://ieeexplore.ieee.org/document/6975639/",
+		"DOI": "10.1109/SCAM.2014.39",
+		"ISBN": "978-1-4799-6148-1",
+		"shortTitle": "Pangea",
+		"language": "en",
+		"author": [
+			{
+				"family": "Caracciolo",
+				"given": "Andrea"
+			},
+			{
+				"family": "Chis",
+				"given": "Andrei"
+			},
+			{
+				"family": "Spasojevic",
+				"given": "Boris"
+			},
+			{
+				"family": "Lungu",
+				"given": "Mircea"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2014",
+					9
+				]
+			]
+		},
+		"accessed": {
+			"date-parts": [
+				[
+					"2019",
+					7,
+					22
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/G3AEDIPP",
+		"type": "article-journal",
+		"title": "Demo: PIT a Practical Mutation Testing Tool for Java",
+		"page": "7",
+		"source": "Zotero",
+		"language": "en",
+		"author": [
+			{
+				"family": "Coles",
+				"given": "Henry"
+			},
+			{
+				"family": "Laurent",
+				"given": "Thomas"
+			},
+			{
+				"family": "Ventresque",
+				"given": "Anthony"
+			}
+		]
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/XKIZZFBZ",
+		"type": "chapter",
+		"title": "Towards the Detection of Cross-Language Source Code Reuse",
+		"container-title": "Natural Language Processing and Information Systems",
+		"publisher": "Springer Berlin Heidelberg",
+		"publisher-place": "Berlin, Heidelberg",
+		"page": "250-253",
+		"volume": "6716",
+		"source": "DOI.org (Crossref)",
+		"event-place": "Berlin, Heidelberg",
+		"abstract": "Internet has made available huge amounts of information, also source code. Source code repositories and, in general, programming related websites, facilitate its reuse. In this work, we propose a simple approach to the detection of cross-language source code reuse, a nearly investigated problem. Our preliminary experiments, based on character n-grams comparison, show that considering diﬀerent sections of the code (i.e., comments, code, reserved words, etc.), leads to diﬀerent results. When considering three programming languages: C++, Java, and Python, the best result is obtained when comments are discarded and the entire source code is considered.",
+		"URL": "http://link.springer.com/10.1007/978-3-642-22327-3_31",
+		"ISBN": "978-3-642-22326-6",
+		"note": "DOI: 10.1007/978-3-642-22327-3_31",
+		"language": "en",
+		"editor": [
+			{
+				"family": "Muñoz",
+				"given": "Rafael"
+			},
+			{
+				"family": "Montoyo",
+				"given": "Andrés"
+			},
+			{
+				"family": "Métais",
+				"given": "Elisabeth"
+			}
+		],
+		"author": [
+			{
+				"family": "Flores",
+				"given": "Enrique"
+			},
+			{
+				"family": "Barrón-Cedeño",
+				"given": "Alberto"
+			},
+			{
+				"family": "Rosso",
+				"given": "Paolo"
+			},
+			{
+				"family": "Moreno",
+				"given": "Lidia"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2011"
+				]
+			]
+		},
+		"accessed": {
+			"date-parts": [
+				[
+					"2019",
+					7,
+					22
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/J4R3ZZLG",
+		"type": "article-journal",
+		"title": "Towards multilingual programming environments",
+		"container-title": "Science of Computer Programming",
+		"collection-title": "Special Issue on New Ideas and Emerging Results in Understanding Software",
+		"page": "143-149",
+		"volume": "97",
+		"source": "ScienceDirect",
+		"abstract": "Software projects consist of different kinds of artifacts: build files, configuration files, markup files, source code in different software languages, and so on. At the same time, however, most integrated development environments (IDEs) are focused on a single (programming) language. Even if a programming environment supports multiple languages (e.g., Eclipse), IDE features such as cross-referencing, refactoring, or debugging, do not often cross language boundaries. What would it mean for programming environment to be truly multilingual? In this short paper we sketch a vision of a system that integrates IDE support across language boundaries. We propose to build this system on a foundation of unified source code models and metaprogramming. Nevertheless, a number of important and hard research questions still need to be addressed.",
+		"URL": "http://www.sciencedirect.com/science/article/pii/S0167642313003341",
+		"DOI": "10.1016/j.scico.2013.11.041",
+		"ISSN": "0167-6423",
+		"journalAbbreviation": "Science of Computer Programming",
+		"author": [
+			{
+				"family": "Storm",
+				"given": "Tijs",
+				"non-dropping-particle": "van der"
+			},
+			{
+				"family": "Vinju",
+				"given": "Jurgen J."
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2015",
+					1,
+					1
+				]
+			]
+		},
+		"accessed": {
+			"date-parts": [
+				[
+					"2019",
+					7,
+					20
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/WFA7HIEC",
+		"type": "paper-conference",
+		"title": "Mutation testing implements grammar-based testing",
+		"container-title": "Second Workshop on Mutation Analysis (Mutation 2006-ISSRE Workshops 2006)",
+		"publisher": "IEEE",
+		"page": "12–12",
+		"source": "Google Scholar",
+		"author": [
+			{
+				"family": "Offutt",
+				"given": "Jeff"
+			},
+			{
+				"family": "Ammann",
+				"given": "Paul"
+			},
+			{
+				"family": "Liu",
+				"given": "Lisa"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2006"
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/BPJ8A6C8",
+		"type": "paper-conference",
+		"title": "Mutation testing implements grammar-based testing",
+		"container-title": "Second Workshop on Mutation Analysis (Mutation 2006 - ISSRE Workshops 2006)",
+		"page": "12-12",
+		"source": "IEEE Xplore",
+		"event": "Second Workshop on Mutation Analysis (Mutation 2006 - ISSRE Workshops 2006)",
+		"abstract": "This paper presents an abstract view of mutation analysis. Mutation was originally thought of as making changes to program source, but similar kinds of changes have been applied to other artifacts, including program specifications, XML, and input languages. This paper argues that mutation analysis is actually a way to modify any software artifact based on its syntactic description, and is in the same family of test generation methods that create inputs from syntactic descriptions. The essential characteristic of mutation is that a syntactic description such as a grammar is used to create tests. We call this abstract view grammar-based testing, and view it as an interface, which mutation analysis implements. This shift in view allows mutation to be defined in a general way, yielding three benefits. First, it provides a simpler way to understand mutation. Second, it makes it easier to develop future applications of mutation analysis, such as finite state machines and use case collaboration diagrams. The third benefit, which due to space limitations is not explored in this paper, is ensuring that existing techniques are complete according to the criteria defined here.",
+		"DOI": "10.1109/MUTATION.2006.11",
+		"author": [
+			{
+				"family": "Offutt",
+				"given": "J."
+			},
+			{
+				"family": "Ammann",
+				"given": "P."
+			},
+			{
+				"family": "Liu",
+				"given": "L."
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2006",
+					11
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/VDM5Z8XK",
+		"type": "webpage",
+		"title": "antlr/grammars-v4: Grammars written for ANTLR v4; expectation that the grammars are free of actions.",
+		"container-title": "Github",
+		"URL": "https://github.com/antlr/grammars-v4",
+		"accessed": {
+			"date-parts": [
+				[
+					"2019",
+					8,
+					1
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/WRM66Y4D",
+		"type": "article-journal",
+		"title": "On certain formal properties of grammars",
+		"container-title": "Information and Control",
+		"page": "137-167",
+		"volume": "2",
+		"issue": "2",
+		"source": "ScienceDirect",
+		"abstract": "A grammar can be regarded as a device that enumerates the sentences of a language. We study a sequence of restrictions that limit grammars first to Turing machines, then to two types of system from which a phrase structure description of the generated language can be drawn, and finally to finite state Markov sources (finite automata). These restrictions are shown to be increasingly heavy in the sense that the languages that can be generated by grammars meeting a given restriction constitute a proper subset of those that can be generated by grammars meeting the preceding restriction. Various formulations of phrase structure description are considered, and the source of their excess generative power over finite state sources is investigated in greater detail.",
+		"URL": "http://www.sciencedirect.com/science/article/pii/S0019995859903626",
+		"DOI": "10.1016/S0019-9958(59)90362-6",
+		"ISSN": "0019-9958",
+		"journalAbbreviation": "Information and Control",
+		"author": [
+			{
+				"family": "Chomsky",
+				"given": "Noam"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"1959",
+					6,
+					1
+				]
+			]
+		},
+		"accessed": {
+			"date-parts": [
+				[
+					"2019",
+					7,
+					31
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/LFETH7ST",
+		"type": "book",
+		"title": "Introduction to Algorithms",
+		"publisher": "The MIT Press",
+		"publisher-place": "Cambridge Massachusetts",
+		"edition": "2nd",
+		"event-place": "Cambridge Massachusetts",
+		"ISBN": "0-262-03293-7",
+		"author": [
+			{
+				"family": "Cormen",
+				"given": "Thomas H."
+			},
+			{
+				"family": "Leiserson",
+				"given": "Charles E."
+			},
+			{
+				"family": "Rivest",
+				"given": "Ronald L."
+			},
+			{
+				"family": "Stein",
+				"given": "Clifford"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2001"
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/5ZHRJ6P4",
+		"type": "article-journal",
+		"title": "A metrics suite for grammar-based software",
+		"container-title": "Journal of Software Maintenance and Evolution: Research and Practice",
+		"page": "405-426",
+		"volume": "16",
+		"issue": "6",
+		"source": "DOI.org (Crossref)",
+		"URL": "http://doi.wiley.com/10.1002/smr.293",
+		"DOI": "10.1002/smr.293",
+		"ISSN": "1532-060X, 1532-0618",
+		"journalAbbreviation": "J. Softw. Maint. Evol.: Res. Pract.",
+		"language": "en",
+		"author": [
+			{
+				"family": "Power",
+				"given": "James F."
+			},
+			{
+				"family": "Malloy",
+				"given": "Brian A."
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2004",
+					11
+				]
+			]
+		},
+		"accessed": {
+			"date-parts": [
+				[
+					"2019",
+					7,
+					7
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/T47F6LL4",
+		"type": "article-journal",
+		"title": "A New Measure of Rank Correlation",
+		"container-title": "Biometrika",
+		"page": "81",
+		"volume": "30",
+		"issue": "1/2",
+		"source": "CrossRef",
+		"URL": "http://www.jstor.org/stable/2332226?origin=crossref",
+		"DOI": "10.2307/2332226",
+		"ISSN": "00063444",
+		"author": [
+			{
+				"family": "Kendall",
+				"given": "M. G."
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"1938",
+					6
+				]
+			]
+		},
+		"accessed": {
+			"date-parts": [
+				[
+					"2014",
+					6,
+					25
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/6B48FZSB",
+		"type": "article-journal",
+		"title": "A Test of Goodness of Fit",
+		"container-title": "Journal of the American Statistical Association",
+		"page": "765",
+		"volume": "49",
+		"issue": "268",
+		"source": "CrossRef",
+		"URL": "http://www.jstor.org/stable/2281537?origin=crossref",
+		"DOI": "10.2307/2281537",
+		"ISSN": "01621459",
+		"author": [
+			{
+				"family": "Anderson",
+				"given": "T. W."
+			},
+			{
+				"family": "Darling",
+				"given": "D. A."
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"1954",
+					12
+				]
+			]
+		},
+		"accessed": {
+			"date-parts": [
+				[
+					"2014",
+					11,
+					11
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/L6PF7W6E",
+		"type": "article-journal",
+		"title": "An Analysis of Variance Test for Normality (Complete Samples)",
+		"container-title": "Biometrika",
+		"page": "591",
+		"volume": "52",
+		"issue": "3/4",
+		"source": "CrossRef",
+		"URL": "http://www.jstor.org/stable/2333709?origin=crossref",
+		"DOI": "10.2307/2333709",
+		"ISSN": "00063444",
+		"author": [
+			{
+				"family": "Shapiro",
+				"given": "S. S."
+			},
+			{
+				"family": "Wilk",
+				"given": "M. B."
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"1965",
+					12
+				]
+			]
+		},
+		"accessed": {
+			"date-parts": [
+				[
+					"2014",
+					10,
+					29
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/QWBJK29K",
+		"type": "article-journal",
+		"title": "Comparing Individual Means in the Analysis of Variance",
+		"container-title": "Biometrics",
+		"page": "99",
+		"volume": "5",
+		"issue": "2",
+		"source": "CrossRef",
+		"URL": "http://www.jstor.org/stable/3001913?origin=crossref",
+		"DOI": "10.2307/3001913",
+		"ISSN": "0006341X",
+		"author": [
+			{
+				"family": "Tukey",
+				"given": "John W."
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"1949",
+					6
+				]
+			]
+		},
+		"accessed": {
+			"date-parts": [
+				[
+					"2015",
+					9,
+					18
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/L3MIZ3ZR",
+		"type": "paper-conference",
+		"title": "Current parsing techniques in software renovation considered harmful",
+		"container-title": "Proceedings. 6th International Workshop on Program Comprehension. IWPC'98 (Cat. No.98TB100242)",
+		"publisher": "IEEE Comput. Soc",
+		"publisher-place": "Ischia, Italy",
+		"page": "108-117",
+		"source": "DOI.org (Crossref)",
+		"event": "6th International Workshop on Program Comprehension. IWPC'98",
+		"event-place": "Ischia, Italy",
+		"URL": "http://ieeexplore.ieee.org/document/693325/",
+		"DOI": "10.1109/WPC.1998.693325",
+		"ISBN": "978-0-8186-8560-6",
+		"author": [
+			{
+				"family": "Brand",
+				"given": "M.",
+				"non-dropping-particle": "van den"
+			},
+			{
+				"family": "Sellink",
+				"given": "A."
+			},
+			{
+				"family": "Verhoef",
+				"given": "C."
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"1998"
+				]
+			]
+		},
+		"accessed": {
+			"date-parts": [
+				[
+					"2019",
+					7,
+					7
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/MM8YYMA4",
+		"type": "article-journal",
+		"title": "Descriptional complexity of context-free grammar forms",
+		"container-title": "Theoretical Computer Science",
+		"page": "277-289",
+		"volume": "112",
+		"issue": "2",
+		"source": "DOI.org (Crossref)",
+		"URL": "https://linkinghub.elsevier.com/retrieve/pii/030439759390021K",
+		"DOI": "10.1016/0304-3975(93)90021-K",
+		"ISSN": "03043975",
+		"journalAbbreviation": "Theoretical Computer Science",
+		"language": "en",
+		"author": [
+			{
+				"family": "Csuhaj-Varjú",
+				"given": "Erzsébet"
+			},
+			{
+				"family": "Kelemenová",
+				"given": "Alica"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"1993",
+					5
+				]
+			]
+		},
+		"accessed": {
+			"date-parts": [
+				[
+					"2019",
+					7,
+					7
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/UFW34M6D",
+		"type": "book",
+		"title": "Design and analysis of experiments",
+		"publisher": "John Wiley & Sons, Inc",
+		"publisher-place": "Hoboken, NJ",
+		"number-of-pages": "730",
+		"edition": "Eighth edition",
+		"source": "Library of Congress ISBN",
+		"event-place": "Hoboken, NJ",
+		"ISBN": "978-1-118-14692-7",
+		"call-number": "QA279 .M66 2013",
+		"author": [
+			{
+				"family": "Montgomery",
+				"given": "Douglas C."
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2013"
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/TTNTRRHB",
+		"type": "book",
+		"title": "Experimental and Quasi-experimental Designs for Research",
+		"publisher": "Rand-McNally",
+		"author": [
+			{
+				"family": "Campbell",
+				"given": "D."
+			},
+			{
+				"family": "Stanley",
+				"given": "J."
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"1963"
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/95P5JXFC",
+		"type": "book",
+		"title": "Experimentation in Software Engineering",
+		"publisher": "Springer Berlin Heidelberg",
+		"publisher-place": "Berlin, Heidelberg",
+		"source": "CrossRef",
+		"event-place": "Berlin, Heidelberg",
+		"URL": "http://link.springer.com/10.1007/978-3-642-29044-2",
+		"ISBN": "978-3-642-29043-5",
+		"language": "en",
+		"author": [
+			{
+				"family": "Wohlin",
+				"given": "Claes"
+			},
+			{
+				"family": "Runeson",
+				"given": "Per"
+			},
+			{
+				"family": "Höst",
+				"given": "Martin"
+			},
+			{
+				"family": "Ohlsson",
+				"given": "Magnus C."
+			},
+			{
+				"family": "Regnell",
+				"given": "Björn"
+			},
+			{
+				"family": "Wesslén",
+				"given": "Anders"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2012"
+				]
+			]
+		},
+		"accessed": {
+			"date-parts": [
+				[
+					"2014",
+					6,
+					22
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/FASQLM5Q",
+		"type": "paper-conference",
+		"title": "Grammar programming in TXL",
+		"container-title": "Proceedings. Second IEEE International Workshop on Source Code Analysis and Manipulation",
+		"publisher": "IEEE Comput. Soc",
+		"publisher-place": "Montreal, Que., Canada",
+		"page": "93-102",
+		"source": "DOI.org (Crossref)",
+		"event": "Second IEEE International Workshop on Source Code Analysis and Manipulation",
+		"event-place": "Montreal, Que., Canada",
+		"URL": "http://ieeexplore.ieee.org/document/1134109/",
+		"DOI": "10.1109/SCAM.2002.1134109",
+		"ISBN": "978-0-7695-1793-3",
+		"author": [
+			{
+				"family": "Dean",
+				"given": "T.R."
+			},
+			{
+				"family": "Cordy",
+				"given": "J.R."
+			},
+			{
+				"family": "Malton",
+				"given": "A.J."
+			},
+			{
+				"family": "Schneider",
+				"given": "K.A."
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2002"
+				]
+			]
+		},
+		"accessed": {
+			"date-parts": [
+				[
+					"2019",
+					7,
+					7
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/VG6UN2LF",
+		"type": "article-journal",
+		"title": "Grammar Zoo: A corpus of experimental grammarware",
+		"container-title": "Science of Computer Programming",
+		"page": "28-51",
+		"volume": "98",
+		"source": "DOI.org (Crossref)",
+		"URL": "https://linkinghub.elsevier.com/retrieve/pii/S0167642314003347",
+		"DOI": "10.1016/j.scico.2014.07.010",
+		"ISSN": "01676423",
+		"shortTitle": "Grammar Zoo",
+		"journalAbbreviation": "Science of Computer Programming",
+		"language": "en",
+		"author": [
+			{
+				"family": "Zaytsev",
+				"given": "Vadim"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2015",
+					2
+				]
+			]
+		},
+		"accessed": {
+			"date-parts": [
+				[
+					"2019",
+					7,
+					7
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/WJTHCQ6F",
+		"type": "article-journal",
+		"title": "Metrication of SDF grammars",
+		"container-title": "Dept. de Informática da Univ. do Minho Campus de Gualtar, Braga, Portugal. Rep. Tec. DI-PURe-05.05",
+		"volume": "1",
+		"author": [
+			{
+				"family": "Alves",
+				"given": "Tiago"
+			},
+			{
+				"family": "Visser",
+				"given": "Joost"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2005"
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/KEZ4EESQ",
+		"type": "article-journal",
+		"title": "On the Distribution of the Two-Sample Cramer-von Mises Criterion",
+		"container-title": "The Annals of Mathematical Statistics",
+		"page": "1148-1159",
+		"volume": "33",
+		"issue": "3",
+		"source": "CrossRef",
+		"URL": "http://projecteuclid.org/euclid.aoms/1177704477",
+		"DOI": "10.1214/aoms/1177704477",
+		"ISSN": "0003-4851",
+		"language": "en",
+		"author": [
+			{
+				"family": "Anderson",
+				"given": "T. W."
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"1962",
+					9
+				]
+			]
+		},
+		"accessed": {
+			"date-parts": [
+				[
+					"2014",
+					11,
+					11
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/3R7T5NMQ",
+		"type": "book",
+		"title": "Quasi-experimentation: Design and Analysis Issues for Field Settings",
+		"publisher": "Houghton Mifflin Company",
+		"author": [
+			{
+				"family": "Campbell",
+				"given": "D."
+			},
+			{
+				"family": "Cook",
+				"given": "T. D."
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"1979"
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/YB9AEMQS",
+		"type": "article-journal",
+		"title": "Rank-Sum Tests for Dispersions",
+		"container-title": "The Annals of Mathematical Statistics",
+		"page": "1174-1189",
+		"volume": "31",
+		"issue": "4",
+		"source": "CrossRef",
+		"URL": "http://projecteuclid.org/euclid.aoms/1177705688",
+		"DOI": "10.1214/aoms/1177705688",
+		"ISSN": "0003-4851",
+		"language": "en",
+		"author": [
+			{
+				"family": "Ansari",
+				"given": "A. R."
+			},
+			{
+				"family": "Bradley",
+				"given": "R. A."
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"1960",
+					12
+				]
+			]
+		},
+		"accessed": {
+			"date-parts": [
+				[
+					"2014",
+					11,
+					11
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/DVSI6VSH",
+		"type": "article-journal",
+		"title": "TXL - A Language for Programming Language Tools and Applications",
+		"container-title": "Electronic Notes in Theoretical Computer Science",
+		"page": "3-31",
+		"volume": "110",
+		"source": "DOI.org (Crossref)",
+		"URL": "https://linkinghub.elsevier.com/retrieve/pii/S157106610405217X",
+		"DOI": "10.1016/j.entcs.2004.11.006",
+		"ISSN": "15710661",
+		"journalAbbreviation": "Electronic Notes in Theoretical Computer Science",
+		"language": "en",
+		"author": [
+			{
+				"family": "Cordy",
+				"given": "James R."
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2004",
+					12
+				]
+			]
+		},
+		"accessed": {
+			"date-parts": [
+				[
+					"2019",
+					7,
+					7
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/TYQQB3WZ",
+		"type": "article-journal",
+		"title": "TXL: A rapid prototyping system for programming language dialects",
+		"container-title": "Computer Languages",
+		"page": "97-107",
+		"volume": "16",
+		"issue": "1",
+		"source": "DOI.org (Crossref)",
+		"URL": "https://linkinghub.elsevier.com/retrieve/pii/0096055191900196",
+		"DOI": "10.1016/0096-0551(91)90019-6",
+		"ISSN": "00960551",
+		"shortTitle": "TXL",
+		"journalAbbreviation": "Computer Languages",
+		"language": "en",
+		"author": [
+			{
+				"family": "Cordy",
+				"given": "James R."
+			},
+			{
+				"family": "Halpern-Hamu",
+				"given": "Charles D."
+			},
+			{
+				"family": "Promislow",
+				"given": "Eric"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"1991",
+					1
+				]
+			]
+		},
+		"accessed": {
+			"date-parts": [
+				[
+					"2019",
+					7,
+					9
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/7PQ2BGC8",
+		"type": "book",
+		"title": "Case study research in software engineering: guidelines and examples",
+		"publisher": "Wiley",
+		"publisher-place": "Hoboken, N.J",
+		"number-of-pages": "237",
+		"source": "Library of Congress ISBN",
+		"event-place": "Hoboken, N.J",
+		"ISBN": "978-1-118-10435-4",
+		"call-number": "QA76.76.D47 C37 2012",
+		"shortTitle": "Case study research in software engineering",
+		"editor": [
+			{
+				"family": "Runeson",
+				"given": "Per"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2012"
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/N47LSIT8",
+		"type": "book",
+		"title": "Case study research: design and methods",
+		"collection-title": "Applied social research methods",
+		"collection-number": "v. 5",
+		"publisher": "Sage Publications",
+		"publisher-place": "Los Angeles, Calif",
+		"number-of-pages": "219",
+		"edition": "4th ed",
+		"source": "Library of Congress ISBN",
+		"event-place": "Los Angeles, Calif",
+		"ISBN": "978-1-4129-6099-1",
+		"call-number": "H62 .Y56 2009",
+		"shortTitle": "Case study research",
+		"author": [
+			{
+				"family": "Yin",
+				"given": "Robert K."
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2009"
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/HJKHFINK",
+		"type": "book",
+		"title": "The definitive ANTLR 4 reference",
+		"collection-title": "The pragmatic programmers",
+		"publisher": "The Pragmatic Bookshelf",
+		"publisher-place": "Dallas, Texas",
+		"number-of-pages": "305",
+		"source": "Library of Congress ISBN",
+		"event-place": "Dallas, Texas",
+		"ISBN": "978-1-934356-99-9",
+		"call-number": "QA76.7 .P37 2012",
+		"note": "OCLC: ocn802295434",
+		"author": [
+			{
+				"family": "Parr",
+				"given": "Terence"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2012"
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/ZMYREWWB",
+		"type": "article-journal",
+		"title": "Use of Ranks in One-Criterion Variance Analysis",
+		"container-title": "Journal of the American Statistical Association",
+		"page": "583-621",
+		"volume": "47",
+		"issue": "260",
+		"source": "DOI.org (Crossref)",
+		"URL": "http://www.tandfonline.com/doi/abs/10.1080/01621459.1952.10483441",
+		"DOI": "10.1080/01621459.1952.10483441",
+		"ISSN": "0162-1459, 1537-274X",
+		"journalAbbreviation": "Journal of the American Statistical Association",
+		"language": "en",
+		"author": [
+			{
+				"family": "Kruskal",
+				"given": "William H."
+			},
+			{
+				"family": "Wallis",
+				"given": "W. Allen"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"1952",
+					12
+				]
+			]
+		},
+		"accessed": {
+			"date-parts": [
+				[
+					"2019",
+					8,
+					5
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/groups/2324381/items/ZHEA74WG",
+		"type": "report",
+		"title": "Software Modeling and Measurement: The Goal/Question/Metric Paradigm",
+		"publisher": "University of Maryland at College Park",
+		"publisher-place": "College Park, MD, USA",
+		"event-place": "College Park, MD, USA",
+		"author": [
+			{
+				"family": "Basili",
+				"given": "Victor R."
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"1992"
+				]
+			]
+		}
+	}
+]

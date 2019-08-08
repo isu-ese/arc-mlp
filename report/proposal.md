@@ -1,15 +1,5 @@
-!import(macros.md)
-!include(metadata.yml)
+!include(01_front_matter/index.md)
 
-!include(01_introduction/all.md)
-!include(02_background/all.md)
-!include(approach/all.md)
-!include(methods/all.md)
-!include(conclusion/all.md)
-!include(acknowledgements.md)
+!include(02_main_matter/index_proposal.md)
 
-!bib
-
-\appendix
-
-!include(appendices.md)
+!include(03_back_matter/index.md)

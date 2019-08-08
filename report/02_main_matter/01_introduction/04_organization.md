@@ -1,0 +1,3 @@
+## Organization {-}
+
+The remainder of this paper is organized as follows. @sec:background discusses the theoretical foundations of this work while also discussing other related studies. @sec:approach details our approach to automate the merging of grammars which forms the foundation of an initial approach to automating the creation of multilingual parsers, which we call SIGMA. @sec:experimental_design details the design of experiments which evaluate the proposed approach and its parameterization. @sec:results presents the results of the experiments. @sec:discussion presents a discussion of the results and their interpretation in light of other studies. @sec:threats details the threats to the validity of this study. Finally, this paper is concluded in @sec:conclusions.
