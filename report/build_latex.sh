@@ -4,7 +4,7 @@ set -e
 
 pp $1.md > $1.gen.md
 
-pandoc $1.gen.md \
+pandoc $1.gen.md \ 
   --template=../assets/templates/ieee.latex \
   --top-level-division=section \
   -F pandoc-crossref -M "crossrefYaml=../assets/crossref/crossrefIEEE.yml" \
