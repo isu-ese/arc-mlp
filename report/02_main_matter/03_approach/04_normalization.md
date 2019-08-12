@@ -51,31 +51,21 @@ To eliminate unused rules, we removed all rules that cannot be eventually produc
 ```
 !grammar
 ~~~
-<S> ::= <S1> | <S2>
+<S> ::= <\(S_1\)> | <\(S_2\)>
 
-<S1> ::= <A> | <B>
+<$S_1$> ::= <A> | <B>
 
-<S2> ::= <F> | <G>
+<A> ::= `a' $\varepsilon$ <B> <\(C_1\)>
 
-<A> ::= 'a'
+<$C_1$> ::= `c'
 
-<B> ::= 'b'
+<B> ::= `b' `d'
 
-<C> ::= 'c'
+<$S_2$> ::= <\(C_2\)> | <D>
 
-<D> ::= 'd'
+<$C_2$> ::= `c'
 
-<E> ::= 'e'
-
-<F> ::= 'f'
-
-<G> ::= 'g'
-
-<H> ::= 'h'
-
-<I> ::= 'i'
-
-<J> ::= 'j'
+<D> ::= `a' `d' (`e' | `c') | (<\(C_2\)> | `b')
 ~~~
 ```{=latex}
  \end{minipage}
@@ -87,31 +77,21 @@ To eliminate unused rules, we removed all rules that cannot be eventually produc
 ```
 !grammar
 ~~~
-<S> ::= <S1> | <S2>
+<S> ::= <\(S_1\)> | <\(S_2\)>
 
-<S1> ::= <A> | <B>
+<$S_1$> ::= <A> | <B>
 
-<S2> ::= <F> | <G>
+<A> ::= `a' <B> <\(C_1\)>
 
-<A> ::= 'a'
+<$C_1$> ::= `c'
 
-<B> ::= 'b'
+<B> ::= `b' `d'
 
-<C> ::= 'c'
+<$S_2$> ::= <\(C_2\)> | <D>
 
-<D> ::= 'd'
+<$C_2$> ::= `c'
 
-<E> ::= 'e'
-
-<F> ::= 'f'
-
-<G> ::= 'g'
-
-<H> ::= 'h'
-
-<I> ::= 'i'
-
-<J> ::= 'j'
+<D> ::= `a' `d' (`e' | `c') | (<\(C_2\)> | `b')
 ~~~
 ```{=latex}
  \end{minipage}
@@ -123,31 +103,19 @@ To eliminate unused rules, we removed all rules that cannot be eventually produc
 ```
 !grammar
 ~~~
-<S> ::= <S1> | <S2>
+<S> ::= <\(S_1\)> | <\(S_2\)>
 
-<S1> ::= <A> | <B>
+<$S_1$> ::= <A> | <B>
 
-<S2> ::= <F> | <G>
+<A> ::= `a' <B> <C>
 
-<A> ::= 'a'
+<C> ::= `c'
 
-<B> ::= 'b'
+<B> ::= `b' `d'
 
-<C> ::= 'c'
+<$S_2$> ::= <C> | <D>
 
-<D> ::= 'd'
-
-<E> ::= 'e'
-
-<F> ::= 'f'
-
-<G> ::= 'g'
-
-<H> ::= 'h'
-
-<I> ::= 'i'
-
-<J> ::= 'j'
+<D> ::= `a' `d' (`e' | `c') | (<C> | `b')
 ~~~
 ```{=latex}
  \end{minipage}
@@ -159,31 +127,17 @@ To eliminate unused rules, we removed all rules that cannot be eventually produc
 ```
 !grammar
 ~~~
-<S> ::= <S1> | <S2>
+<S> ::= <\(S_1\)> | <\(S_2\)>
 
-<S1> ::= <A> | <B>
+<$S_1$> ::= <A> | <B>
 
-<S2> ::= <F> | <G>
+<A> ::= `a' <B> `c'
 
-<A> ::= 'a'
+<B> ::= `b' `d'
 
-<B> ::= 'b'
+<$S_2$> ::= `c' | <D>
 
-<C> ::= 'c'
-
-<D> ::= 'd'
-
-<E> ::= 'e'
-
-<F> ::= 'f'
-
-<G> ::= 'g'
-
-<H> ::= 'h'
-
-<I> ::= 'i'
-
-<J> ::= 'j'
+<D> ::= `a' `d' (`e' | `c') | (`c' | `b')
 ~~~
 ```{=latex}
  \end{minipage}
@@ -195,31 +149,23 @@ To eliminate unused rules, we removed all rules that cannot be eventually produc
 ```
 !grammar
 ~~~
-<S> ::= <S1> | <S2>
+<S> ::= <\(S_1\)> | <\(S_2\)>
 
-<S1> ::= <A> | <B>
+<$S_1$> ::= <A> | <B>
 
-<S2> ::= <F> | <G>
+<A> ::= `a' <B> `c'
 
-<A> ::= 'a'
+<B> ::= `b' `d'
 
-<B> ::= 'b'
+<$S_2$> ::= `c' | <D>
 
-<C> ::= 'c'
+<D> ::= <\(D_1\)> | <\(D_3\)>
 
-<D> ::= 'd'
+<\(D_1\)> ::= `a' `d' <\(D_2\)>
 
-<E> ::= 'e'
+<\(D_2\)> ::= `e' | `c'
 
-<F> ::= 'f'
-
-<G> ::= 'g'
-
-<H> ::= 'h'
-
-<I> ::= 'i'
-
-<J> ::= 'j'
+<\(D_3\)> ::= `c' | `b'
 ~~~
 ```{=latex}
  \end{minipage}
@@ -231,31 +177,17 @@ To eliminate unused rules, we removed all rules that cannot be eventually produc
 ```
 !grammar
 ~~~
-<S> ::= <S1> | <S2>
+<S> ::= <A> | <B> | `c' | <D>
 
-<S1> ::= <A> | <B>
+<A> ::= `a' `b' `d' `c'
 
-<S2> ::= <F> | <G>
+<B> ::= `b' `d'
 
-<A> ::= 'a'
+<D> ::= <\(D_1\)> | `c' | `b'
 
-<B> ::= 'b'
+<\(D_1\)> ::= `a' `d' <\(D_2\)>
 
-<C> ::= 'c'
-
-<D> ::= 'd'
-
-<E> ::= 'e'
-
-<F> ::= 'f'
-
-<G> ::= 'g'
-
-<H> ::= 'h'
-
-<I> ::= 'i'
-
-<J> ::= 'j'
+<\(D_2\)> ::= `e' | `c'
 ~~~
 ```{=latex}
  \end{minipage}

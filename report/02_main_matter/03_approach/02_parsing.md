@@ -14,15 +14,13 @@ A: 'a' . ~('b' | 'c')
 
 \noindent would be converted to
 
-!latex
+!grammar
 ```
-\begin{grammar}
 <A> ::= `a' DOT <Generated-1>
 
 <Generated-1> ::= \textasciitilde<Generated-2>
 
 <Generated-2> ::= `b' | `c'
-\end{grammar}
 ```
 
 \noindent The not rules are ignored completely by our technique except for when detecting and merging duplicate rules.
