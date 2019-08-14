@@ -33,7 +33,7 @@ cool,./cool/COOL.g4
 cpp,./cpp/CPP14.g4
 cql3,"./cql3/CqlParser.g4,./cql3/CqlLexer.g4"
 creole,./creole/creole.g4
-csharp,"./csharp/CSharpParser.g4,./csharp/CSharpLexer.g4,./csharp/CSharpPreprocessorParser.g4"
+csharp,"./csharp/CSharpParser.g4,./csharp/CSharpLexer.g4"
 css3,./css3/css3.g4
 csv,./csv/CSV.g4
 cto,"./cto/CtoParser.g4,./cto/CtoLexer.g4"
@@ -104,7 +104,7 @@ mumps,./mumps/mumps.g4
 muparser,./muparser/MuParser.g4
 mysql,"./mysql/MySqlParser.g4,./mysql/MySqlLexer.g4"
 objc-one-step,"./objc/ObjectiveCParser.g4,./objc/one-step-processing/ObjectiveCLexer.g4,./objc/one-step-processing/ObjectiveCPreprocessorParser.g4"
-objc-two-step,"./objc/ObjectiveCParser.g4,./objc/two-step-processing/ObjectiveCLexer.g4,./objc/two-step-processing/ObjectiveCPreprocessorLexer.g4,./objc/two-step-processing/ObjectiveCPreprocessorParser.g4"
+objc-two-step,"./objc/ObjectiveCParser.g4,./objc/two-step-processing/ObjectiveCLexer.g4"
 oncrpc,./oncrpc/oncrpcv2.g4
 xdr,./oncrpc/xdr.g4
 pascal,./pascal/pascal.g4
@@ -161,12 +161,11 @@ solidity,./solidity/Solidity.g4
 sparql,./sparql/Sparql.g4
 sqlite,./sqlite/SQLite.g4
 stacktrace,./stacktrace/StackTrace.g4
-stringtemplate,"./stringtemplate/STParser.g4,./stringtemplate/STLexer.g4,./stringtemplate/STGParser.g4,./stringtemplate/STGLexer.g4,./stringtemplate/LexUnicode.g4,./stringtemplate/LexBasic.g4"
+stringtemplate,"./stringtemplate/STParser.g4,./stringtemplate/STLexer.g4,./stringtemplate/LexUnicode.g4,./stringtemplate/LexBasic.g4"
 suokif,./suokif/SUOKIF.g4
 swift2,./swift2/Swift2.g4
 swift3,./swift3/Swift3.g4
 swift-fin,"./swift-fin/src/main/antlr4/SwiftFinParser.g4,./swift-fin/src/main/antlr4/SwiftFinLexer.g4"
-system_verilog,./system_verilog/SysVerilogHDL.g4
 telephone,./telephone/telephone.g4
 thrift,./thrift/Thrift.g4
 tinybasic,./tinybasic/tinybasic.g4
