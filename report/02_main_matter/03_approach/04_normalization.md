@@ -248,8 +248,35 @@ This part of the normalization process is taken from the Chomksy Normal Form. In
 
 ### Expand Productions
 
+In this step, we expand out rules that have any nesting in their productions. We do this by replacing all
+nested content with a rule pointing to their content.
+
 \noindent When this step is applied to grammar $G_7$, it is transformed into grammar $G_8$, as depicted in @fig:grammar_g8.
 
 ### Collapse Compatible Productions
+
+In the final step of the normalization process, we collapse productions that are compatible with each other.
+This is to make sure that any non-terminal symbols referenced in a form does not produce a production of the same form. For example, the following productions
+
+!grammar
+~~~
+<A> ::= `a' <B>
+
+<B> ::= `b' `c'
+
+<C> ::= `c' | <D>
+
+<D> ::= `d' | `e'
+~~~
+
+\noindent would collapse to
+
+!grammar
+~~~
+<A> ::= `a' `b' `c'
+
+<C> ::= `c' | `d' | `e'
+~~~
+
 
 \noindent When this step is applied to grammar $G_8$, it is transformed into grammar $G_9$, as depicted in @fig:grammar_g9.
