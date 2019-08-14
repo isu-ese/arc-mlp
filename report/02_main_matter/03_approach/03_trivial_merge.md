@@ -6,7 +6,7 @@ A trivial merge between the start nodes of grammars is done rather easily. We be
 \begin{figure}[tb]
  \centering
  \subfloat[Grammar $G_3$.]{
-  \label{fig:grammar_g4}
+  \label{fig:grammar_g3}
   \begin{minipage}[t]{.2\textwidth}
 ```
 !grammar
@@ -34,6 +34,6 @@ A trivial merge between the start nodes of grammars is done rather easily. We be
 ```{=latex}
   \end{minipage}
  }
- \caption{Grammar $G_3$.}\label{fig:grammar_g3}
+ \caption{Grammar $G_3$.}
 \end{figure}
 ```
