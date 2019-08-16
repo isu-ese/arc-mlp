@@ -2,7 +2,7 @@
 
 **Objective**: This research considers the development of a method to automate the merging of island grammar components. The goal of this is to facilitate the development of an approach to fully automate the creation of island grammars. The end result of which is the reduction in initial effort and maintenance effort required for island grammar engineering.
 
-**Methods**: We developed an automated approach to merge components of a grammar. To evaluate this approach we conducted three experiments across a selection of 9 grammars from 3 different size groups. The first experiment evaluate the effects of different similarity thresholds when merging a grammar with itself. The second experiment compared the effects of merging pairs of grammars when considering the size of the grammar and the change in similarity threshold. Finally, the third experiment evaluates the effect of a change in similarity threshold on the approach when considering grammars that are very similar using a grammar mutation approach.
+**Methods**: We developed an automated approach to merge components of a grammar. To evaluate this approach we conducted three experiments, using a randomized complete block approach, across a selection of 30 grammars from 3 different size groups.
 
 **Results**: What are the main findings? Practical implications?
 
