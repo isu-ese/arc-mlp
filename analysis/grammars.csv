@@ -175,7 +175,7 @@ tiny,./tiny/tiny.g4
 tnsnames,"./tnsnames/tnsnamesParser.g4,./tnsnames/tnsnamesLexer.g4"
 tnt,./tnt/tnt.g4
 toml,./toml/toml.g4
-tsql,./tsql/TSqlParser.g4,./tsql/TSqlLexer.g4
+tsql,"./tsql/TSqlParser.g4,./tsql/TSqlLexer.g4"
 tsv,./tsv/tsv.g4
 turtle-doc,./turtle-doc/turtle.g4
 turtle,./turtle/TURTLE.g4
