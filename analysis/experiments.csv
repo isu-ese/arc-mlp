@@ -1,4 +1,4 @@
-name1,name2,size,repetition,similarity_threshhold
+name1,name2,size,repetition,similarity_threshold
 fen,cookie,small,0,1.0
 propcalc,cmake,small,0,0.75
 metric,cmake,small,0,0.5
