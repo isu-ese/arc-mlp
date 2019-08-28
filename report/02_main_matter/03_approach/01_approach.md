@@ -24,15 +24,13 @@ The remainder of this section presents the details of each of these steps and ut
 ~~~
 <S> ::= <A> | <B>
 
-<A> ::= 'a'
+<Y> ::= <A> | `y'
 
-<B> ::= 'b'
+<A> ::= `a' $\varepsilon$ <B> <C>
 
-<C> ::= 'c'
+<C> ::= `c'
 
-<D> ::= 'd'
-
-<E> ::= 'e'
+<B> ::= `b' `d'
 ~~~
 
 ```{=latex}
@@ -46,17 +44,13 @@ The remainder of this section presents the details of each of these steps and ut
 
 !grammar
 ~~~
-<S> ::= <F> | <G>
+<S> ::= <C> | <D>
 
-<F> ::= 'f'
+<Z> ::= <S> | `z'
 
-<G> ::= 'g'
+<C> ::= `c'
 
-<H> ::= 'h'
-
-<I> ::= 'i'
-
-<J> ::= 'j'
+<D> ::= `a' `d' (`e' | `c') | (<C> | `b')
 ~~~
 
 ```{=latex}

@@ -5,38 +5,35 @@ A trivial merge between the start nodes of grammars is done rather easily. We be
 ```{=latex}
 \begin{figure}[tb]
  \centering
- \begin{minipage}[t]{.15\textwidth}
+ \subfloat[Grammar $G_3$.]{
+  \label{fig:grammar_g3}
+  \begin{minipage}[t]{.2\textwidth}
 ```
 !grammar
 ~~~
-<S> ::= <S1> | <S2>
+<S> ::= <\(S_1\)> | <\(S_2\)>
 
-<S1> ::= <A> | <B>
+<$S_1$> ::= <A> | <B>
 
-<S2> ::= <F> | <G>
+<Y> ::= <A> | `y'
 
-<A> ::= 'a'
+<A> ::= `a' $\varepsilon$ <B> <\(C_1\)>
 
-<B> ::= 'b'
+<$C_1$> ::= `c'
 
-<C> ::= 'c'
+<B> ::= `b' `d'
 
-<D> ::= 'd'
+<$S_2$> ::= <\(C_2\)> | <D>
 
-<E> ::= 'e'
+<Z> ::= <S> | `z'
 
-<F> ::= 'f'
+<$C_2$> ::= `c'
 
-<G> ::= 'g'
-
-<H> ::= 'h'
-
-<I> ::= 'i'
-
-<J> ::= 'j'
+<D> ::= `a' `d' (`e' | `c') | (<\(C_2\)> | `b')
 ~~~
 ```{=latex}
- \end{minipage}
- \caption{Grammar $G_3$.}\label{fig:grammar_g3}
+  \end{minipage}
+ }
+ \caption{Grammar $G_3$.}
 \end{figure}
 ```

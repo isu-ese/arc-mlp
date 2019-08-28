@@ -10,31 +10,31 @@
 \cline{3-6} \cline{4-6} \cline{5-6} \cline{6-6}
 \multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{2}{c|}{Replication 1} & \multicolumn{2}{c}{Replication 2}\tabularnewline
 \hline
-Experiment & Category & Grammar-Pair & Version-Pair & Grammar-Pair & Version-Pair\tabularnewline
+Experiment & Category & Grammar-Pair & Similarity-Threshold & Grammar-Pair & Similarity-Threshold\tabularnewline
 \hline
-\multirow{15}{*}{} & \multirow{5}{*}{S} &  &  &  & \tabularnewline
- &  &  &  &  & \tabularnewline
- &  &  &  &  & \tabularnewline
- &  &  &  &  & \tabularnewline
- &  &  &  &  & \tabularnewline
+\multirow{15}{*}{} & \multirow{5}{*}{S} & fen, cookie & 1.0 & url, tnt & .25 \tabularnewline
+ &  & propcalc, cmake & .75 & fen, dice & .001 \tabularnewline
+ &  & metric, cmake & .5 & dice, propcalc & .5 \tabularnewline
+ &  & telephone, metric & .25 & telephone, cmake & 1.0\tabularnewline
+ &  & telephone, cookie & .001 & telephone, dice & .75 \tabularnewline
 \cline{2-6} \cline{3-6} \cline{4-6} \cline{5-6} \cline{6-6}
- & \multirow{5}{*}{M} &  &  &  & \tabularnewline
- &  &  &  &  & \tabularnewline
- &  &  &  &  & \tabularnewline
- &  &  &  &  & \tabularnewline
- &  &  &  &  & \tabularnewline
+ & \multirow{5}{*}{M} & graphql, cool & .75 & algol60, asm8080 & .25 \tabularnewline
+ &  & javadoc, unicode-classify & .5 & scss, golang &.001 \tabularnewline
+ &  & javadoc, golang & 1.0 & algol60, graphql & .5 \tabularnewline
+ &  & algol60, javadoc & .25 & scss, graphql & .75 \tabularnewline
+ &  & javadoc, snobol & .001 & xdr, golang & 1.0 \tabularnewline
 \cline{2-6} \cline{3-6} \cline{4-6} \cline{5-6} \cline{6-6}
- & \multirow{5}{*}{L} &  &  &  & \tabularnewline
- &  &  &  &  & \tabularnewline
- &  &  &  &  & \tabularnewline
- &  &  &  &  & \tabularnewline
- &  &  &  &  & \tabularnewline
+ & \multirow{5}{*}{L} & cobol85, cql3  & 1.0 & objc-one-step, tsql & .25 \tabularnewline
+ &  & objc-one-step, kotlin & .25 & kotlin, csharp & .5 \tabularnewline
+ &  & asn\_3gpp, cql3 & .75 & swift2, tsql & 1.0 \tabularnewline
+ &  & asn\_3goo, csharp & .001 & objc-one-step, csharp & .001 \tabularnewline
+ &  & swift2, kotlin & .5 & cobol85, kotlin-formal & .75 \tabularnewline
 \hline
 \end{tabular}
 \end{table*}
 ~~~
 
-This section describes the experimental units and the selection process used to select them. In these experiments, the experimental units are pairs of grammars selected from the Antlr4 \cite{parr_definitive_2012} grammar repository^[[https://github.com/antlr/grammars-v4](https://github.com/antlr/grammars-v4)]. At the time of this writing, the repository contained 198 individual grammars from a variety of general purpose and domain specific languages. The selection process used to select the grammar pairs for each experiment is depicted in @fig:selection_process and works as follows. Initially, for each of the grammars in the repository we collected a combination of metadata and metric measurements. The metadata collected consisted of the language represented by the grammar and the version of that language (if applicable). We also measured the following metrics for each grammar based on the metrics suite by Power and Malloy \cite{power_metrics_2004}:
+This section describes the experimental units and the selection process used to select them. In these experiments, the experimental units are pairs of grammars selected from the Antlr4 \cite{parr_definitive_2012} grammar repository^[[https://github.com/antlr/grammars-v4](https://github.com/antlr/grammars-v4). The sys-verilog grammar was excluded because of errors while parsing it.]. At the time of this writing, the repository contained 198 individual grammars from a variety of general purpose and domain specific languages. The selection process used to select the grammar pairs for each experiment is depicted in @fig:selection_process and works as follows. Initially, for each of the grammars in the repository we collected a combination of metadata and metric measurements. The metadata collected consisted of the language represented by the grammar and the version of that language (if applicable). We also measured the following metrics for each grammar based on the metrics suite by Power and Malloy \cite{power_metrics_2004}:
 
 * TERM -- the number of terminals.
 * VAR -- the number of defined non-terminals.
@@ -43,7 +43,13 @@ This section describes the experimental units and the selection process used to 
 
 ![Experimental unit selection process.](images/selection_process.eps){#fig:selection_process}
 
-Using the results of these calculations, we subdivided the dataset into three categories based on the number of productions (as a measure of size of the grammar). This subdivision was based on statistically construction thresholds \cite{lanza_object-oriented_2011}. This process utilizes the calculation of the mean size, $MEAN(SIZE)$, for the population of grammars and the standard deviation of the size, $STDDEV(SIZE)$, for the population of grammars. Using these values we define the threshold values between the categories Small, Medium, and High as: Small-Medium: $MEAN(SIZE) - STDDEV(SIZE)$ and Medium-High: $MEAN(SIZE) + STDDEV(SIZE)$. Using these thresholds each grammar is then grouped into one of the three categories.
+Using the results of these calculations, we subdivided the dataset into three categories based on the logorithm of the number of productions (as a measure of size of the grammar). The logorithm was chosen because the distribution of the number of productions in the grammars is similar to a log-normal distribution. This subdivision was based on statistically construction thresholds \cite{lanza_object-oriented_2011}. This process utilizes the calculation of the mean of the logorithm of the size, 
+$\mu = \textrm{MEAN}(\log(\textrm{size}))$,
+for the population of grammars and the standard deviation of the size,
+$\sigma = \textrm{STDDEV}(\log(\textrm{size}))$,
+for the population of grammars. Using these values we define the threshold values between the categories Small, Medium, and High as: Small-Medium: $e^{\mu - \sigma}$
+and Medium-High: $e^{\mu + \sigma}$.
+Using these thresholds each grammar is then grouped into one of the three categories.
 
 Using these categories as the blocking variable in the experiments, we can then begin the sampling process. For each size category we randomly select (without replication) 10 grammars. From these 10 grammars there are \(10 \choose 2\) = 45 combinations of which we randomly select 5, for each experiment. In the case that replications are necessary, this process repeats for each replication or until the number of grammars are exhausted. In this case we have selected to complete two replications of each experiment, and the selected grammar pairs for both replications of both experiments are shown in @tbl:grammar_metrics.
 
