@@ -8,7 +8,7 @@ library(pwr2) # power and sample size analysis
 
 # read in data
 setwd("/home/git/isuese/papers/arc-mlp/analysis/")
-data <- read.csv2(file = "experiments-result-1.csv", header = T, sep = ",", as.is = T, quote = "\"")
+data <- read.csv2(file = "experiments-result.csv", header = T, sep = ",", as.is = T, quote = "\"")
 
 # Anova Analysis
 rep0 <- subset(data, (data$repetition == 0))
