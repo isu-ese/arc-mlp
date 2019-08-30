@@ -7,24 +7,112 @@ output: pdf_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+# imports
+library(car) # for levene's
+library(asd) # for dunnett's
+library(ggpubr) # for nice graphs
+library(nortest) # for anderson-darling test
+library(PMCMRplus) # for steel test
+library(pwr2) # power and sample size analysis
+library(MASS) # boxcox procedure
+library(lmPerm) # for permutation f-test
+
+# read in data
+setwd("/home/git/isuese/papers/arc-mlp/analysis/")
+data <- read.csv2(file = "experiments-1-result.csv", header = T, sep = ",", as.is = T, quote = "\"")
 ```
 
-## R Markdown
+# Separate Data by experiment
+```{r, echo=FALSE}
+# Separate Data out for MCC and HAL
+dataHal <- subset(data, (data$dependent_variable == "HAL"))
+dataMCC <- subset(data, (data$dependent_variable == "MCC"))
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
+dataHal['sizeF'] <- as.factor(dataHal$size)
+dataHal['stF'] <- as.factor(dataHal$similarity_threshold)
+dataHal['nHal'] <- as.numeric(dataHal$full.HAL)
+dataHal['deltaHAL'] = as.numeric(dataHal$trivial.HAL) - as.numeric(dataHal$full.HAL)
 ```
 
-## Including Plots
+# Summary Statistics (aka Results)
 
-You can also embed plots, for example:
+## Stats
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+```{r, echo=FALSE}
+summary(subset(dataHal$deltaHAL, (dataHal$sizeF == "small")))
+
+summary(subset(dataHal$deltaHAL, (dataHal$sizeF == "medium")))
+
+summary(subset(dataHal$deltaHAL, (dataHal$sizeF == "large")))
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+## Plots
+
+**Scatter plots of the data?**
+
+**Box Plots of the data**
+
+**Histogram of the data**
+```{r, echo=F}
+hist(dataHal$deltaHAL, col="green", main="Histogram of Delta HAL", xlab="Delta HAL")
+```
+
+# Experiment 1
+
+## Sample Size Analysis
+```{r, echo=F}
+ss.2way(a = 3, b = 5, alpha = 0.05, beta = 0.05, f.A = 10 , f.B = 10 , delta.A = 10, delta.B = 10, sigma.A =65000 , sigma.B = 84000, B = 1000)
+```
+
+## ANOVA Analysis
+
+```{r, echo=FALSE}
+f1 <- aov(formula = dataHal$deltaHAL ~ dataHal$sizeF * dataHal$stF)
+summary(f1)
+
+f2 <- lm(dataHal$deltaHAL ~ dataHal$sizeF * dataHal$stF)
+summary(f2)
+```
+
+## Check the Assumptions
+
+**Diagnostic Plots**
+```{r, echo=FALSE}
+par(mfrow=c(2,2))
+plot(f1)
+```
+
+**Interaction Plots**
+```{r, echo=FALSE}
+with(dataHal, (interaction.plot(stF, sizeF, deltaHAL, type="b", pch = c(18, 24, 22), leg.bty = "o", main="Interaction Plot of Similarity Threshold and Grammar Size", xlab = "Similarity Threshold", ylab = "Delta HAL")))
+```
+
+**Check the HOV Assumption using Levene's Test**
+```{r, echo=FALSE}
+leveneTest(dataHal$deltaHAL, dataHal$sizeF)
+```
+
+**Check the Normality Assumption using Anderson-Darling and Shapiro-Wilks Tests**
+```{r, echo=FALSE}
+ad.test(x = dataHal$deltaHAL)
+shapiro.test(x = dataHal$deltaHAL)
+```
+
+## Non-parametric methods
+
+**Permutation F-Test**<!-- Fix this -->
+```{r, echo=F}
+y <- dataHal$deltaHAL
+treatment <- dataHal$stF
+block <- dataHal$sizeF
+levels(treatment) <- c("1.0", "0.001", "0.25", "0.5", "0.75")
+rcbd <- data.frame(y, block, treatment) # data-frame
+summary(aov(y~treatment+block, rcbd)) # parametric test for rcbd
+summary(aovp(y~treatment+block, rcbd)) # permutation test for rcbd
+```
+
+**Steel's Multiple Comparison agains Control**
+```{r, echo=FALSE}
+levels(treatment)
+steelTest(y~treatment, data=rcbd, alternative="greater")
+```

@@ -5,33 +5,29 @@ library(ggpubr) # for nice graphs
 library(nortest) # for anderson-darling test
 library(PMCMRplus) # for steel test
 library(pwr2) # power and sample size analysis
+library(MASS) # boxcox procedure
+library(lmPerm) # for permutation f-test
 
 # read in data
 setwd("/home/git/isuese/papers/arc-mlp/analysis/")
-data <- read.csv2(file = "experiments-result.csv", header = T, sep = ",", as.is = T, quote = "\"")
+data <- read.csv2(file = "experiments-1-result.csv", header = T, sep = ",", as.is = T, quote = "\"")
 
 # Anova Analysis
-rep0 <- subset(data, (data$repetition == 0))
-rep1 <- subset(data, (data$repetition == 1))
-summary(data)
-data['sizeF'] <- as.factor(data$size)
-data['stF'] <- as.factor(data$similarity_threshold)
-data['nHal'] <- as.numeric(data$full.MCC)
-data['deltaMCC'] = as.numeric(data$trivial.MCC) - as.numeric(data$full.MCC)
-data['nterm'] <- as.numeric(data$full.TERM)
-as.numeric(data$full.TERM)
-f1 <- Anova(data$deltaMCC ~ data$stF,type=3)
+data1 <- subset(data, (data$dependent_variable == "MCC"))
+summary(data1)
+data1['sizeF'] <- as.factor(data1$size)
+data1['stF'] <- as.factor(data1$similarity_threshold)
+data1['nMCC'] <- as.numeric(data1$full.MCC)
+data1['deltaMCC'] = as.numeric(data1$trivial.MCC) - as.numeric(data1$full.MCC)
+f1 <- aov(formula = data1$deltaMCC ~ data1$sizeF + data1$stF)
 summary(f1)
 
-f2 <- lm(data$deltaMCC ~ data$nterm + data$stF)
+f2 <- lm(data1$deltaMCC ~ data1$sizeF + data1$stF)
 summary(f2)
 
-par(mfrow=c(1,1))
-boxplot(data$nterm ~ data$sizeF)
-
 # Friedman Test
-friedman.test(rep0$deltaHAL,rep0$sizeF,rep0$stF)
-friedman.test(rep1$deltaHAL,rep1$sizeF,rep1$stF)
+friedman.test(data1$deltaMCC,data1$sizeF,data1$stF)
+friedman.test(rep1$deltaMCC,rep1$sizeF,rep1$stF)
 
 # Q-Q Plots
 par(mfrow=c(2,2))
@@ -42,18 +38,18 @@ plot(f1)
 # +++++++++++++++++++++
 # Plot tooth length ("len") by groups ("dose")
 # Color box plot by a second group: "supp"
-ggboxplot(data, x = "sizeF", y = "nHal", color = "stF",
+ggboxplot(data, x = "sizeF", y = "nMCC", color = "stF",
           palette = c("red", "green", "blue", "orange", "cyan"))
-ggline(data, x = "nHal", y = "sizeF", color = "stF",
+ggline(data, x = "nMCC", y = "sizeF", color = "stF",
        add = c("mean_se", "dotplot"),
        palette = c("red", "green", "blue", "orange", "cyan"))
 
 # Levene's Test for HOV
-leveneTest(data$deltaHAL, data$sizeF)
+leveneTest(data1$deltaMCC, data1$sizeF)
 
 # Normality Tests
-ad.test(x = data$deltaHAL)
-shapiro.test(x = data$deltaHAL)
+ad.test(x = data1$deltaMCC)
+shapiro.test(x = data1$deltaMCC)
 
 # Dunnett's Test
 dunnett.test()
@@ -64,5 +60,18 @@ pwr.2way(a = 3, b = 5, alpha = 0.05, size.A = 5, size.B = 3, f.A = NULL, f.B = N
 # Size Analysis
 ss.2way(a = 3, b = 5, alpha = 0.05, beta = 0.05, f.A = 10 , f.B = 10 , delta.A = 10, delta.B = 10, sigma.A =65000 , sigma.B = 84000, B = 1000)
 
+# Permutation F-Test
+y <- data1$deltaMCC
+treatment <- data1$stF
+block <- data1$sizeF
+levels(treatment) <- c("1.0", "0.001", "0.25", "0.5", "0.75")
+rcbd <- data.frame(y, block, treatment) # data-frame
+summary(aov(y~treatment+block, rcbd)) # parametric test for rcbd
+summary(aovp(y~treatment+block, rcbd)) # permutation test for rcbd
+
 # Steele's Test
-steelTest()
+
+levels(treatment)
+steelTest(y~treatment, data=rcbd, alternative="greater")
+
+with(data1, (interaction.plot(stF, sizeF, deltaMCC, type="b", pch = c(18, 24, 22), leg.bty = "o", main="Interaction Plot of Similarity Threshold and Grammar Size", xlab = "Similarity Threshold", ylab = "Delta MCC")))
