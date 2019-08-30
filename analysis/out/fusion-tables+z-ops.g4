@@ -1,0 +1,28 @@
+gen_0: K_ALTER | specification | ϵ;
+K_ALTER: A L T E R;
+A: 'a' | 'A';
+E: 'e' | 'E';
+L: 'l' | 'L';
+R: 'r' | 'R';
+T: 't' | 'T';
+specification: paragraph gen_0 gen_5;
+paragraph: gen_1 | TEXT | gen_12 | ϵ | PARENTS;
+formals: gen_6 NAME gen_13;
+categoryTemplate_template_infixName: prefixTemplate_postfixTemplate_infixTemplate | nofixTemplate_optArgName_argName_optListName_listName | gen_9 | ϵ;
+assoc: LEFTASSOC | RIGHTASSOC;
+prefixTemplate_postfixTemplate_infixTemplate: gen_6 LEFT_PARENTHESIS categoryTemplate_template_infixName RIGHT_PARENTHESIS;
+nofixTemplate_optArgName_argName_optListName_listName: gen_8 NAME gen_3 gen_8;
+gen_13: formals | ϵ | gen_14;
+gen_12: ZED SECTION NAME gen_13 END gen_13;
+gen_1: gen_2 gen_3 END;
+gen_3: gen_4 | ϵ | gen_10;
+gen_10: gen_11 categoryTemplate_template_infixName gen_3;
+gen_9: POWERSET ARGUMENT;
+gen_14: paragraph gen_13;
+gen_4: gen_5 gen_3 categoryTemplate_template_infixName;
+gen_8: ϵ | ARGUMENT | LEFT_PARENTHESIS | RIGHT_PARENTHESIS | LIST;
+gen_6: ϵ | COMMA | gen_7;
+gen_7: NUMERAL assoc;
+gen_2: ZED | AX | SCH;
+gen_5: EOF | ϵ | .;
+gen_11: RELATION | FUNCTION | GENERIC | ϵ

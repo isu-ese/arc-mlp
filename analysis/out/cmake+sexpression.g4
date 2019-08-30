@@ -1,0 +1,25 @@
+item: file_Identifier_SYMBOL | compound_argument_list_sexpr | ϵ | Unquoted_argument | Bracket_argument | Quoted_argument_STRING | NUMBER | '.' | gen_14;
+file_Identifier_SYMBOL: SYMBOL_START item gen_0;
+compound_argument_list_sexpr: item gen_1 gen_1 gen_2;
+Unquoted_argument: gen_3 item;
+Escape_identity_Quoted_cont: '\\' gen_6;
+Quoted_argument_STRING: '\"' item '\"';
+Bracket_argument: '[' Bracket_arg_nested ']';
+Bracket_arg_nested: gen_12 | Bracket_argument | gen_13 | ϵ;
+NUMBER: SYMBOL_START '0' .. '9' gen_9 gen_9;
+SYMBOL_START: 'a' .. 'z' | 'A' .. 'Z' | '+' | '-' | '*' | '/' | '.' | '0' .. '9' | ϵ | '_' | ';';
+gen_1: compound_argument_list_sexpr | ϵ | '(';
+gen_5: ' ' | '\t' | '\r' | '\n' | '(' | ')' | '#' | '\"' | '\\';
+gen_4: ~gen_5;
+gen_7: ~SYMBOL_START;
+gen_11: '\\' | '\"';
+gen_10: ~gen_11;
+gen_9: '\n' | ϵ | NUMBER;
+gen_8: '\r' gen_9;
+gen_12: '=' Bracket_arg_nested '=';
+gen_14: '(' item '.' item ')';
+gen_0: file_Identifier_SYMBOL | ϵ | EOF_0;
+gen_13: . Bracket_arg_nested;
+gen_6: gen_7 | gen_8 | '\n' | .;
+gen_3: gen_4 | Escape_identity_Quoted_cont | '\\t' | '\\r' | '\\n' | '\\;' | gen_10 | ')';
+gen_2: Unquoted_argument | EOF_1 | ϵ

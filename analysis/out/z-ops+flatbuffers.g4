@@ -1,0 +1,7 @@
+metadata: ϵ | specification_formals_schema_namespace_decl_root_decl_ns_ident_enum_decl_object_type_decl_IDENT_rpc_decl_attribute_decl_file_extension_decl_STRING_CONSTANT_file_identifier_decl_prefixTemplate_postfixTemplate_infixTemplate_FLOAT_CONSTANT_nofixTemplate_optArgName_argName_optListName_listName | ';' | ',' | EOF | PARENTS | '=' | NAME | ']' | '(' | ':' | 'true' | 'false' | 'namespace' | 'root_type' | '.' | '{' | 'table' | 'struct' | 'rpc_service' | 'union' | 'enum' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' | gen_0 | '[' | '-' | '+' | gen_1 | END | ZED | AX | SCH | TEXT | . | '}' | COMMA | ')' | '\"' | 'bool' | 'byte' | 'ubyte' | 'short' | 'ushort' | 'int' | 'uint' | 'float' | 'long' | 'ulong' | 'double' | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'int64' | 'uint64' | 'float32' | 'float64' | 'string' | 'attribute' | 'include' | 'file_extension' | 'file_identifier' | ARGUMENT | LEFT_PARENTHESIS | RIGHT_PARENTHESIS | LIST | gen_2 | gen_3 | 'e' | 'E' | RELATION | FUNCTION | GENERIC | '\r' | '\n';
+specification_formals_schema_namespace_decl_root_decl_ns_ident_enum_decl_object_type_decl_IDENT_rpc_decl_attribute_decl_file_extension_decl_STRING_CONSTANT_file_identifier_decl_prefixTemplate_postfixTemplate_infixTemplate_FLOAT_CONSTANT_nofixTemplate_optArgName_argName_optListName_listName: metadata metadata metadata;
+assoc: LEFTASSOC | RIGHTASSOC;
+gen_0: POWERSET ARGUMENT;
+gen_3: ~metadata;
+gen_1: NUMERAL assoc;
+gen_2: ZED SECTION

@@ -1,0 +1,22 @@
+gen_0: gen_1 | ϵ | tsvFile;
+file: gen_1 | ϵ;
+statement: '>' | '<' | '+' | '-' | '.' | ',' | gen_2;
+tsvFile: field gen_10 gen_12 gen_13 gen_15;
+field: TEXT | STRING;
+TEXT: gen_3 gen_5;
+STRING: '\"' gen_6 '\"';
+gen_2: '[' file ']';
+gen_15: tsvFile | ϵ;
+gen_10: gen_11 | ϵ;
+gen_12: '\n' | '\r';
+gen_13: gen_14 | ϵ;
+gen_4: ',' | '\n' | '\r' | '\"';
+gen_3: ~gen_4;
+gen_5: TEXT | ϵ;
+gen_9: ~'\"';
+gen_8: '\"\"' | gen_9;
+gen_6: gen_7 | ϵ;
+gen_1: statement file;
+gen_11: '\t' field gen_10;
+gen_14: gen_12 gen_13;
+gen_7: gen_8 gen_6

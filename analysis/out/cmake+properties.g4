@@ -1,0 +1,4 @@
+row_Bracket_arg_nested: file_propertiesFile_COMMENT_compound_argument_Identifier_Unquoted_argument_decl_TEXT_Quoted_argument_STRING_Bracket_argument_Escape_identity_Quoted_cont | ϵ | EOF | '\n' | '\r' | gen_0 | 'A' .. 'Z' | 'a' .. 'z' | '_' | '0' .. '9' | ';' | '\\t' | '\\r' | '\\n' | '\\;' | '\"\"' | gen_1 | '#' | ' ' | '@' | ':' | '.' | '/' | ',' | '%' | '{' | '}' | '-' | '=' | ')' | '\"' | '[' | ']' | . | '(' | '\\' | '\t';
+file_propertiesFile_COMMENT_compound_argument_Identifier_Unquoted_argument_decl_TEXT_Quoted_argument_STRING_Bracket_argument_Escape_identity_Quoted_cont: row_Bracket_arg_nested row_Bracket_arg_nested row_Bracket_arg_nested;
+gen_0: ~row_Bracket_arg_nested;
+gen_1: ~'\"'

@@ -1,0 +1,24 @@
+gen_0: game | tsvFile | ϵ;
+game: tags_field '0' .. '9' tags_field gen_14 '0' .. '9' tags_field result gen_0 gen_15;
+tags_field: ϵ | STRING | gen_9 | TEXT;
+result: '1/2-1/2' | '1-0' | '0-1' | '*' | ϵ;
+STRING: gen_1 '\"' gen_1 '\"' tags_field;
+tsvFile: gen_15 gen_13 gen_0 gen_0;
+TEXT: gen_11 tags_field;
+gen_5: 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_';
+gen_1: ϵ | gen_2 | gen_6;
+gen_8: ~'\"';
+gen_7: '\"\"' | gen_8;
+gen_15: gen_16 | ϵ | gen_17;
+gen_13: '\n' | '\r' | ',' | '\"';
+gen_12: ~gen_13;
+gen_9: tags_field '0' .. '9' tags_field gen_10;
+gen_2: gen_3 gen_5 gen_1;
+gen_6: gen_7 gen_1;
+gen_16: gen_10 tags_field gen_15;
+gen_14: 'x' | '-';
+gen_17: gen_0 result;
+gen_10: ϵ | '.' | '\t';
+gen_4: '[' gen_5;
+gen_3: ϵ | gen_4;
+gen_11: gen_12 | ']'
