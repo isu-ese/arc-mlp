@@ -2,7 +2,10 @@
 title: "SIGMA - Merge"
 author: "Isaac Griffith and Rosetta Roberts"
 date: "August 28, 2019"
-output: pdf_document
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
 ---
 
 ```{r setup, include=FALSE}
@@ -16,6 +19,10 @@ library(PMCMRplus) # for steel test
 library(pwr2) # power and sample size analysis
 library(MASS) # boxcox procedure
 library(lmPerm) # for permutation f-test
+library(psych) # for scatterplot matrix
+library(clinfun) # for Jonchheere-Terpstra Test
+library(RColorBrewer) # for better colors
+library(wesanderson) # for better colors
 
 # read in data
 setwd("/home/git/isuese/papers/arc-mlp/analysis/")
@@ -30,8 +37,23 @@ dataMCC <- subset(data, (data$dependent_variable == "MCC"))
 
 dataHal['sizeF'] <- as.factor(dataHal$size)
 dataHal['stF'] <- as.factor(dataHal$similarity_threshold)
-dataHal['nHal'] <- as.numeric(dataHal$full.HAL)
 dataHal['deltaHAL'] = as.numeric(dataHal$trivial.HAL) - as.numeric(dataHal$full.HAL)
+
+dataMCC['sizeF'] <- as.factor(dataHal$size)
+dataMCC['stF'] <- as.factor(dataHal$similarity_threshold)
+dataMCC['deltaMCC'] = as.numeric(dataMCC$trivial.MCC) - as.numeric(dataMCC$full.MCC)
+
+y <- dataHal$deltaHAL
+treatment <- dataHal$stF
+block <- dataHal$sizeF
+levels(treatment) <- c("1.0", "0.001", "0.25", "0.5", "0.75")
+rcbd <- data.frame(y, block, treatment) # data-frame
+
+y <- dataMCC$deltaMCC
+treatment <- dataMCC$stF
+block <- dataMCC$sizeF
+levels(treatment) <- c("1.0", "0.001", "0.25", "0.5", "0.75")
+rcbd2 <- data.frame(y, block, treatment) # data-frame
 ```
 
 # Summary Statistics (aka Results)
@@ -48,16 +70,28 @@ summary(subset(dataHal$deltaHAL, (dataHal$sizeF == "large")))
 
 ## Plots
 
+**Histogram of the data**
+```{r, echo=F}
+hist(dataHal$deltaHAL, breaks = 15, col=wes_palette(1, name="Moonrise3"), main="Histogram of Delta HAL", xlab="Delta HAL")
+hist(dataMCC$deltaMCC, breaks = 15, col=wes_palette(1, name="Moonrise3"), main="Histogram of Delta MCC", xlab="Delta MCC")
+```
+
 **Scatter plots of the data?**
+```{r, echo=F}
+pairs.panels(rcbd,ellipse=F)
+pairs.panels(rcbd2,ellipse=F)
+```
 
 **Box Plots of the data**
 
-**Histogram of the data**
-```{r, echo=F}
-hist(dataHal$deltaHAL, col="green", main="Histogram of Delta HAL", xlab="Delta HAL")
+```{r, echo=FALSE}
+ggboxplot(dataHal, x = "sizeF", y = "deltaHAL", color = "stF",
+          palette = wes_palette(n=5, name="Zissou1"))
+ggboxplot(dataMCC, x = "sizeF", y = "deltaMCC", color = "stF",
+          palette = wes_palette(n=5, name="Zissou1"))
 ```
 
-# Experiment 1
+# Experiment 1 HAL
 
 ## Sample Size Analysis
 ```{r, echo=F}
@@ -82,15 +116,20 @@ par(mfrow=c(2,2))
 plot(f1)
 ```
 
+As we can see from the Residuals vs. Fitted plot the homogeneity of variance assumption is not met. Furthermore, we can see from the Normal Q-Q plot that the normality of the residuals assumption is also violated.
+
 **Interaction Plots**
 ```{r, echo=FALSE}
-with(dataHal, (interaction.plot(stF, sizeF, deltaHAL, type="b", pch = c(18, 24, 22), leg.bty = "o", main="Interaction Plot of Similarity Threshold and Grammar Size", xlab = "Similarity Threshold", ylab = "Delta HAL")))
+with(dataHal, (interaction.plot(stF, sizeF, deltaHAL, type="b", pch = c(18, 24, 22), leg.bty = "o", main="Interaction Plot of Similarity Threshold and Grammar Size", xlab = "Similarity Threshold", ylab = "Delta HAL", col = wes_palette(3, name = "Zissou1"))))
 ```
+The interaction plot indicates that their is an interaction between the small and medium levels as the similarity threshold changes from 0.75 to 1.0. This indicates that the assumption that the block and treatment do not interact and that an RCBD design is inappropriate and rather a factorial design would be correct.
 
 **Check the HOV Assumption using Levene's Test**
 ```{r, echo=FALSE}
 leveneTest(dataHal$deltaHAL, dataHal$sizeF)
 ```
+
+To validate the observation of the Residuals vs Fitted Values plot identifying that the HOV assumption is not met, we used Levene's Test. The null-hypotheses ($H_0$) tests whether the variance is equally distributed. As expected from our observations of the Residuals vs Fitted Values plot, the test produced an F-value of 19.962 and a p-value of 1.267e-07 indicating that we should reject the null hypothesis that there is a homogeneity of variance.
 
 **Check the Normality Assumption using Anderson-Darling and Shapiro-Wilks Tests**
 ```{r, echo=FALSE}
@@ -98,21 +137,120 @@ ad.test(x = dataHal$deltaHAL)
 shapiro.test(x = dataHal$deltaHAL)
 ```
 
+To validate the observation of the Q-Q Normal plot that the standarized residuals violate the normality assumption, we conducted both an Anderson-Darling GOF test and a Shapiro-Wilks GOF test against the Normal distribution. In both cases the null-hypothesis ($H_0$) is that the empirical distribution is Normal. In the case of the Anderson-Darling test the A statistic has a value of 6.8257 and an associated p-value of < 2.2e-16 while the Shapiro-Wilk normality test has a W statistic of 0.75365 with an associated 6.876e-10 both of which indicate that we are to reject the null-hypothesis. These results confirm our initial observation that the results are not normally distributed.
+
 ## Non-parametric methods
+
+As noted above, the assumptions of the ANOVA procedure have been violated. We have attempted transformation of the data using the Box-Cox procedure to correct issues with the normality of the data to no avail. In this case, and to use the most powerful analyses available, we have opted to utilize non-parametric analyses instead. Specifically, in place of ANOVA, we have opted to use a Permutation F-Test procedure.
 
 **Permutation F-Test**<!-- Fix this -->
 ```{r, echo=F}
-y <- dataHal$deltaHAL
-treatment <- dataHal$stF
-block <- dataHal$sizeF
-levels(treatment) <- c("1.0", "0.001", "0.25", "0.5", "0.75")
-rcbd <- data.frame(y, block, treatment) # data-frame
-summary(aov(y~treatment+block, rcbd)) # parametric test for rcbd
-summary(aovp(y~treatment+block, rcbd)) # permutation test for rcbd
+summary(aov(y~treatment*block, rcbd)) # parametric test for rcbd
+summary(aovp(y~treatment*block, rcbd)) # permutation test for rcbd
 ```
 
-**Steel's Multiple Comparison agains Control**
+
+
+**Steel's Multiple Comparison against Control**
 ```{r, echo=FALSE}
-levels(treatment)
 steelTest(y~treatment, data=rcbd, alternative="greater")
+```
+
+We used Steel's non-parametric multiple comparison agains control procedure to determine if there is any difference between Delta HAL values due to the control level of the similarity threshold (1.0) and any other level of similarity threshold. In this case the null hypothesis for each comparison is that there is no difference. The alternative hypothesis is that the value of Delta HAL for any level is less than that of control. The results of this analysis suggest to reject the null hypothesis in each comparison. The implication of this is that the merge process developed works as expected in that reduces the value of halsted effort.
+
+**Determining if there is an order among the treatment levels**
+
+As part of this experiment we are concerned with the understanding if there is an ordered relationship between treatment levels of the similarity threshold on the Delta HAL results.
+
+```{r, echo=FALSE}
+levels(rcbd$treatment) <- c("0.001", "0.25", "0.5", "0.75", "1.0")
+rcbd$treatment <- ordered(rcbd$treatment)
+jonckheere.test(rcbd$y, rcbd$treatment, alternative = "increasing", nperm=10000)
+```
+
+## Power Analysis
+```{r, echo=FALSE}
+pwr.2way(a = 3, b = 5, alpha = 0.05, size.A = 5, size.B = 3, f.A = NULL, f.B = NULL, delta.A = , delta.B = , sigma.A = , sigma.B = )
+```
+
+# Experiment 2 MCC
+
+## Sample Size Analysis
+```{r, echo=F}
+ss.2way(a = 3, b = 5, alpha = 0.05, beta = 0.05, f.A = 10 , f.B = 10 , delta.A = 10, delta.B = 10, sigma.A =65000 , sigma.B = 84000, B = 1000)
+```
+
+## ANOVA Analysis
+
+```{r, echo=FALSE}
+f1 <- aov(formula = dataMCC$deltaMCC ~ dataMCC$sizeF * dataMCC$stF)
+summary(f1)
+
+f2 <- lm(dataMCC$deltaMCC ~ dataMCC$sizeF * dataMCC$stF)
+summary(f2)
+```
+
+## Check the Assumptions
+
+**Diagnostic Plots**
+```{r, echo=FALSE}
+par(mfrow=c(2,2))
+plot(f1)
+```
+
+As we can see from the Residuals vs. Fitted plot the homogeneity of variance assumption is not met. Furthermore, we can see from the Normal Q-Q plot that the normality of the residuals assumption is also violated.
+
+**Interaction Plots**
+```{r, echo=FALSE}
+with(dataMCC, (interaction.plot(stF, sizeF, deltaMCC, type="b", pch = c(18, 24, 22), leg.bty = "o", main="Interaction Plot of Similarity Threshold and Grammar Size", xlab = "Similarity Threshold", ylab = "Delta HAL", col = wes_palette(3, name = "Zissou1"))))
+```
+The interaction plot indicates that their is an interaction between the small and medium levels as the similarity threshold changes from 0.75 to 1.0. This indicates that the assumption that the block and treatment do not interact and that an RCBD design is inappropriate and rather a factorial design would be correct.
+
+**Check the HOV Assumption using Levene's Test**
+```{r, echo=FALSE}
+leveneTest(dataMCC$deltaMCC, dataMCC$sizeF)
+```
+
+To validate the observation of the Residuals vs Fitted Values plot identifying that the HOV assumption is not met, we used Levene's Test. The null-hypotheses ($H_0$) tests whether the variance is equally distributed. As expected from our observations of the Residuals vs Fitted Values plot, the test produced an F-value of 19.962 and a p-value of 1.267e-07 indicating that we should reject the null hypothesis that there is a homogeneity of variance.
+
+**Check the Normality Assumption using Anderson-Darling and Shapiro-Wilks Tests**
+```{r, echo=FALSE}
+ad.test(x = dataMCC$deltaMCC)
+shapiro.test(x = dataMCC$deltaMCC)
+```
+
+To validate the observation of the Q-Q Normal plot that the standarized residuals violate the normality assumption, we conducted both an Anderson-Darling GOF test and a Shapiro-Wilks GOF test against the Normal distribution. In both cases the null-hypothesis ($H_0$) is that the empirical distribution is Normal. In the case of the Anderson-Darling test the A statistic has a value of 6.8257 and an associated p-value of < 2.2e-16 while the Shapiro-Wilk normality test has a W statistic of 0.75365 with an associated 6.876e-10 both of which indicate that we are to reject the null-hypothesis. These results confirm our initial observation that the results are not normally distributed.
+
+## Non-parametric methods
+
+As noted above, the assumptions of the ANOVA procedure have been violated. We have attempted transformation of the data using the Box-Cox procedure to correct issues with the normality of the data to no avail. In this case, and to use the most powerful analyses available, we have opted to utilize non-parametric analyses instead. Specifically, in place of ANOVA, we have opted to use a Permutation F-Test procedure.
+
+**Permutation F-Test**<!-- Fix this -->
+```{r, echo=F}
+summary(aov(y~treatment*block, rcbd2)) # parametric test for rcbd
+summary(aovp(y~treatment*block, rcbd2)) # permutation test for rcbd
+```
+
+
+
+**Steel's Multiple Comparison against Control**
+```{r, echo=FALSE}
+steelTest(y~treatment, data=rcbd2, alternative="greater")
+```
+
+We used Steel's non-parametric multiple comparison agains control procedure to determine if there is any difference between Delta HAL values due to the control level of the similarity threshold (1.0) and any other level of similarity threshold. In this case the null hypothesis for each comparison is that there is no difference. The alternative hypothesis is that the value of Delta MCC for any level is less than that of control. The results of this analysis suggest to reject the null hypothesis in each comparison. The implication of this is that the merge process developed works as expected in that reduces the value of halsted effort.
+
+**Determining if there is an order among the treatment levels**
+
+As part of this experiment we are concerned with the understanding if there is an ordered relationship between treatment levels of the similarity threshold on the Delta MCC results.
+
+```{r, echo=FALSE}
+levels(rcbd2$treatment) <- c("0.001", "0.25", "0.5", "0.75", "1.0")
+rcbd2$treatment <- ordered(rcbd2$treatment)
+jonckheere.test(rcbd2$y, rcbd2$treatment, alternative = "increasing", nperm=10000)
+```
+
+## Power Analysis
+```{r, echo=FALSE}
+pwr.2way(a = 3, b = 5, alpha = 0.05, size.A = 5, size.B = 3, f.A = NULL, f.B = NULL, delta.A = , delta.B = , sigma.A = , sigma.B = )
 ```
