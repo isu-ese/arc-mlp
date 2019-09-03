@@ -1,0 +1,3 @@
+## Organization {-}
+
+This paper is organized as follows. @sec:related_work describes related theory and prior studies. @sec:approach describes the automated island grammar generation approach. @sec:exp_design describes the experimental design used to evaluate the approach described in @sec:approach. @sec:execution describes the actual execution and implementation of the experiment. @sec:analysis describes the results of the experiment. @sec:interpretation describes the interpretation of the results and their relationship to prior work. Finally, @sec:conclusion summarizes and concludes this paper and discusses avenues for further research.
