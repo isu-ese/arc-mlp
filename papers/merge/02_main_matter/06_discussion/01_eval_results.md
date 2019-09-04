@@ -1,2 +1,1 @@
-## Evaluation of Results
-
+The results indicate that proposed merge process embodied in our algorithm reduces the Halstead Effort and McCabe Cyclomatic Complexity of a combined grammar at each threshold below the control threshold, regardless of size. The results also indicate that in the case of Halstead Effort, there is a increasing order to the amount of change in halstead effort and cyclomatic complexity caused by the algorithm as the similarity threshold decreases. This implies that smaller values of the similarity threshold produce better results. 

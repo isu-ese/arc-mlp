@@ -11,11 +11,13 @@ library(psych) # for scatterplot matrix
 library(clinfun) # for Jonchheere-Terpstra Test
 library(RColorBrewer) # for better colors
 library(wesanderson) # for better colors
+library(cairoDevice) # for conversion to svg
 
 # read in data
-setwd("/home/git/isuese/papers/arc-mlp/analysis/")
+setwd("/home/git/isuese/papers/arc-mlp/data/merge/")
 data <- read.csv2(file = "experiments-1-result.csv", header = T, sep = ",", as.is = T, quote = "\"")
 
+# Separate Data by experiment
 # Separate Data out for MCC and HAL
 dataHal <- subset(data, (data$dependent_variable == "HAL"))
 dataMCC <- subset(data, (data$dependent_variable == "MCC"))
@@ -41,7 +43,6 @@ levels(treatment) <- c("1.0", "0.001", "0.25", "0.5", "0.75")
 rcbd2 <- data.frame(y, block, treatment) # data-frame
 
 # Summary Statistics (aka Results)
-
 ## Stats
 summary(subset(dataHal$deltaHAL, (dataHal$sizeF == "small")))
 
@@ -49,27 +50,59 @@ summary(subset(dataHal$deltaHAL, (dataHal$sizeF == "medium")))
 
 summary(subset(dataHal$deltaHAL, (dataHal$sizeF == "large")))
 
-## Plots
-### Histograms
-hist(dataHal$deltaHAL, breaks = 15, col=wes_palette(1, name="Moonrise3"), main="Histogram of Delta HAL", xlab="Delta HAL")
+summary(subset(dataMCC$deltaMCC, (dataMCC$sizeF == "small")))
 
+summary(subset(dataMCC$deltaMCC, (dataMCC$sizeF == "medium")))
+
+summary(subset(dataMCC$deltaMCC, (dataMCC$sizeF == "large")))
+
+## Plots
+# Histogram of the data
+svg("hal_hist.svg")
+hist(dataHal$deltaHAL, breaks = 15, col=wes_palette(1, name="Moonrise3"), main="Histogram of Delta HAL", xlab="Delta HAL")
+dev.off()
+svg("mcc_hist.svg")
+hist(dataMCC$deltaMCC, breaks = 15, col=wes_palette(1, name="Moonrise3"), main="Histogram of Delta MCC", xlab="Delta MCC")
+dev.off()
+
+hist(dataHal$deltaHAL, breaks = 15, col=wes_palette(1, name="Moonrise3"), main="Histogram of Delta HAL", xlab="Delta HAL")
 hist(dataMCC$deltaMCC, breaks = 15, col=wes_palette(1, name="Moonrise3"), main="Histogram of Delta MCC", xlab="Delta MCC")
 
-### Scatter plots of the data?
+# Scatter plots of the data?
+svg("hal_scatter.svg")
 pairs.panels(rcbd,ellipse=F)
+dev.off()
+svg("mcc_scatter.svg")
+pairs.panels(rcbd2,ellipse=F)
+dev.off()
 
+pairs.panels(rcbd,ellipse=F)
 pairs.panels(rcbd2,ellipse=F)
 
-
-### Box Plots of the data
+# Box Plots of the data
+svg("hal_box.svg")
 ggboxplot(dataHal, x = "sizeF", y = "deltaHAL", color = "stF",
-          palette = wes_palette(n=5, name="Zissou1"))
-
+          palette = wes_palette(n=5, name="Zissou1"), 
+          title = "Box Plots of Size vs DeltaHAL", xlab = "Size",
+          ylab = "DeltaHAL")
+dev.off()
+svg("mcc_box.svg")
 ggboxplot(dataMCC, x = "sizeF", y = "deltaMCC", color = "stF",
-          palette = wes_palette(n=5, name="Zissou1"))
+          palette = wes_palette(n=5, name="Zissou1"), 
+          title = "Box Plots of Size vs DeltaMCC", xlab = "Size",
+          ylab = "DeltaMCC")
+dev.off()
+
+ggboxplot(dataHal, x = "sizeF", y = "deltaHAL", color = "stF",
+          palette = wes_palette(n=5, name="Zissou1"), 
+          title = "Box Plots of Size vs DeltaHAL", xlab = "Size",
+          ylab = "DeltaHAL")
+ggboxplot(dataMCC, x = "sizeF", y = "deltaMCC", color = "stF",
+          palette = wes_palette(n=5, name="Zissou1"), 
+          title = "Box Plots of Size vs DeltaMCC", xlab = "Size",
+          ylab = "DeltaMCC")
 
 # Experiment 1 HAL
-
 ## Sample Size Analysis
 ss.2way(a = 3, b = 5, alpha = 0.05, beta = 0.05, f.A = 10 , f.B = 10 , delta.A = 10, delta.B = 10, sigma.A =65000 , sigma.B = 84000, B = 1000)
 
@@ -81,39 +114,46 @@ f2 <- lm(dataHal$deltaHAL ~ dataHal$sizeF * dataHal$stF)
 summary(f2)
 
 ## Check the Assumptions
-### Diagnostic Plots
+# Diagnostic Plots
+svg("ex1_qqplots.svg")
 par(mfrow=c(2,2))
 plot(f1)
+par(mfrow=c(1,1))
+dev.off()
+par(mfrow=c(2,2))
+plot(f1)
+par(mfrow=c(1,1))
 
-### Interaction Plots
+# Interaction Plots
+svg("ex1_interaction.svg")
+with(dataHal, (interaction.plot(stF, sizeF, deltaHAL, type="b", pch = c(18, 24, 22), leg.bty = "o", main="Interaction Plot of Similarity Threshold and Grammar Size", xlab = "Similarity Threshold", ylab = "Delta HAL", col = wes_palette(3, name = "Zissou1"))))
+dev.off()
 with(dataHal, (interaction.plot(stF, sizeF, deltaHAL, type="b", pch = c(18, 24, 22), leg.bty = "o", main="Interaction Plot of Similarity Threshold and Grammar Size", xlab = "Similarity Threshold", ylab = "Delta HAL", col = wes_palette(3, name = "Zissou1"))))
 
-### Check the HOV Assumption using Levene's Test
+# Check the HOV Assumption using Levene's Test
 leveneTest(dataHal$deltaHAL, dataHal$sizeF)
 
-### Check the Normality Assumption using Anderson-Darling and Shapiro-Wilks Tests**
+# Check the Normality Assumption using Anderson-Darling and Shapiro-Wilks Tests
 ad.test(x = dataHal$deltaHAL)
 shapiro.test(x = dataHal$deltaHAL)
 
 ## Non-parametric methods
-
-### Permutation F-Test
+# Permutation F-Test
 summary(aov(y~treatment*block, rcbd)) # parametric test for rcbd
 summary(aovp(y~treatment*block, rcbd)) # permutation test for rcbd
 
-### Steel's Multiple Comparison against Control
+# Steel's Multiple Comparison against Control
 steelTest(y~treatment, data=rcbd, alternative="greater")
 
-### Determining if there is an order among the treatment levels
+# Determining if there is an order among the treatment levels
 levels(rcbd$treatment) <- c("0.001", "0.25", "0.5", "0.75", "1.0")
 rcbd$treatment <- ordered(rcbd$treatment)
 jonckheere.test(rcbd$y, rcbd$treatment, alternative = "increasing", nperm=10000)
 
 ## Power Analysis
-# pwr.2way(a = 3, b = 5, alpha = 0.05, size.A = 5, size.B = 3, f.A = NULL, f.B = NULL, delta.A = , delta.B = , sigma.A = , sigma.B = )
+pwr.2way(a = 3, b = 5, alpha = 0.05, size.A = 5, size.B = 3, f.A = NULL, f.B = NULL, delta.A = , delta.B = , sigma.A = , sigma.B = )
 
 # Experiment 2 MCC
-
 ## Sample Size Analysis
 ss.2way(a = 3, b = 5, alpha = 0.05, beta = 0.05, f.A = 10 , f.B = 10 , delta.A = 10, delta.B = 10, sigma.A =65000 , sigma.B = 84000, B = 1000)
 
@@ -125,32 +165,41 @@ f2 <- lm(dataMCC$deltaMCC ~ dataMCC$sizeF * dataMCC$stF)
 summary(f2)
 
 ## Check the Assumptions
-### Diagnostic Plots**
+# Diagnostic Plots
+svg("ex2_qqplots.svg")
 par(mfrow=c(2,2))
 plot(f1)
+par(mfrow=c(1,1))
+dev.off()
+par(mfrow=c(2,2))
+plot(f1)
+par(mfrow=c(1,1))
 
-### Interaction Plots
-with(dataMCC, (interaction.plot(stF, sizeF, deltaMCC, type="b", pch = c(18, 24, 22), leg.bty = "o", main="Interaction Plot of Similarity Threshold and Grammar Size", xlab = "Similarity Threshold", ylab = "Delta HAL", col = wes_palette(3, name = "Zissou1"))))
+# Interaction Plots
+svg("ex2_interaction.svg")
+with(dataMCC, (interaction.plot(stF, sizeF, deltaMCC, type="b", pch = c(18, 24, 22), leg.bty = "o", main="Interaction Plot of Similarity Threshold and Grammar Size", xlab = "Similarity Threshold", ylab = "Delta MCC", col = wes_palette(3, name = "Zissou1"))))
+dev.off()
+with(dataMCC, (interaction.plot(stF, sizeF, deltaMCC, type="b", pch = c(18, 24, 22), leg.bty = "o", main="Interaction Plot of Similarity Threshold and Grammar Size", xlab = "Similarity Threshold", ylab = "Delta MCC", col = wes_palette(3, name = "Zissou1"))))
 
-### Check the HOV Assumption using Levene's Test
+# Check the HOV Assumption using Levene's Test
 leveneTest(dataMCC$deltaMCC, dataMCC$sizeF)
 
-### Check the Normality Assumption using Anderson-Darling and Shapiro-Wilks Tests
+# Check the Normality Assumption using Anderson-Darling and Shapiro-Wilks Tests
 ad.test(x = dataMCC$deltaMCC)
 shapiro.test(x = dataMCC$deltaMCC)
 
 ## Non-parametric methods
-### Permutation F-Test
+# Permutation F-Test
 summary(aov(y~treatment*block, rcbd2)) # parametric test for rcbd
 summary(aovp(y~treatment*block, rcbd2)) # permutation test for rcbd
 
-### Steel's Multiple Comparison against Control
+# Steel's Multiple Comparison against Control
 steelTest(y~treatment, data=rcbd2, alternative="greater")
 
-### Determining if there is an order among the treatment levels
+# Determining if there is an order among the treatment levels
 levels(rcbd2$treatment) <- c("0.001", "0.25", "0.5", "0.75", "1.0")
 rcbd2$treatment <- ordered(rcbd2$treatment)
 jonckheere.test(rcbd2$y, rcbd2$treatment, alternative = "increasing", nperm=10000)
 
 ## Power Analysis
-# pwr.2way(a = 3, b = 5, alpha = 0.05, size.A = 5, size.B = 3, f.A = NULL, f.B = NULL, delta.A = , delta.B = , sigma.A = , sigma.B = )
+pwr.2way(a = 3, b = 5, alpha = 0.05, size.A = 5, size.B = 3, f.A = NULL, f.B = NULL, delta.A = , delta.B = , sigma.A = , sigma.B = )

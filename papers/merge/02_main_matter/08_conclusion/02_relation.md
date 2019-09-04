@@ -1,2 +1,1 @@
-## Relation to Existing Evidence
-
+The results of this study are promising and present a potentially fruitful avenue towards the development of an automtated approach to Island Grammar generation. Island Grammars have been shown to be an extremely useful approach for the development of multi-lingual analysis tools, but can be time-consuming to develop.

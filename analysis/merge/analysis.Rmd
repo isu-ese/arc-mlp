@@ -25,7 +25,7 @@ library(RColorBrewer) # for better colors
 library(wesanderson) # for better colors
 
 # read in data
-setwd("/home/git/isuese/papers/arc-mlp/analysis/")
+setwd("/home/git/isuese/papers/arc-mlp/data/merge/")
 data <- read.csv2(file = "experiments-1-result.csv", header = T, sep = ",", as.is = T, quote = "\"")
 ```
 
@@ -165,7 +165,7 @@ As part of this experiment we are concerned with the understanding if there is a
 ```{r, echo=FALSE}
 levels(rcbd$treatment) <- c("0.001", "0.25", "0.5", "0.75", "1.0")
 rcbd$treatment <- ordered(rcbd$treatment)
-jonckheere.test(rcbd$y, rcbd$treatment, alternative = "increasing", nperm=10000)
+jonckheere.test(rcbd$y, rcbd$treatment, alternative = "decreasing", nperm=10000)
 ```
 
 ## Power Analysis
@@ -247,7 +247,7 @@ As part of this experiment we are concerned with the understanding if there is a
 ```{r, echo=FALSE}
 levels(rcbd2$treatment) <- c("0.001", "0.25", "0.5", "0.75", "1.0")
 rcbd2$treatment <- ordered(rcbd2$treatment)
-jonckheere.test(rcbd2$y, rcbd2$treatment, alternative = "increasing", nperm=10000)
+jonckheere.test(rcbd2$y, rcbd2$treatment, alternative = "decreasing", nperm=10000)
 ```
 
 ## Power Analysis

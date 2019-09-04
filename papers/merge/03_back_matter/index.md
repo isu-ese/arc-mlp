@@ -1,6 +1,6 @@
 !include(acknowledgements.md)
 
-!bib{references}{30}
+!bib{references}{26}
 
 <!-- \appendix
 
