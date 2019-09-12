@@ -3,7 +3,7 @@ Island grammars have been shown to be a solution to the problem of developing mu
 Towards this end, we believe that the automated merging of grammars is an important and necessary step in the evolution of island grammar research. The capability to automate grammar merging addresses the key issues found in the initial construction and further maintenance of island grammars. To evaluate this hypothesis, we used the Goal-Question-Metric (GQM) paradigm \cite{caldiera_goal_1994} to form the following research goal:
 
 !rg{
-  \item Develop and automated approach for merging components of a grammar to facilitate the construction of both the island and water components in an island grammar in order to reduce both the overall initial effort required in creating such grammars and the effort required to maintain such grammars.
+  \item Develop an automated approach for merging components of a grammar to facilitate the construction of both the island and water components in an island grammar in order to reduce both the overall initial effort required in creating such grammars and the effort required to maintain such grammars.
 }
 
 \noindent The solution proposed will allow tool designers to develop source code analysis tools which support multiple programming languages in a less difficult and more maintainable way.
