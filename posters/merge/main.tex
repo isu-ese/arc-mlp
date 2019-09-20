@@ -1,4 +1,4 @@
-\documentclass[20pt,margin=1in,innermargin=-4.5in,blockverticalspace=-0.25in]{tikzposter}
+\documentclass[17pt,margin=1in,innermargin=-4.5in,blockverticalspace=-0.25in]{tikzposter}
 \usepackage[rm]{roboto}
 \usepackage[T1]{fontenc}
 \geometry{paperwidth=42in,paperheight=30in}
@@ -9,9 +9,10 @@
 \usepackage{amssymb}
 \usepackage{graphicx}
 \usepackage{enumitem}
+\usepackage{svg}
 \usepackage[style=ieee,url=false,doi=false,isbn=false]{biblatex}
 
-\addbibresource{isu-ese.bib}
+\addbibresource{./isu-ese.bib}
 
 
 % set theme parameters
@@ -49,7 +50,7 @@ College of Science and Technology, Idaho State University}
                 \item Normalize Grammar \label{normalize_step}
                 \item Measure Production Similarities
                 \item Merge Most Similar Productions \label{merge_similar_step}
-                \item Repeat Steps \ref{normalize_step}--\ref{merge_similar_step} Until Max Similarity is Below a Threshold
+                \item Repeat Steps \ref{normalize_step}--\ref{merge_similar_step} Until Max Similarity is Below a Threshold \label{threshold_step}
                 \item Output Grammars
             \end{enumerate}
         \end{minipage}\hfill\begin{minipage}[c]{.5\linewidth}
@@ -96,16 +97,104 @@ College of Science and Technology, Idaho State University}
         \innerblock{Normalization}{
             Normalizes grammars so that all rules match one of two forms:
 
-            \texttt{$\texttt{P}_1\rightarrow$ A`a'B}
-
-            \texttt{$\texttt{P}_2\rightarrow$ A|`a'|B}
+            \begin{center}
+                \texttt{$\texttt{P}_1\rightarrow$ A`a'B} or \texttt{$\texttt{P}_2\rightarrow$ A|`a'|B}
+            \end{center}
         }
     }
 
     \column{0.36}
-    \block{Experimental Design}{}
-    \block{Results}{
+    \block{Experimental Design}{
+        \begin{minipage}[t]{.33\linewidth}
+            \begin{tikzfigure}[Data Collection Process]
+                \label{fig:data_model}
+                \includegraphics[width=\linewidth]{../../papers/merge/images/paper/data_collect.eps}
+            \end{tikzfigure}
+        \end{minipage}\hfill\begin{minipage}[t]{.67\linewidth}
+            \begin{itemize}
+                \item One Experiment for Each of $\Delta$HAL and $\Delta$MCC.
+                \item 3*5 Factorial Design With 5 Repetitions
+                \item Experimental Units --- To select our experimental units, we split
+                grammars from the ANTLR4\footnote{\url{https://github.com/antlr/grammars-v4}} repository into 3 sizes, selected 12 grammars
+                from each size category, and selected 50 unordered pairs of grammars from each
+                size category.
+                \item Threshold From Step \ref{threshold_step} of Approach. We used 5 different levels
+                of our threshold: .01, .25, .5, .75, 1.0. A threshold of 1.0 was our control.
+                \item Experimental Measures. From \cite{powerMetricsSuiteGrammarbased2004}.
+                    \begin{itemize}
+                        \item[PROD] Number of Productions. Measure of Size of Grammars.
+                        \item[$\Delta$HAL] Amount Halstead Effort Decreased. Measure of the Maintainability of Grammars.
+                        \item[$\Delta$MCC] Amount Cylometric Complexity Decreased. Measure of Grammar Complexity.
+                    \end{itemize}
+                \item Analysis
+                    \begin{itemize}
+                        \item Permutation F-Test
+                        \item Jonchheere-Terpstra Test
+                        \item Steel's Test
+                    \end{itemize}
+            \end{itemize}
+        \end{minipage}
     }
+    \block{Results}{
+        \begin{minipage}[t]{.5\linewidth}
+            \innerblock{$\Delta$HAL}{
+                \begin{tikzfigure}[$\Delta$HAL Box Plot]
+                    \centering
+                    \label{fig:hal-box}
+                    \includesvg[width=.66\textwidth]{../../data/merge/hal_box.svg}
+                \end{tikzfigure}
+
+                \begin{minipage}[c]{.5\linewidth}
+                    \begin{center}
+                        Interaction
+                    \end{center}
+                    \begin{itemize}
+                        \item F --- 5.098
+                        \item p --- 7.31e-05
+                        \item Influential primarily at control
+                    \end{itemize}
+                \end{minipage}\hfill\begin{minipage}[c]{.5\linewidth}
+                    \begin{tikzfigure}[$\Delta$HAL Interaction Plot]
+                        \centering
+                        \includesvg[width=\textwidth]{../../data/merge/ex1_interaction.svg}
+                    \end{tikzfigure}
+                \end{minipage}
+                \begin{enumerate}
+                    \item Perm. F-Test --- F: 9.569, p: 4.73e-06
+                    \item JT Test --- Statistic: 767, p: 6e-4
+                    \item Steel Test --- p:
+                \end{enumerate}
+            }
+        \end{minipage}\hfill\begin{minipage}[t]{.5\linewidth}
+            \innerblock{$\Delta$MCC}{
+                \begin{tikzfigure}[$\Delta$HAL Box Plot]
+                    \centering
+                    \label{fig:hal-box}
+                    \includesvg[width=.66\textwidth]{../../data/merge/mcc_box.svg}
+                \end{tikzfigure}
+
+                \begin{minipage}[c]{.5\linewidth}
+                    \begin{tikzfigure}[$\Delta$MCC Interaction Plot]
+                        \centering
+                        \includesvg[width=\textwidth]{../../data/merge/ex2_interaction.svg}
+                    \end{tikzfigure}
+                \end{minipage}\hfill\begin{minipage}[c]{.5\linewidth}
+                    \begin{itemize}
+                        \item F --- 
+                        \item p --- 
+                        \item Influential primarily at control
+                    \end{itemize}
+                \end{minipage}
+                \begin{enumerate}
+                    \item Perm F-Test --- F: , p:
+                    \item JT Test --- Statistic: , p:
+                    \item Steel Test --- p:
+                \end{enumerate}
+            }
+
+        \end{minipage}
+    }
+    
     \column{0.32}
     \block{Discussion}{}
     \block{Conclusions}{}
