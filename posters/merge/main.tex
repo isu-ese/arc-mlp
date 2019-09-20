@@ -33,14 +33,27 @@ College of Science and Technology, Idaho State University}
 \begin{columns}
     \column{0.32}
     \block{Introduction}{
-        Motivation---
+        Motivation---Many modern systems are written in multiple programming languages which are difficult to analyze.
+        One approach to ease this process is to use multilingual island grammar parsers. In order to automate the
+        process of creating multilingual island grammar parsers, one needs to automate merging grammars in a way
+        that decreases their complexity and maintenance effort.
 
-        Research Goal---
+        Research Goal---We used the Goal-Question-Metric (GQM) paradigm \cite{caldieraGoalQuestionMetric1994} to form the 
+        following research goal: Develop an automated approach for merging components of a grammar to facilitate
+         the construction of both the island and water components in an island grammar in order to reduce both
+          the overall initial effort required in creating such grammars and the effort required to 
+          maintain such grammars.
 
-        Research Question---
+        Research Question---To evaluate our automated approach, we formed two research questions.
+        \begin{itemize}
+            \item What is the effect that this process has on the effort of the merged grammars? -
+            \textit{It is expected that this process decreases the maintenance effort.}
+            \item What is the effect that this process has on the complexity of the merged grammars? - 
+            \textit{It is expected that this process decreases the complexity.}
+        \end{itemize}
     }
     \block{Approach}{
-        \begin{minipage}[c]{.5\linewidth}
+        \begin{minipage}[c]{.45\linewidth}
             \begin{center}
                 Steps
             \end{center}
@@ -56,21 +69,18 @@ College of Science and Technology, Idaho State University}
         \end{minipage}\hfill\begin{minipage}[c]{.5\linewidth}
             \begin{tikzfigure}[Merge Process]
                 \label{fig:merge_process}
-                \includegraphics[width=\linewidth]{../../papers/merge/images/paper/SIGMA-DFD-vertical.pdf}
+                \includegraphics[width=\linewidth]{../../papers/merge/images/paper/SIGMA-DFD.pdf}
             \end{tikzfigure}
         \end{minipage}
 
-        \begin{minipage}[c]{.5\linewidth}
+        \begin{minipage}[c]{.55\linewidth}
             \begin{center}
                 Data Model
             \end{center}
-            \begin{itemize}
-                \item Object Based
-                \item Right Hand Side of Productions is an Object
-                \item Constructed via Transformation of Grammar's Abstract Syntax Tree
-                \item Converted to Text via Visitor
-            \end{itemize}
-        \end{minipage}\hfill\begin{minipage}[c]{.5\linewidth}
+            SIGMA parses input grammars into the object oriented data model shown in figure \ref{fig:data_model}.
+            The model is created by visiting each node of the grammar's abstract syntax tree. The grammar is
+            recreated by visiting each object of the model.
+        \end{minipage}\hfill\begin{minipage}[c]{.4\linewidth}
             \begin{tikzfigure}[Data Model]
                 \label{fig:data_model}
                 \includegraphics[width=\linewidth]{../../papers/merge/images/paper/diagram.eps}
@@ -79,26 +89,26 @@ College of Science and Technology, Idaho State University}
 
 
         \innerblock{Measuring Production Similarity}{
-            \begin{minipage}[t]{.5\linewidth}
-                \begin{center}
-                    Productions $P_a,P_b$ like \texttt{A`a'B}
-                \end{center}
+            \begin{minipage}[t]{.49\linewidth}
+                The similarity of productions $P_a,P_b$ that both expand to a sequence of 
+                symbols $p_1p_2...$ is calculated by finding the Longest Common
+                Subsequence (LCS) between the productions and then using the following formula.
                 $$\frac{2|LCS(P_a, P_b)|}{|P_a|+|P_b|}$$
-
-                $LCS$ returns the longest common subsequence.
-            \end{minipage}\hfill\begin{minipage}[t]{.5\linewidth}
-                \begin{center}
-                    Productions $P_a,P_b$ like \texttt{A|`a'|B}
-                \end{center}
+                
+            \end{minipage}\hfill\begin{minipage}[t]{.49\linewidth}
+                The similarity of productions $P_a,P_b$ that both expand to one of several
+                symbols $p_1|p_2|...$ is calculated by finding the number of shared symbols
+                and then using the following formula.
                 $$\frac{2|P_a \cup P_b|}{|P_a|+|P_b|}$$
             \end{minipage}
         }
         
         \innerblock{Normalization}{
-            Normalizes grammars so that all rules match one of two forms:
+            SIGMA normalizes grammars so that all rules match one of two forms:
 
             \begin{center}
-                \texttt{$\texttt{P}_1\rightarrow$ A`a'B} or \texttt{$\texttt{P}_2\rightarrow$ A|`a'|B}
+                \texttt{$\texttt{P}_1\rightarrow$ A`a'B}\\
+                \texttt{$\texttt{P}_2\rightarrow$ A|`a'|B}
             \end{center}
         }
     }
@@ -107,7 +117,7 @@ College of Science and Technology, Idaho State University}
     \block{Experimental Design}{
         \begin{minipage}[t]{.33\linewidth}
             \begin{tikzfigure}[Data Collection Process]
-                \label{fig:data_model}
+                \label{fig:data-collect}
                 \includegraphics[width=\linewidth]{../../papers/merge/images/paper/data_collect.eps}
             \end{tikzfigure}
         \end{minipage}\hfill\begin{minipage}[t]{.67\linewidth}
@@ -124,13 +134,13 @@ College of Science and Technology, Idaho State University}
                     \begin{itemize}
                         \item[PROD] Number of Productions. Measure of Size of Grammars.
                         \item[$\Delta$HAL] Amount Halstead Effort Decreased. Measure of the Maintainability of Grammars.
-                        \item[$\Delta$MCC] Amount Cylometric Complexity Decreased. Measure of Grammar Complexity.
+                        \item[$\Delta$MCC] Amount Cylomatic Complexity Decreased. Measure of Grammar Complexity.
                     \end{itemize}
                 \item Analysis
                     \begin{itemize}
                         \item Permutation F-Test
                         \item Jonchheere-Terpstra Test
-                        \item Steel's Test
+                        \item Steel Test
                     \end{itemize}
             \end{itemize}
         \end{minipage}
@@ -167,7 +177,7 @@ College of Science and Technology, Idaho State University}
             }
         \end{minipage}\hfill\begin{minipage}[t]{.5\linewidth}
             \innerblock{$\Delta$MCC}{
-                \begin{tikzfigure}[$\Delta$HAL Box Plot]
+                \begin{tikzfigure}[$\Delta$MCC Box Plot]
                     \centering
                     \label{fig:hal-box}
                     \includesvg[width=.66\textwidth]{../../data/merge/mcc_box.svg}
@@ -196,8 +206,39 @@ College of Science and Technology, Idaho State University}
     }
     
     \column{0.32}
-    \block{Discussion}{}
-    \block{Conclusions}{}
+    \block{Discussion}{
+        \begin{itemize}
+            \item Our experiment found that SIGMA's merging process reduced the complexity and the maintainability
+            effort of grammars regardless of their size and the threshold used. This is confirmed by the Steel Test.
+            \item As the threshold decreases, complexity and maintainability effort decreased as confirmed by
+            the JT Test.
+            \item There were significant interactions between the threshold and size. However, these were only
+            present at our control.
+        \end{itemize}
+    }
+    \block{Threats to Validity}{
+        \begin{itemize}
+            \item Internal --- We selected grammars from only the ANTLR4 grammar respository. Therefore our
+            conclusions cannot necessarily be generalized past grammars in this repository. 
+            \item External --- Our experimental units lacked grammars in formats commonly used in industry such
+            as TXL, SDF, etc.
+            \item Conclusion/Construct --- None
+        \end{itemize}
+    }
+    \block{Conclusions}{
+        We sucessfully created a tool that merges programming language grammars. This tool was demonstrated to 
+        decrease the maintainability effort and complexity of grammars. Because this merging process has the qualities
+        that we desire, it can be used as part of a larger process for automatically creating island grammars for
+        multilingual parsing.
+    }
+    \block{Future Work}{
+        Possible directions for future work include the following. We intend to investigate the normalization process
+        to ensure each step is necessary. We plan to evaluate this method on the larger collection of grammars 
+        GrammarZoo\cite{zaytsevGrammarZooCorpus2015}.  We also intend to integrate our
+        approach with current approaches of creating tolerant grammars\cite{klusenerDerivingTolerantGrammars2003}.
+        Finally we intend to augment our process with additional algorithms to allow it to automatically construct island grammars
+        for multilingual parsing.
+    }
     
     
     \block{References}{
