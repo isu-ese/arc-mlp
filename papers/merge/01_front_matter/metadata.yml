@@ -1,6 +1,6 @@
 ---
-title: 'SIGMA: Systematic Island Grammar forMation Approach -- Merging Grammars'
-title-running: 'SIGMA: Systematic Island Grammar forMation Approach'
+title: 'An Approach Towards Merging Grammars'
+title-running: 'Merging Grammars'
 authors-running: Griffith and Roberts
 affiliations:
   authors: "Isaac Griffith and Rosetta Roberts"
@@ -11,7 +11,7 @@ affiliations:
   state: "Idaho"
   country: "United States"
   postcode: "83208"
-  email: "grifisaa@isu.edu, robepea2@isu.edu"
+  email: "grifisaa@isu.edu, roberose@isu.edu"
 acm-doi:
   copyrightyear: 2019
   acmYear: 2019

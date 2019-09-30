@@ -4,37 +4,32 @@
 ~~~
 \begin{table*}[tb]
 \centering
-\caption{Evaluation grammars and their properties.}
+\caption{Grammars randomly selected from each size category used in the experiments.}
 \label{tbl:grammar_metrics}
-\begin{tabular}{c|c|lc|lc}
-\cline{3-6} \cline{4-6} \cline{5-6} \cline{6-6}
-\multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{2}{c|}{Replication 1} & \multicolumn{2}{c}{Replication 2}\tabularnewline
+\begin{tabular}{|c|l|}
 \hline
-Experiment & Category & Grammar-Pair & Similarity-Threshold & Grammar-Pair & Similarity-Threshold\tabularnewline
+Category & Grammars\tabularnewline
 \hline
-\multirow{15}{*}{} & \multirow{5}{*}{S} & fen, cookie & 1.0 & url, tnt & .25 \tabularnewline
- &  & propcalc, cmake & .75 & fen, dice & .001 \tabularnewline
- &  & metric, cmake & .5 & dice, propcalc & .5 \tabularnewline
- &  & telephone, metric & .25 & telephone, cmake & 1.0\tabularnewline
- &  & telephone, cookie & .001 & telephone, dice & .75 \tabularnewline
-\cline{2-6} \cline{3-6} \cline{4-6} \cline{5-6} \cline{6-6}
- & \multirow{5}{*}{M} & graphql, cool & .75 & algol60, asm8080 & .25 \tabularnewline
- &  & javadoc, unicode-classify & .5 & scss, golang &.001 \tabularnewline
- &  & javadoc, golang & 1.0 & algol60, graphql & .5 \tabularnewline
- &  & algol60, javadoc & .25 & scss, graphql & .75 \tabularnewline
- &  & javadoc, snobol & .001 & xdr, golang & 1.0 \tabularnewline
-\cline{2-6} \cline{3-6} \cline{4-6} \cline{5-6} \cline{6-6}
- & \multirow{5}{*}{L} & cobol85, cql3  & 1.0 & objc-one-step, tsql & .25 \tabularnewline
- &  & objc-one-step, kotlin & .25 & kotlin, csharp & .5 \tabularnewline
- &  & asn\_3gpp, cql3 & .75 & swift2, tsql & 1.0 \tabularnewline
- &  & asn\_3goo, csharp & .001 & objc-one-step, csharp & .001 \tabularnewline
- &  & swift2, kotlin & .5 & cobol85, kotlin-formal & .75 \tabularnewline
+\hline
+\multirow{2}{*}{S} & brainfuck, cmake, csv, inf, lcc, pdn,\tabularnewline
+\cline{2-2}
+ & properties, quakemap, sexpression, tsv, url, useragent\tabularnewline
+\hline
+\multirow{2}{*}{M} & cto, dart2, flatbuffers, fusion-tables, lua, pascal\tabularnewline
+\cline{2-2}
+ & python2, romannumerals, sgf, stacktrace, webidl, z-ops\tabularnewline
+\hline
+\multirow{2}{*}{L} & cql3, edif300, fortran77, idl, informix, java9\tabularnewline
+\cline{2-2}
+ & kotlin, objc-two-step, powerbuilder, rexx, sharc, swift2\tabularnewline
 \hline
 \end{tabular}
 \end{table*}
 ~~~
 
-This section describes the experimental units and the selection process used to select them. In these experiments, the experimental units are pairs of grammars selected from the Antlr4 \cite{parr_definitive_2012} grammar repository^[[https://github.com/antlr/grammars-v4](https://github.com/antlr/grammars-v4). The sys-verilog grammar was excluded because of errors while parsing it.]. At the time of this writing, the repository contained 198 individual grammars from a variety of general purpose and domain specific languages. The selection process used to select the grammar pairs for each experiment is depicted in @fig:selection_process and works as follows. Initially, for each of the grammars in the repository we collected a combination of metadata and metric measurements. The metadata collected consisted of the language represented by the grammar and the version of that language (if applicable). We also measured the following metrics for each grammar based on the metrics suite by Power and Malloy \cite{power_metrics_2004}:
+This section describes the experimental units and the process used to select them. In these experiments, the experimental units are pairs of grammars selected from the Antlr4 \cite{parr_definitive_2012} grammar repository\footnote{\url{https://github.com/antlr/grammars-v4}}. The sys-verilog grammar was excluded because of errors while parsing it.]. At the time of this writing, the repository contained 198 individual grammars from a variety of general purpose and domain specific languages.
+
+The process used to select the grammar pairs for each experiment is depicted in @fig:selection_process and works as follows. Initially, for each of the grammars in the repository we collected a combination of metadata and metric measurements. The metadata collected consists of the language represented by the grammar, the version of that language (if applicable) and the following metrics (selected from the metrics suite by Power and Malloy \cite{power_metrics_2004}):
 
 * TERM -- the number of terminals.
 * VAR -- the number of defined non-terminals.
@@ -43,17 +38,11 @@ This section describes the experimental units and the selection process used to 
 
 ![Experimental unit selection process.](images/paper/selection_process.eps){#fig:selection_process}
 
-Using the results of these calculations, we subdivided the dataset into three categories based on the logarithm of the number of productions (as a measure of size of the grammar). The logarithm was chosen because the distribution of the number of productions in the grammars is similar to a log-normal distribution. This subdivision was based on statistically construction thresholds \cite{lanza_object-oriented_2011}. This process utilizes the calculation of the mean of the logarithm of the size, 
-$\mu = \textrm{MEAN}(\log(\textrm{size}))$,
-for the population of grammars and the standard deviation of the size,
-$\sigma = \textrm{STDDEV}(\log(\textrm{size}))$,
-for the population of grammars. Using these values we define the threshold values between the categories Small, Medium, and High as: Small-Medium: $e^{\mu - \sigma}$
-and Medium-High: $e^{\mu + \sigma}$.
-Using these thresholds each grammar is then grouped into one of the three categories.
+Using the resulting measures of these metrics, the grammar dataset was subdivided into three categories (Small, Medium and Large) based on the logarithm of PROD (as the values were log-normal distributed). This subdivision was based on statistically construction thresholds, as per Lanza and Marinescu \cite{lanza_object-oriented_2011}. Category threshold values are defined as: Small-Medium: \(10^{\mu_{PROD} - \sigma_{PROD}} = 10^{1.8404 - 0.5371} = 20.1084\) and Medium-High: \(10^{\mu_{PROD} + \sigma_{PROD}} = 10^{1.8404 + 0.5371} = 238.4995\). Using these thresholds each grammar is then grouped into one of the three categories.
 
-Using these categories as the blocking variable in the experiments, we can then begin the sampling process. For each size category we randomly select (without replication) 10 grammars. From these 10 grammars there are \(10 \choose 2\) = 45 combinations of which we randomly select 5, for each experiment. In the case that replications are necessary, this process repeats for each replication or until the number of grammars are exhausted. In this case we have selected to complete two replications of each experiment, and the selected grammar pairs for both replications of both experiments are shown in @tbl:grammar_metrics.
+Using these categories as the grouping factor in the experiments, we can then begin the sampling process. As we have selected a $3\times 5$ factorial design, each replication of each experiment requires 15 grammar pairs (5 per size category). Based on our replication analysis (described in @sec:analysis_proc) we have identified a need for a total of 5 replications. Thus, For each size category we require a total of 50 grammar pairs per experiment yielding a need for 100 total grammar pairs. To meet this requirement we randomly select (without replication) 12 grammars, per size category. From these 12 grammars there are $12 \choose 2$ = 66 combinations (without replication) of which we randomly select 5 pairs per replication per experiment. The grammars selected and their pairings per experiment/replication are depicted in @tbl:grammar_metrics.
 
-After the grammar pairs have been selected, they are assigned a treatment value for use during the experiment execution and data collection phase. For each size category in each replication of each experiment, the set of five grammar-pairs are assigned, at random, a value for the similarity threshold treatment. The possible values that can be assigned are 0.001, 0.25, 0.5, 0.75, and 1.0. It should be noted that a value of 1.0 is the control value.
+Once the grammar pairs are selected, they are assigned a treatment value for use during the experiment execution and data collection phase. For each size category in each replication of each experiment, the set of five grammar-pairs are assigned, at random, a level of the similarity threshold treatment. The possible levels that can be assigned are 0.001, 0.25, 0.5, 0.75, and 1.0 (where 1.0 is the control level).
 
 Finally, the data generated as part of the selection process is used to construct an experiment control file. This file is used to direct the experimental execution system and to ensure the validity of the process. Each control file is simply an ordered set of triples. Where, each triple consists of the following information:
 

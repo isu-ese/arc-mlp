@@ -60,8 +60,8 @@ You can reference the figure like this: `[@fig:<name>]`.
 
 !def(grammar)(Creates a bnf grammar using the specified rules)
 (
-!latex
-```
+
+```{=latex}
 \begin{grammar}
 !1
 \end{grammar}

@@ -30,17 +30,17 @@ dataMCC['sizeF'] <- as.factor(dataHal$size)
 dataMCC['stF'] <- as.factor(dataHal$similarity_threshold)
 dataMCC['deltaMCC'] = as.numeric(dataMCC$trivial.MCC) - as.numeric(dataMCC$full.MCC)
 
-y <- dataHal$deltaHAL
-treatment <- dataHal$stF
-block <- dataHal$sizeF
+deltaHAL <- dataHal$deltaHAL
+simThreshold <- dataHal$stF
+size <- dataHal$sizeF
 levels(treatment) <- c("1.0", "0.001", "0.25", "0.5", "0.75")
-rcbd <- data.frame(y, block, treatment) # data-frame
+rcbd <- data.frame(deltaHAL, simThreshold, size) # data-frame
 
-y <- dataMCC$deltaMCC
-treatment <- dataMCC$stF
-block <- dataMCC$sizeF
+deltaMCC <- dataMCC$deltaMCC
+simThreshold <- dataMCC$stF
+size <- dataMCC$sizeF
 levels(treatment) <- c("1.0", "0.001", "0.25", "0.5", "0.75")
-rcbd2 <- data.frame(y, block, treatment) # data-frame
+rcbd2 <- data.frame(deltaMCC, simThreshold, size) # data-frame
 
 # Summary Statistics (aka Results)
 ## Stats
@@ -83,23 +83,23 @@ pairs.panels(rcbd2,ellipse=F)
 svg("hal_box.svg")
 ggboxplot(dataHal, x = "sizeF", y = "deltaHAL", color = "stF",
           palette = wes_palette(n=5, name="Zissou1"), 
-          title = "Box Plots of Size vs DeltaHAL", xlab = "Size",
+          xlab = "Size",
           ylab = "DeltaHAL")
 dev.off()
 svg("mcc_box.svg")
 ggboxplot(dataMCC, x = "sizeF", y = "deltaMCC", color = "stF",
           palette = wes_palette(n=5, name="Zissou1"), 
-          title = "Box Plots of Size vs DeltaMCC", xlab = "Size",
+          xlab = "Size",
           ylab = "DeltaMCC")
 dev.off()
 
 ggboxplot(dataHal, x = "sizeF", y = "deltaHAL", color = "stF",
           palette = wes_palette(n=5, name="Zissou1"), 
-          title = "Box Plots of Size vs DeltaHAL", xlab = "Size",
+          xlab = "Size",
           ylab = "DeltaHAL")
 ggboxplot(dataMCC, x = "sizeF", y = "deltaMCC", color = "stF",
           palette = wes_palette(n=5, name="Zissou1"), 
-          title = "Box Plots of Size vs DeltaMCC", xlab = "Size",
+          xlab = "Size",
           ylab = "DeltaMCC")
 
 # Experiment 1 HAL
@@ -139,16 +139,16 @@ shapiro.test(x = dataHal$deltaHAL)
 
 ## Non-parametric methods
 # Permutation F-Test
-summary(aov(y~treatment*block, rcbd)) # parametric test for rcbd
-summary(aovp(y~treatment*block, rcbd)) # permutation test for rcbd
+summary(aov(deltaHAL~simThreshold*size, rcbd)) # parametric test for rcbd
+summary(aovp(deltaHAL~simThreshold*size, rcbd)) # permutation test for rcbd
 
 # Steel's Multiple Comparison against Control
-steelTest(y~treatment, data=rcbd, alternative="greater")
+steelTest(deltaHAL~simThreshold, data=rcbd, alternative="greater")
 
 # Determining if there is an order among the treatment levels
-levels(rcbd$treatment) <- c("0.001", "0.25", "0.5", "0.75", "1.0")
-rcbd$treatment <- ordered(rcbd$treatment)
-jonckheere.test(rcbd$y, rcbd$treatment, alternative = "increasing", nperm=10000)
+levels(rcbd$simThreshold) <- c("0.001", "0.25", "0.5", "0.75", "1.0")
+rcbd$simThreshold <- ordered(rcbd$simThreshold)
+jonckheere.test(rcbd$deltaHAL, rcbd$simThreshold, alternative = "increasing", nperm=10000)
 
 ## Power Analysis
 pwr.2way(a = 3, b = 5, alpha = 0.05, size.A = 5, size.B = 3, f.A = NULL, f.B = NULL, delta.A = , delta.B = , sigma.A = , sigma.B = )
@@ -190,16 +190,16 @@ shapiro.test(x = dataMCC$deltaMCC)
 
 ## Non-parametric methods
 # Permutation F-Test
-summary(aov(y~treatment*block, rcbd2)) # parametric test for rcbd
-summary(aovp(y~treatment*block, rcbd2)) # permutation test for rcbd
+summary(aov(deltaMCC~simThreshold*size, rcbd2)) # parametric test for rcbd
+summary(aovp(deltaMCC~simThreshold*size, rcbd2)) # permutation test for rcbd
 
 # Steel's Multiple Comparison against Control
-steelTest(y~treatment, data=rcbd2, alternative="greater")
+steelTest(deltaMCC~simThreshold, data=rcbd2, alternative="greater")
 
 # Determining if there is an order among the treatment levels
-levels(rcbd2$treatment) <- c("0.001", "0.25", "0.5", "0.75", "1.0")
-rcbd2$treatment <- ordered(rcbd2$treatment)
-jonckheere.test(rcbd2$y, rcbd2$treatment, alternative = "increasing", nperm=10000)
+levels(rcbd2$simThreshold) <- c("0.001", "0.25", "0.5", "0.75", "1.0")
+rcbd2$simThreshold <- ordered(rcbd2$simThreshold)
+jonckheere.test(rcbd2$deltaMCC, rcbd2$simThreshold, alternative = "increasing", nperm=10000)
 
 ## Power Analysis
 pwr.2way(a = 3, b = 5, alpha = 0.05, size.A = 5, size.B = 3, f.A = NULL, f.B = NULL, delta.A = , delta.B = , sigma.A = , sigma.B = )

@@ -1,10 +1,10 @@
 ## Measuring Rule Similarity {#sec:similarity}
 
-The fourth step of SIGMA measures the similarity between every pair of productions. This measure is used by the fifth step to determine which two rules to merge. In this section, we lay out the two measures of similarity that we used for each of the two forms of rules that our normalization step produces. If two productions are different forms, we measure their similarity as 0.
+The fourth step of this approach measures the similarity between each pair of productions. This measure is used by the fifth step to identify merge candidate pairs. In this section, describe the two similarity metrics corresponding to the two forms (defined in @sec:normalization) of productions produced by the normalization process. We note, productions of different forms will have a similarity of 0.
 
 ### Term Similarity
 
-The first measure of similarity that we used is for measuring the similarity between two productions of form 1. For explaining our process, we use the following two productions.
+The first similarity metric measures the similarity between two productions of form 1. As an example, assume we have the following two productions:
 
 !grammar
 ```
@@ -13,23 +13,25 @@ The first measure of similarity that we used is for measuring the similarity bet
 <$P_b$> ::= <A> <B> `b' `a'
 ```
 
-In the first step of measuring the similarity between two productions like this, SIGMA aligns the productions as best as possible. This can be performed using the Longest Common Subsequence (LCS) algorithm \cite{cormen_introduction_2001}.
+The first step towards measuring the similarity between these productions is aligning the productions using the Longest Common Subsequence (LCS) algorithm \cite{cormen_introduction_2001}.
 
 ```
 'a' <A>     'b'     'c'
     <A> <B> 'b' 'a'
 ```
 
-Once we have aligned the two productions as best as possible, we count the number of aligned terms and divide it by the total number of terms. The following formula also describes this:
+Once aligned, the number of aligned terms is divided by the total number of terms, as described in Eqn. \ref{eqn:metric1}:
 
-$$S_1 = \frac{2|\textsc{LCS}(P_a, P_b)|}{|P_a| + |P_b|}$$
+\begin{eqnarray}\label{eqn:metric1}
+S_1 & = & \frac{2|\textsc{LCS}(P_a, P_b)|}{|P_a| + |P_b|}
+\end{eqnarray}
 
-Applying the above formula to our example, `<A>` and `'b'` are each counted twice because they occur in both sequences of terms. The total number of terms across both productions is 8. The total similarity score is $S_1 = \frac{4}{8} = .5$.
+\noindent Applying Eqn. \ref{eqn:metric1} to the example, `<A>` and `'b'` are each counted twice because they occur in both sequences of terms. The total number of terms across both productions is 8. The total similarity score is computed as, $S_1 = \frac{4}{8} = .5$.
 
 
-### Alternatives Similairty
+### Alternatives Similarity
 
-The second measure of similarity that we use is for measuring the similarity between two productions of form 2. For explaining our process, we use the following two productions.
+The second similarity metric measures the similarity between two productions of form 2. As an example, assume we have the following two productions:
 
 !grammar
 ```
@@ -38,8 +40,10 @@ The second measure of similarity that we use is for measuring the similarity bet
 <\(P_b\)> ::= <A> | <B> | `b' | `a'
 ```
 
-Like the previous measure, we calculate the number of common alternatives before dividing by the total number of alternatives. However, since the order of the alternatives doesn't matter, we use a different approach to measure the common alternatives. We simply count an alternative as common to both if it is both productions. The following formula describes how to calculate the similarity score using this method:
+Similar to the previous metric, this metric calculates the number of common alternatives divided by the total number of alternatives. However, because the order of the alternatives does not matter, a different approach to measure the common alternatives is applied. In this approach an alternative is counted as common to both if it occurs in both productions. Eqn. \ref{eqn:metric2} describes how to calculate the similarity score using this method:
 
-$$S_2 = \frac{2|P_a \cap P_b|}{|P_a| + |P_b|}$$
+\begin{eqnarray}\label{eqn:metric2}
+S_2 & = & \frac{2|P_a \cap P_b|}{|P_a| + |P_b|}
+\end{eqnarray}
 
-In our particular example, the common elements are `<A>`, `'a'`, and `'b'`. The total similarity is then calculated as $\frac{2*3}{8} = .75$.
+\noindent Applying Eqn. \ref{eqn:metric2} to the example, the common elements are `<A>`, `'a'`, and `'b'`. The similarity score is computed as, $\frac{2*3}{8} = .75$.
