@@ -1,0 +1,3 @@
+REWORD
+
+Modern software development practice has led to the creation of software systems using multiple languages. As an example, the modern web application might use 5 or more languages (e.g. SQL, Java, TypeScript, HTML, CSS). Such multilingual codebases present a difficult challenge to the development and maintenance of code analysis tools \cite{mushtaq_multilingual_2017}. To address this challenge current source code analysis tools utilize multiple parsers (one per supported language supported).
