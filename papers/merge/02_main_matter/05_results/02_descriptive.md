@@ -1,6 +1,6 @@
 ## Descriptive Statistics {#sec:desc_stats}
 
-This subsection describes the data collected via a series of descriptive statistics. @tbl:descriptive shows the mean values of $\Delta HAL$ and $\Delta MCC$ for each value of the size category in the respective experiments. Along with this table the dispersion of the both $\Delta HAL$ and $\Delta MCC$ across size and similarity threshold values is displayed in @fig:hal_box and @fig:mcc_box, respectively. We can also see the distribution and correlations between these for both the $\Delta HAL$ and $\Delta MCC$ experiments in @fig:hal_scatter and @fig:mcc_scatter, respectively.
+This subsection describes the data collected via a series of descriptive statistics. @tbl:descriptive shows the mean values of $\Delta HAL$ and $\Delta MCC$ for each value of the size category in the respective experiments. Along with this table the dispersion of the both $\Delta HAL$ and $\Delta MCC$ across size and similarity threshold values is displayed in @fig:hal_box and @fig:mcc_box, respectively.
 
 !latex
 ~~~
@@ -22,10 +22,6 @@ Large & 149854 & 842.4\tabularnewline
 ![Delta HAL boxplots.](images/paper/results/hal\_box.eps){#fig:hal_box}
 
 ![Delta MCC boxplots.](images/paper/results/mcc\_box.eps){#fig:mcc_box}
-
-![Delta HAL experiment scatterplot matrix.](images/paper/results/hal_scatter.eps){#fig:hal_scatter}
-
-![Delta MCC experiment scatterplot matrix.](images/paper/results/mcc_scatter.eps){#fig:mcc_scatter}
 
 ![Delta Hal experiment Q-Q plots.](images/paper/results/ex1_qqplots.eps){#fig:ex1_qqplots}
 
