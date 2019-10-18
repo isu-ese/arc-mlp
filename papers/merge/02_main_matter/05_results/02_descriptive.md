@@ -35,7 +35,7 @@ The Normal Q-Q plot, depicted in @fig:ex1_qqplots, indicates that the normality 
 
 ![Experiment 1 interaction plot.](images/paper/results/ex1_interaction.eps){#fig:ex1_interaction}
 
-The interaction plot, depicted in @fig:ex1_interactions, indicates that their is an interaction between the small and medium levels as the similarity threshold changes from 0.75 to 1.0. This indicates that the assumption that the block and treatment do not interact and that an RCBD design is inappropriate and rather a factorial design would be correct.
+The interaction plot, depicted in @fig:ex1_interaction, indicates that their is an interaction between the small and medium levels as the similarity threshold changes from 0.75 to 1.0. This indicates that the assumption that the block and treatment do not interact and that an RCBD design is inappropriate and rather a factorial design would be correct.
 
 ![Experiment 2 Q-Q plots.](images/paper/results/ex2_qqplots.eps){#fig:ex2_qqplots}
 
@@ -45,4 +45,4 @@ The Normal Q-Q plot, depicted in @fig:ex2_qqplots, indicates that the normality 
 
 ![Experiment 2 interaction plot.](images/paper/results/ex2_interaction.eps){#fig:ex2_interaction}
 
-The interaction plot, depicted in @fig:ex2_interactions, indicates that their is an interaction between the small and medium levels as the similarity threshold changes from 0.75 to 1.0. This indicates that the assumption that the block and treatment do not interact and that an RCBD design is inappropriate and rather a factorial design would be correct.
+The interaction plot, depicted in @fig:ex2_interaction, indicates that their is an interaction between the small and medium levels as the similarity threshold changes from 0.75 to 1.0. This indicates that the assumption that the block and treatment do not interact and that an RCBD design is inappropriate and rather a factorial design would be correct.
