@@ -1,0 +1,114 @@
+\contentsline {chapter}{Figures and Tables}{v}{Doc-Start}% 
+\contentsline {chapter}{List of Algorithms\markboth {\MakeUppercase {List of Algorithms}}{\MakeUppercase {List of Algorithms}}}{vi}{chapter*.1}% 
+\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}% 
+\contentsline {section}{\numberline {1.1}Organization}{2}{section.1.1}% 
+\contentsline {chapter}{\numberline {2}Background}{3}{chapter.2}% 
+\contentsline {section}{\numberline {2.1}Theoretical Foundations}{3}{section.2.1}% 
+\contentsline {subsection}{\itshape \fontsize {9}{12}\selectfont \numberline {2.1.1}Grammars}{3}{subsection.2.1.1}% 
+\contentsline {subsection}{\itshape \fontsize {9}{12}\selectfont \numberline {2.1.2}Grammar Metrics}{3}{subsection.2.1.2}% 
+\contentsline {section}{\numberline {2.2}Alternative Approaches}{3}{section.2.2}% 
+\contentsline {section}{\numberline {2.3}Research Contributions}{4}{section.2.3}% 
+\contentsline {chapter}{\numberline {3}Algorithms}{5}{chapter.3}% 
+\contentsline {section}{\numberline {3.1}Normalization Algorithm}{5}{section.3.1}% 
+\contentsline {subsection}{\itshape \fontsize {9}{12}\selectfont \numberline {3.1.1}Eliminating Unused Rules}{5}{subsection.3.1.1}% 
+\contentsline {subsection}{\itshape \fontsize {9}{12}\selectfont \numberline {3.1.2}Simplifying Productions}{5}{subsection.3.1.2}% 
+\contentsline {subsection}{\itshape \fontsize {9}{12}\selectfont \numberline {3.1.3}Merging Equivalent Productions}{6}{subsection.3.1.3}% 
+\contentsline {subsection}{\itshape \fontsize {9}{12}\selectfont \numberline {3.1.4}Eliminating Unit Productions}{6}{subsection.3.1.4}% 
+\contentsline {subsection}{\itshape \fontsize {9}{12}\selectfont \numberline {3.1.5}Expanding Productions}{8}{subsection.3.1.5}% 
+\contentsline {subsection}{\itshape \fontsize {9}{12}\selectfont \numberline {3.1.6}Collapsing Compatible Productions}{8}{subsection.3.1.6}% 
+\contentsline {section}{\numberline {3.2}Merging Algorithm}{10}{section.3.2}% 
+\contentsline {subsection}{\itshape \fontsize {9}{12}\selectfont \numberline {3.2.1}Measure}{10}{subsection.3.2.1}% 
+\contentsline {subsection}{\itshape \fontsize {9}{12}\selectfont \numberline {3.2.2}Process}{12}{subsection.3.2.2}% 
+\contentsline {subsection}{\itshape \fontsize {9}{12}\selectfont \numberline {3.2.3}Merge}{12}{subsection.3.2.3}% 
+\contentsline {subsection}{\itshape \fontsize {9}{12}\selectfont \numberline {3.2.4}Update}{13}{subsection.3.2.4}% 
+\contentsline {subsection}{\itshape \fontsize {9}{12}\selectfont \numberline {3.2.5}Outcome}{13}{subsection.3.2.5}% 
+\contentsline {section}{\numberline {3.3}Islandization}{13}{section.3.3}% 
+\contentsline {subsection}{\itshape \fontsize {9}{12}\selectfont \numberline {3.3.1}Naive Island Grammar Generation}{13}{subsection.3.3.1}% 
+\contentsline {subsection}{\itshape \fontsize {9}{12}\selectfont \numberline {3.3.2}Interest Configuration Generation}{14}{subsection.3.3.2}% 
+\contentsline {section}{\numberline {3.4}Tolerization}{14}{section.3.4}% 
+\contentsline {section}{\numberline {3.5}Bounding The Seas}{14}{section.3.5}% 
+\contentsline {section}{\numberline {3.6}Bridgization}{14}{section.3.6}% 
+\contentsline {chapter}{\numberline {4}Tool}{20}{chapter.4}% 
+\contentsline {section}{\numberline {4.1}Design}{20}{section.4.1}% 
+\contentsline {section}{\numberline {4.2}Implementation}{20}{section.4.2}% 
+\contentsline {chapter}{\numberline {5}Experimental Designs}{21}{chapter.5}% 
+\contentsline {section}{\numberline {5.1}Experiment 1: Evaluating Normalization}{21}{section.5.1}% 
+\contentsline {subsection}{\itshape \fontsize {9}{12}\selectfont \numberline {5.1.1}Goals, Hypotheses, Variables}{21}{subsection.5.1.1}% 
+\contentsline {subsection}{\itshape \fontsize {9}{12}\selectfont \numberline {5.1.2}Design}{21}{subsection.5.1.2}% 
+\contentsline {subsection}{\itshape \fontsize {9}{12}\selectfont \numberline {5.1.3}Experimental Units}{21}{subsection.5.1.3}% 
+\contentsline {subsection}{\itshape \fontsize {9}{12}\selectfont \numberline {5.1.4}Data Collection Procedures}{22}{subsection.5.1.4}% 
+\contentsline {subsection}{\itshape \fontsize {9}{12}\selectfont \numberline {5.1.5}Analysis Procedures}{22}{subsection.5.1.5}% 
+\contentsline {subsection}{\itshape \fontsize {9}{12}\selectfont \numberline {5.1.6}Validity Evaluation}{22}{subsection.5.1.6}% 
+\contentsline {section}{\numberline {5.2}Experiment 2: Evaluating Merging}{22}{section.5.2}% 
+\contentsline {subsection}{\itshape \fontsize {9}{12}\selectfont \numberline {5.2.1}Goals, Hypotheses, Variables}{22}{subsection.5.2.1}% 
+\contentsline {subsection}{\itshape \fontsize {9}{12}\selectfont \numberline {5.2.2}Design}{23}{subsection.5.2.2}% 
+\contentsline {subsection}{\itshape \fontsize {9}{12}\selectfont \numberline {5.2.3}Experimental Units}{23}{subsection.5.2.3}% 
+\contentsline {subsection}{\itshape \fontsize {9}{12}\selectfont \numberline {5.2.4}Data Collection Procedures}{25}{subsection.5.2.4}% 
+\contentsline {subsection}{\itshape \fontsize {9}{12}\selectfont \numberline {5.2.5}Analysis Procedures}{26}{subsection.5.2.5}% 
+\contentsline {subsection}{\itshape \fontsize {9}{12}\selectfont \numberline {5.2.6}Validity Evaluation}{28}{subsection.5.2.6}% 
+\contentsline {subsubsection}{Conclusion Validity}{28}{section*.7}% 
+\contentsline {subsubsection}{Internal Validity}{28}{section*.8}% 
+\contentsline {subsubsection}{Construct Validity}{28}{section*.9}% 
+\contentsline {subsubsection}{External Validity}{29}{section*.10}% 
+\contentsline {section}{\numberline {5.3}Experiment 3: Evaluating Islandization}{29}{section.5.3}% 
+\contentsline {subsection}{\itshape \fontsize {9}{12}\selectfont \numberline {5.3.1}Goals, Hypotheses, Variables}{29}{subsection.5.3.1}% 
+\contentsline {subsection}{\itshape \fontsize {9}{12}\selectfont \numberline {5.3.2}Design}{31}{subsection.5.3.2}% 
+\contentsline {subsection}{\itshape \fontsize {9}{12}\selectfont \numberline {5.3.3}Experimental Units}{31}{subsection.5.3.3}% 
+\contentsline {subsection}{\itshape \fontsize {9}{12}\selectfont \numberline {5.3.4}Instrumentation}{32}{subsection.5.3.4}% 
+\contentsline {subsection}{\itshape \fontsize {9}{12}\selectfont \numberline {5.3.5}Data Collection Procedures}{32}{subsection.5.3.5}% 
+\contentsline {subsection}{\itshape \fontsize {9}{12}\selectfont \numberline {5.3.6}Analysis Procedures}{33}{subsection.5.3.6}% 
+\contentsline {subsubsection}{Exploratory Data Analysis}{33}{section*.13}% 
+\contentsline {subsubsection}{Primary Analyses}{34}{section*.14}% 
+\contentsline {subsection}{\itshape \fontsize {9}{12}\selectfont \numberline {5.3.7}Validity Evaluation}{35}{subsection.5.3.7}% 
+\contentsline {section}{\numberline {5.4}Experiment 4: Evaluating Tolerization}{35}{section.5.4}% 
+\contentsline {subsection}{\itshape \fontsize {9}{12}\selectfont \numberline {5.4.1}Goals, Hypotheses, Variables}{35}{subsection.5.4.1}% 
+\contentsline {subsection}{\itshape \fontsize {9}{12}\selectfont \numberline {5.4.2}Design}{35}{subsection.5.4.2}% 
+\contentsline {subsection}{\itshape \fontsize {9}{12}\selectfont \numberline {5.4.3}Experimental Units}{35}{subsection.5.4.3}% 
+\contentsline {subsection}{\itshape \fontsize {9}{12}\selectfont \numberline {5.4.4}Data Collection Procedures}{35}{subsection.5.4.4}% 
+\contentsline {subsection}{\itshape \fontsize {9}{12}\selectfont \numberline {5.4.5}Analysis Procedures}{35}{subsection.5.4.5}% 
+\contentsline {subsection}{\itshape \fontsize {9}{12}\selectfont \numberline {5.4.6}Validity Evaluation}{35}{subsection.5.4.6}% 
+\contentsline {section}{\numberline {5.5}Experiment 5: Evaluating Bounding the Seas}{35}{section.5.5}% 
+\contentsline {subsection}{\itshape \fontsize {9}{12}\selectfont \numberline {5.5.1}Goals, Hypotheses, Variables}{35}{subsection.5.5.1}% 
+\contentsline {subsection}{\itshape \fontsize {9}{12}\selectfont \numberline {5.5.2}Design}{35}{subsection.5.5.2}% 
+\contentsline {subsection}{\itshape \fontsize {9}{12}\selectfont \numberline {5.5.3}Experimental Units}{35}{subsection.5.5.3}% 
+\contentsline {subsection}{\itshape \fontsize {9}{12}\selectfont \numberline {5.5.4}Data Collection Procedures}{35}{subsection.5.5.4}% 
+\contentsline {subsection}{\itshape \fontsize {9}{12}\selectfont \numberline {5.5.5}Analysis Procedures}{35}{subsection.5.5.5}% 
+\contentsline {subsection}{\itshape \fontsize {9}{12}\selectfont \numberline {5.5.6}Validity Evaluation}{35}{subsection.5.5.6}% 
+\contentsline {section}{\numberline {5.6}Experiment 6: Evaluating Bridgization}{35}{section.5.6}% 
+\contentsline {subsection}{\itshape \fontsize {9}{12}\selectfont \numberline {5.6.1}Goals, Hypotheses, Variables}{35}{subsection.5.6.1}% 
+\contentsline {subsection}{\itshape \fontsize {9}{12}\selectfont \numberline {5.6.2}Design}{35}{subsection.5.6.2}% 
+\contentsline {subsection}{\itshape \fontsize {9}{12}\selectfont \numberline {5.6.3}Experimental Units}{35}{subsection.5.6.3}% 
+\contentsline {subsection}{\itshape \fontsize {9}{12}\selectfont \numberline {5.6.4}Data Collection Procedures}{35}{subsection.5.6.4}% 
+\contentsline {subsection}{\itshape \fontsize {9}{12}\selectfont \numberline {5.6.5}Analysis Procedures}{35}{subsection.5.6.5}% 
+\contentsline {subsection}{\itshape \fontsize {9}{12}\selectfont \numberline {5.6.6}Validity Evaluation}{36}{subsection.5.6.6}% 
+\contentsline {chapter}{\numberline {6}Results}{37}{chapter.6}% 
+\contentsline {section}{\numberline {6.1}Experiment 1: Evaluating Normalization}{37}{section.6.1}% 
+\contentsline {subsection}{\itshape \fontsize {9}{12}\selectfont \numberline {6.1.1}Descriptive Statistics}{37}{subsection.6.1.1}% 
+\contentsline {subsection}{\itshape \fontsize {9}{12}\selectfont \numberline {6.1.2}Hypothesis Testing}{37}{subsection.6.1.2}% 
+\contentsline {section}{\numberline {6.2}Experiment 2: Evaluating Merging}{37}{section.6.2}% 
+\contentsline {subsection}{\itshape \fontsize {9}{12}\selectfont \numberline {6.2.1}Descriptive Statistics}{37}{subsection.6.2.1}% 
+\contentsline {subsection}{\itshape \fontsize {9}{12}\selectfont \numberline {6.2.2}Hypothesis Testing}{38}{subsection.6.2.2}% 
+\contentsline {subsubsection}{$\Delta HAL$ Experiment}{39}{section*.22}% 
+\contentsline {subsubsection}{$\Delta MCC$ Experiment}{39}{section*.23}% 
+\contentsline {section}{\numberline {6.3}Experiment 3: Evaluating Islandization}{40}{section.6.3}% 
+\contentsline {subsection}{\itshape \fontsize {9}{12}\selectfont \numberline {6.3.1}Descriptive Statistics}{40}{subsection.6.3.1}% 
+\contentsline {subsection}{\itshape \fontsize {9}{12}\selectfont \numberline {6.3.2}Hypothesis Testing}{40}{subsection.6.3.2}% 
+\contentsline {section}{\numberline {6.4}Experiment 4: Evaluating Tolerization}{40}{section.6.4}% 
+\contentsline {subsection}{\itshape \fontsize {9}{12}\selectfont \numberline {6.4.1}Descriptive Statistics}{40}{subsection.6.4.1}% 
+\contentsline {subsection}{\itshape \fontsize {9}{12}\selectfont \numberline {6.4.2}Hypothesis Testing}{40}{subsection.6.4.2}% 
+\contentsline {section}{\numberline {6.5}Experiment 5: Evaluating Bounding the Seas}{40}{section.6.5}% 
+\contentsline {subsection}{\itshape \fontsize {9}{12}\selectfont \numberline {6.5.1}Descriptive Statistics}{40}{subsection.6.5.1}% 
+\contentsline {subsection}{\itshape \fontsize {9}{12}\selectfont \numberline {6.5.2}Hypothesis Testing}{40}{subsection.6.5.2}% 
+\contentsline {section}{\numberline {6.6}Experiment 6: Evaluating Bridgization}{40}{section.6.6}% 
+\contentsline {subsection}{\itshape \fontsize {9}{12}\selectfont \numberline {6.6.1}Descriptive Statistics}{40}{subsection.6.6.1}% 
+\contentsline {subsection}{\itshape \fontsize {9}{12}\selectfont \numberline {6.6.2}Hypothesis Testing}{40}{subsection.6.6.2}% 
+\contentsline {chapter}{\numberline {7}Analysis and Interpretation}{41}{chapter.7}% 
+\contentsline {chapter}{\numberline {8}Threats to Validity}{42}{chapter.8}% 
+\contentsline {section}{\numberline {8.1}Experiment 1: Evaluating Normalization}{42}{section.8.1}% 
+\contentsline {section}{\numberline {8.2}Experiment 2: Evaluating Merging}{42}{section.8.2}% 
+\contentsline {section}{\numberline {8.3}Experiment 3: Evaluating Islandiation}{42}{section.8.3}% 
+\contentsline {section}{\numberline {8.4}Experiment 4: Evaluating Tolerization}{42}{section.8.4}% 
+\contentsline {section}{\numberline {8.5}Experiment 5: Evaluating Bounding the Seas}{42}{section.8.5}% 
+\contentsline {section}{\numberline {8.6}Experiment 6: Evaluating Bridgization}{42}{section.8.6}% 
+\contentsline {chapter}{\numberline {9}Conclusions and Future Work}{43}{chapter.9}% 
+\contentsline {chapter}{References}{44}{chapter*.24}% 
