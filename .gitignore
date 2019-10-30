@@ -1,2 +1,3 @@
 *.gen.*
 .ipynb_checkpoints/
+.vscode

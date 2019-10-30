@@ -5,5 +5,5 @@ Outline:
 
 
 !rg{
-  \item Evaluate and test each step of the normalization proccess used by SIGMA to understand the effectiveness of each step to improve the normalization process of SIGMA.
+  \item Design a normalization process for grammars that is conducive to identifying and merging similar parts across grammars to be used for merging grammars for the automated creation of multilingual parserss. 
 }
