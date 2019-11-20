@@ -18,6 +18,7 @@
 \usepackage{multirow}
 \usepackage{setspace}
 \usepackage{enumitem}
+\usepackage[epsilon]{backnaur}
 
 \ifCLASSOPTIONcompsoc
   \usepackage[caption=false, font=normalsize, labelfont=sf, textfont=sf]{subfig}

@@ -1,3 +1,4 @@
 *.gen.*
 .ipynb_checkpoints/
 .vscode
+**/.Rhistory

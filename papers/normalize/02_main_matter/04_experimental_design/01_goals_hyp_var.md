@@ -1,12 +1,7 @@
-## Goals, Hypotheses, and Variables {#sec:exp_goals}
+## Pilot Study {#sec:exp_goals}
 
-Goals:
- - Evaluate each step of normalization
+To evaluate the above approach, we performed a small pilot study on three grammars. We selected these grammars from the ANTLR grammar repository. To select these three grammars, we looked for three grammars of varying sizes and applications.
 
-Hypotheses:
- - Null hypothesis: each step has no effect on the halstead effort for MCC.
+To evaluate the grammars, we verified that each production was either of Form 1 or Form 2. We also looked at the grammars for changes in size. Finally, we looked for interesting portions of grammars.
 
-Variables:
- - Size of grammar as chosen in SIGMA - Blocking,
- - Halstead/MCC
- - The steps that the normalization goes through. (2^#numSteps)
+
