@@ -2,3 +2,6 @@
 .ipynb_checkpoints/
 .vscode
 **/.Rhistory
+data/normalize/arc-mlp-1.0-SNAPSHOT
+data/normalize/logs/
+
