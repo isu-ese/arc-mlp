@@ -19,6 +19,7 @@
 \usepackage{setspace}
 \usepackage{enumitem}
 \usepackage[epsilon]{backnaur}
+\usepackage{booktabs}
 
 \ifCLASSOPTIONcompsoc
   \usepackage[caption=false, font=normalsize, labelfont=sf, textfont=sf]{subfig}

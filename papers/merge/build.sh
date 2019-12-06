@@ -2,7 +2,7 @@
 
 set -e
 
-if [ $1 == 'proposal' ]; then
+if [ "$1" = 'proposal' ]; then
   ./build_latex.sh proposal
   tempdir=$(mktemp -d)
 
@@ -12,7 +12,7 @@ if [ $1 == 'proposal' ]; then
   rm -rf $tempdir
   rm proposal.gen.md
   rm proposal.tex
-elif [ $1 == 'paper' ]; then
+elif [ "$1" = 'paper' ]; then
   ./build_latex.sh paper
   tempdir=$(mktemp -d)
 
@@ -22,7 +22,7 @@ elif [ $1 == 'paper' ]; then
   rm -rf $tempdir
   rm paper.gen.md
   rm paper.tex
-elif [ $1 == 'presentation' ]; then
+elif [ "$1" = 'presentation' ]; then
   pp presentation.md > presentation.gen.md
   pandoc $1.gen.md --verbose \
     --template=../../assets/templates/presentation.latex \
@@ -33,4 +33,6 @@ elif [ $1 == 'presentation' ]; then
     -f markdown+multiline_tables \
     -o ../../dist/presentations/merge.pdf
   rm presentation.gen.md
+else
+  echo "Missing option: proposal paper presentation"
 fi

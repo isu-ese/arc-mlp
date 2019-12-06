@@ -2,10 +2,10 @@
 
 To design our normal form, we decided that it should have the following properties.
 
-1. Our domain object model represents each rule as a tree of operators and operands. To simplify searching for similar rules and productions, we want the tree for each rule to be flat. We can ensure this by requiring that each rule has a single operator at most.
-2. We desire that the size increase induced by normalization is minimal. \label{req:size_increase_minimal}
-3. We desire that the normalized grammar is unambiguous given a grammar. I.e. there is exactly one normalized grammar for each grammar. \label{req:unambiguous}
-4. \label{req:transformations} We desire that certain transformations on the input grammar before normalization do not change the normalization result. These transformations are
+1. Our domain object model represents each rule as a tree of operators and operands. Searching for similar rules and productions is simplified if each rule is composed of a single operator and its operands because this allows set and list based comparisons, which are simpler, to be performed rather than tree based comparisons. Because of this, we require that the normal form has at most single operator for each rule of the normalized grammar.
+2. The size increase induced by normalization is minimal. Larger grammars are more difficult to process. \label{req:size_increase_minimal}
+3. The normalized grammar is unambiguous given a grammar. I.e. there is exactly one normalized grammar for each grammar. \label{req:unambiguous}
+4. \label{req:transformations} One anticipated difficult for searching similar portions of grammars is that refactoring that individual developer introduce that don't change the meaning of the grammar will result in portions of grammars being less similar. To mitigate this, we desire that certain transformations on the input grammar before normalization do not change the normalization result. The transformations we chose are the following
     1. Refactoring common terms of rules into a separate rule.
     2. Duplicating a rule.
     3. Introducing an unused non-terminal symbol and its production.

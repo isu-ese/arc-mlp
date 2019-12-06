@@ -1,6 +1,6 @@
 ## Theoretical Foundations {#sec:foundations}
 
-Context-free grammars are defined as $G=(V,\Sigma,P,S)$, where $V$ is the set of non-terminal symbols, $\Sigma$ is the set of terminal symbols, $P$ is the set of productions, and $S$ is the start production \cite{haoxiangLanguagesMachinesIntroduction1988}. In this paper, we use a modified syntax for productions $\Phi \rightarrow R$. $\Phi$ is any non-terminal symbol and $R$ is a rule. Rules can be either a symbol, $\epsilon$, rules concatenated together, or rules unioned together with the $|$ operator. Rather than using multiple productions when a symbol can produce multiple rules, the rules are combined with the $|$ operator. For example productions normally written as 
+Context-free grammars are defined as $G=(V,\Sigma,P,S)$, where $V$ is the set of non-terminal symbols, $\Sigma$ is the set of terminal symbols, $P$ is the set of productions, and $S$ is the start production \cite{haoxiangLanguagesMachinesIntroduction1988}. In this paper, we use a modified syntax for productions $\Phi \rightarrow R$. $\Phi$ is any non-terminal symbol and $R$ is a rule. Rules can be either a symbol, $\epsilon$ (the empty string), rules concatenated together, or rules unioned together with the $|$ operator. Rather than using multiple productions when a symbol can produce multiple rules, the rules are combined with the $|$ operator. For example productions normally written as 
 \begin{bnf*}
     \bnfprod{A}{\bnfts{a}} \\
     \bnfprod{A}{\bnfts{b}}
