@@ -1,15 +1,15 @@
 secPrefix:
-  - "Sec."
-  - "Secs."
+  - "Section"
+  - "Sections"
 figPrefix:
   - "Fig."
   - "Figs."
 eqnPrefix:
-  - "Eqn."
-  - "Eqns."
+  - "Equation"
+  - "Equations"
 tblPrefix:
-  - "Tab."
-  - "Tabs."
+  - "Table"
+  - "Tables"
 lstPrefix:
-  - "Alg."
-  - "Algs."
+  - "Algorithm"
+  - "Algorithms"

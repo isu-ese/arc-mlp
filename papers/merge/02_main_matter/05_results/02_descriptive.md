@@ -19,9 +19,9 @@ Large & 149854 & 842.4\tabularnewline
 \end{table}
 ~~~
 
-![Delta HAL boxplots.](images/paper/results/hal\_box.eps){#fig:hal_box}
+![Results of running the Delta HAL experiment in the form of boxplots.](images/paper/results/hal\_box.eps){#fig:hal_box}
 
-![Delta MCC boxplots.](images/paper/results/mcc\_box.eps){#fig:mcc_box}
+![Results of running the Delta MCC experiment in the form of boxplots.](images/paper/results/mcc\_box.eps){#fig:mcc_box}
 
 ![Delta Hal experiment Q-Q plots.](images/paper/results/ex1_qqplots.eps){#fig:ex1_qqplots}
 
@@ -31,11 +31,8 @@ The Normal Q-Q plot, depicted in @fig:ex1_qqplots, indicates that the normality 
 
 ![Delta HAL experiment interaction plot.](images/paper/results/ex1_interaction.eps){#fig:ex1_interaction}
 
-<<<<<<< HEAD
-The interaction plot, depicted in @fig:ex1_interaction, indicates that their is an interaction between the small and medium levels as the similarity threshold changes from 0.75 to 1.0. This indicates that the assumption that the block and treatment do not interact and that an RCBD design is inappropriate and rather a factorial design would be correct.
-=======
-The interaction plot, depicted in @fig:ex1_interaction, indicates that their is an interaction between the small and medium levels as the similarity threshold changes from 0.75 to 1.0.
->>>>>>> development
+The interaction plot, depicted in @fig:ex1_interaction, indicates that there is an interaction between the small and medium levels as the similarity threshold changes from 0.75 to 1.0. This indicates that the assumption that the block and treatment do not interact and that an RCBD design is inappropriate and a factorial design would be more accurate.
+
 
 ![Delta MCC Experiment Q-Q plots.](images/paper/results/ex2_qqplots.eps){#fig:ex2_qqplots}
 
@@ -45,8 +42,4 @@ The Normal Q-Q plot, depicted in @fig:ex2_qqplots, indicates that the normality 
 
 ![Delta MCC experiment interaction plot.](images/paper/results/ex2_interaction.eps){#fig:ex2_interaction}
 
-<<<<<<< HEAD
-The interaction plot, depicted in @fig:ex2_interaction, indicates that their is an interaction between the small and medium levels as the similarity threshold changes from 0.75 to 1.0. This indicates that the assumption that the block and treatment do not interact and that an RCBD design is inappropriate and rather a factorial design would be correct.
-=======
-The interaction plot, depicted in @fig:ex2_interaction, indicates that their is an interaction between the small and medium levels as the similarity threshold changes from 0.75 to 1.0.
->>>>>>> development
+The interaction plot, depicted in @fig:ex2_interaction, indicates that there is an interaction between the small and medium levels as the similarity threshold changes from 0.75 to 1.0. This indicates that the assumption that the block and treatment do not interact and that an RCBD design is inappropriate and a factorial design would be more accurate.

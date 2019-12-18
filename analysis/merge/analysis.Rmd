@@ -25,7 +25,7 @@ library(RColorBrewer) # for better colors
 library(wesanderson) # for better colors
 
 # read in data
-setwd("/home/git/isuese/papers/arc-mlp/data/merge/")
+setwd("/home/rose/repos/arc-mlp/data/merge/")
 data <- read.csv2(file = "experiments-1-result.csv", header = T, sep = ",", as.is = T, quote = "\"")
 ```
 

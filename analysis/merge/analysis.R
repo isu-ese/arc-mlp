@@ -12,9 +12,11 @@ library(clinfun) # for Jonchheere-Terpstra Test
 library(RColorBrewer) # for better colors
 library(wesanderson) # for better colors
 library(cairoDevice) # for conversion to svg
+library(wesanderson)
+library(ggpubr)
 
 # read in data
-setwd("/home/git/isuese/papers/arc-mlp/data/merge/")
+setwd("/home/rose/repos/arc-mlp/data/merge/")
 data <- read.csv2(file = "experiments-1-result.csv", header = T, sep = ",", as.is = T, quote = "\"")
 
 # Separate Data by experiment
@@ -29,6 +31,7 @@ dataHal['deltaHAL'] = as.numeric(dataHal$trivial.HAL) - as.numeric(dataHal$full.
 dataMCC['sizeF'] <- as.factor(dataHal$size)
 dataMCC['stF'] <- as.factor(dataHal$similarity_threshold)
 dataMCC['deltaMCC'] = as.numeric(dataMCC$trivial.MCC) - as.numeric(dataMCC$full.MCC)
+treatment <- dataMCC$stF
 
 deltaHAL <- dataHal$deltaHAL
 simThreshold <- dataHal$stF
@@ -148,7 +151,7 @@ steelTest(deltaHAL~simThreshold, data=rcbd, alternative="greater")
 # Determining if there is an order among the treatment levels
 levels(rcbd$simThreshold) <- c("0.001", "0.25", "0.5", "0.75", "1.0")
 rcbd$simThreshold <- ordered(rcbd$simThreshold)
-jonckheere.test(rcbd$deltaHAL, rcbd$simThreshold, alternative = "increasing", nperm=10000)
+jonckheere.test(rcbd$deltaHAL, rcbd$simThreshold, alternative = "decreasing", nperm=10000)
 
 ## Power Analysis
 pwr.2way(a = 3, b = 5, alpha = 0.05, size.A = 5, size.B = 3, f.A = NULL, f.B = NULL, delta.A = , delta.B = , sigma.A = , sigma.B = )
@@ -194,12 +197,12 @@ summary(aov(deltaMCC~simThreshold*size, rcbd2)) # parametric test for rcbd
 summary(aovp(deltaMCC~simThreshold*size, rcbd2)) # permutation test for rcbd
 
 # Steel's Multiple Comparison against Control
-steelTest(deltaMCC~simThreshold, data=rcbd2, alternative="greater")
+steelTest(deltaMCC~simThreshold, data=rcbd2, alternative="greater")⎄
 
 # Determining if there is an order among the treatment levels
 levels(rcbd2$simThreshold) <- c("0.001", "0.25", "0.5", "0.75", "1.0")
 rcbd2$simThreshold <- ordered(rcbd2$simThreshold)
-jonckheere.test(rcbd2$deltaMCC, rcbd2$simThreshold, alternative = "increasing", nperm=10000)
+jonckheere.test(rcbd2$deltaMCC, rcbd2$simThreshold, alternative = "decreasing", nperm=10000)
 
 ## Power Analysis
 pwr.2way(a = 3, b = 5, alpha = 0.05, size.A = 5, size.B = 3, f.A = NULL, f.B = NULL, delta.A = , delta.B = , sigma.A = , sigma.B = )

@@ -2,7 +2,7 @@
 
 The following algorithm defines the approach for normalizing a given grammar. The normalization process defined here facilitates the ability to merge productions, in pursuit of the overarching goal of automated generation of Island [X], Tolerant [X], Bridge [X], and Bounded Seas [X] grammars.
 
-This algorithm assumes that the source grammar, $G$, was initially in some defined formalism such as Antlr [X], EBNF [X], BNF [X], SDF [X], TXL [X], etc. The grammar was then read in and processed to conform to the metamodel depicted in Figure \ref{fig:metamodel}. Assuming that the grammar meets this condition, the goal of this algorithm is then to reformat the grammar such that each production is of one of $\textrm{Form}_1$ or $\textrm{Form}_2$
+This algorithm assumes that the source grammar, $G$, was initially in some defined formalism such as ANTLR [X], EBNF [X], BNF [X], SDF [X], TXL [X], etc. The grammar was then read in and processed to conform to the metamodel depicted in Figure \ref{fig:metamodel}. Assuming that the grammar meets this condition, the goal of this algorithm is then to reformat the grammar such that each production is of one of $\textrm{Form}_1$ or $\textrm{Form}_2$
 
 \begin{algorithm}[tb]
  \caption{Normalization Algorithm}\label{alg:norm}

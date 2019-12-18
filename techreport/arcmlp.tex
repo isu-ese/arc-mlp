@@ -50,7 +50,7 @@ Idaho State University
 \textbf{Objective}: This research considers the development of a method to automate the merging of island grammar components. The goal of this is to facilitate the development of an approach to fully automate the creation of island grammars. The end result of which is the reduction in initial effort and maintenance effort required for island grammar engineering. 
 \textbf{Methods}: We developed an automated approach to merge components of a grammar. To evaluate this approach we conducted two experiments, each using a factorial design, of 5 replications each. We randomly selected pairs of grammars three size categories to evaluate the effects of the merging process on the maintenance effort and complexity of the generated grammars. 
 \textbf{Results}: We found that in all cases the application of this merging approach reduces the maintenance effort and complexity of the grammars. Furthermore, we decrease the similarity threshold (i.e., reduce the degree of similarity between merged components) the greater the change in maintenance effort and complexity. 
-\textbf{Limitations}: The primary limitation of this research is that this approach is currently limited to grammars written in the Antlr4 grammar format. 
+\textbf{Limitations}: The primary limitation of this research is that this approach is currently limited to grammars written in the ANTLR 4 grammar format. 
 \textbf{Conclusions}: This work presents the initial steps towards the automated construction of \textit{island} and \textit{tolerant} grammars. We have shown that this approach to merging grammar components follows suit with the expectations of Island and Tolerant grammars (reduction in maintenance effort and complexity).
 \end{abstract}
 
@@ -834,7 +834,7 @@ In addition to these research questions we have selected the following metrics t
 
 \subsection{Experimental Units}
 
-In these experiments, the experimental units are individual grammars selected from the Antlr4 \cite{parr_definitive_2012} grammar repository\footnote{\url{https://github.com/antlr/grammars-v4}}. The sys-verilog grammar was excluded because of errors while parsing it. At the time of this writing, the repository contained 198 individual grammars from a variety of general purpose and domain specific languages.
+In these experiments, the experimental units are individual grammars selected from the ANTLR 4 \cite{parr_definitive_2012} grammar repository\footnote{\url{https://github.com/antlr/grammars-v4}}. The sys-verilog grammar was excluded because of errors while parsing it. At the time of this writing, the repository contained 198 individual grammars from a variety of general purpose and domain specific languages.
 
 The process used to select the grammars for each experiment is depicted in Figure \ref{fig:selection_process} and works as follows. Initially, for each grammar in the repository we collected a combination of metadata and metric measurements. The metadata collected consists of the following information: the language represented by the grammar, the version of that language (if applicable) and the following metrics (selected from the metrics suite by Power and Malloy \cite{power_metrics_2004}):
 

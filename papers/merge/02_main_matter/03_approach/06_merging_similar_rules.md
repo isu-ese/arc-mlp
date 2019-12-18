@@ -4,7 +4,7 @@ Once the two most similar productions are detected they are then merged together
 
 ### Merging Similar Terms
 
-To merge two productions of the first form, the LCS alignment produced while measuring the similarity between terms is used. Initially, each pair of subsequences that do not align are identified. In the previous example, the identified unaligned pairs of subsequences are: (`'a'`, $\varepsilon$), ($\varepsilon$, `<B>`), and (`'a'`, `'c'`). Each subsequence is replaced by a term that produces to either subsequence. As an example, the prior example sequences of terms would merge to: $\left<P_{a+b}\right>$ ::= (`'a'` | $\varepsilon$) $\left<A\right>$ ($\varepsilon$ | $\left<B\right>$) `'b'` (`'c'` | `'a'`).
+To merge two productions of the first form, the LCS alignment produced while measuring the similarity between terms is used. Initially, each pair of subsequences that do not align are identified. In the previous example, the identified unaligned pairs of subsequences are: (`'a'`, $\varepsilon$), ($\varepsilon$, `<B>`), and (`'a'`, `'c'`). Each pair of unaligned subsequence is then substiuted with the union of the two subsequences. As an example, the prior example sequences of terms would merge to: $\left<P_{a+b}\right>$ ::= (`'a'` | $\varepsilon$) $\left<A\right>$ ($\varepsilon$ | $\left<B\right>$) `'b'` (`'c'` | `'a'`).
 
 ### Merging Similar Alternatives
 

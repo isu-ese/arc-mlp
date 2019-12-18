@@ -1,4 +1,4 @@
-In order to generate an island grammar from one or more source grammars, there is a need to merge components of the source grammar(s) to reduce or deduplicate the final grammar. Such a technique can be used to reduce the island components. Thus, the focus of this paper (as noted in @sec:introduction) is the development of a technique to merge grammars together, and is depicted in @fig:approach. The process is as follows:
+In order to generate an island grammar from one or more source grammars, there is a need to merge components of the source grammar(s) to reduce or deduplicate the final grammar. Such a technique can be used to reduce the island components. Thus, the focus of this paper is the development of a technique to merge grammars together, and is depicted in @fig:approach. The process is as follows:
 
 1. Parse the input grammars.
 2. Trivially merge the grammars into a single grammar.
@@ -9,7 +9,7 @@ In order to generate an island grammar from one or more source grammars, there i
 7. Final Normalization of Merged Grammar
 8. Output the merged grammar.
 
-![Diagram of Approach](images/paper/SIGMA-DFD.pdf){#fig:approach}
+![Data flow diagram of merging process.](images/paper/SIGMA-DFD.pdf){#fig:approach}
 
 The remainder of this section presents the details of each of these steps and utilizes a running example based on the the two grammars depicted in @fig:grammar_g1 and @fig:grammar_g2.
 
@@ -57,6 +57,6 @@ The remainder of this section presents the details of each of these steps and ut
 ```{=latex}
  \end{minipage}
  }
- \caption{Example grammars.}
+ \caption{Example grammars used to demonstrate merging procedure.}
 \end{figure}
 ```

@@ -17,8 +17,8 @@ Following the GQM paradigm, research goal RG can be decomposed into the followin
 \noindent In addition to these research questions we have selected the following metrics to assess the results of the approach used:
 
 !metrics{
-  \item Effort -- To assess the effort required to maintain a grammar, we utilize the Halstead Effort measure for grammars as defined by Power and Malloy \cite{power_metrics_2004}.
-  \item Complexity -- To assess the complexity of a grammar, we utilize McCabe's Cyclomatic Complexity metric for grammars defined by Power and Malloy \cite{power_metrics_2004}.
+  \item Effort -- To assess the effort required to maintain a grammar, we utilize the Halstead Effort measure for grammars as defined by Power and Malloy \cite{powerMetricsSuiteGrammarbased2004}.
+  \item Complexity -- To assess the complexity of a grammar, we utilize McCabe's Cyclomatic Complexity metric for grammars defined by Power and Malloy \cite{powerMetricsSuiteGrammarbased2004}.
 }
 
 The dependent variables in the experiments, as indicated by the above research questions, are maintenance effort and complexity. Specifically, we are concerned with the change between the trivial merge state and the final grammar in terms of the effort and complexity of the grammar. Thus, the dependent variables of concern are:
@@ -29,4 +29,4 @@ The dependent variables in the experiments, as indicated by the above research q
 \noindent The independent variables we are concerned with are:
 
 * Similarity Threshold -- the parameter guiding the similarity measurements used in the merging process. The values used in the experiments are 0.001, 0.25, 0.5, 0.75, and 1.0.
-* Size -- the size of the grammar as defined by measuring its number of productions (PROD) \cite{power_metrics_2004}, and threshold this value into three distinct categories: Small, Medium, and Large, as defined in @sec:subjects.
+* Size -- the size of the grammar as defined by measuring its number of productions (PROD) \cite{powerMetricsSuiteGrammarbased2004}, and threshold this value into three distinct categories: Small, Medium, and Large, as defined in @sec:subjects.
