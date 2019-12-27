@@ -1,0 +1,44 @@
+#!/bin/sh
+
+if [ "$#" -eq 0 ] 
+then
+	echo "Please specify the directory that the grammars are located in"
+	exit
+fi
+
+echo "name,files" > grammars.csv
+
+CUR_DIR=`pwd`
+cd $1
+
+find -name '*.g4' | sed -E '/examples/d ; s|./([^/]*+).*|\1 \0|g' | \
+  sed -E 's|unicode ./unicode/graphemes/Graphemes.g4|unicode-graphemes ./unicode/graphemes/Graphemes.g4|g' | \
+  sed -E 's|unicode ./unicode/unicode16/classify.g4|unicode-classify ./unicode/unicode16/classify.g4|g' | \
+  sort | awk '                                                                                                                                                     master 
+{                   
+  if($1==k)         
+    printf("%s",",")  
+  else {              
+    if(NR!=1)         
+      print "\""    
+    printf("%s,\"",$1)
+  }                 
+  for(i=2;i<NF;i++)
+    printf("%s,",$i)
+  printf("%s",$NF)
+  k=$1    
+}         
+END{
+print "\""
+}' | \
+  sed -E '/system_verilog/d' | \
+  sed -E 's|,./objc/one-step[^,]*.g4||g' | \
+  sed -E 's|,./objc/two-step-processing/ObjectiveCPreprocessor[^,]*.g4||g' | \
+  sed -E 's|,./stringtemplate/STG[^,]*.g4||g' | \
+  sed -E 's|,./csharp/CSharpSharwell/[^,]*.g4||g' | \
+  sed -E 's|,./csharp/CSharpPreprocessorParser.g4||g' |
+  sed -E 's|,./z/ZOperatorParser.g4||g' | \
+  sed -E 's|,./ecmascript/[^/]*/[^,]*.g4||g' | \
+  sed -E 's|^(.*")((.*)(,))?([^,]*Parser[^,]*)(,?)(.*)?"$|\1\5\6\7\4\3"|g' | \
+	sed -E 's|,./antlr4/ANTLRv4LexerPythonTarget.g4||g' | \
+  sed -E 's|,./cobol85/Cobol85Preprocessor.g4||g' >> "$CUR_DIR/grammars.csv"

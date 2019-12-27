@@ -1,8 +1,12 @@
 ## Design
 
-To design our normal form, we decided that it should have the following properties.
+To design the normalization, we needed a normalization process that simplifies merging grammars. This led us to our first design goal: that it is easy to compare productions of normalized grammars. To do this, we constrained the productions of normalized grammars to each be one of two forms:
 
-1. Our domain object model represents each rule as a tree of operators and operands. Searching for similar rules and productions is simplified if each rule is composed of a single operator and its operands because this allows set and list based comparisons, which are simpler, to be performed rather than tree based comparisons. Because of this, we require that the normal form has at most single operator for each rule of the normalized grammar.
+1. $\bnfpn{\(\textit{Form}_1\)} \bnfpo \bnfpn{A} \bnfsp \bnftd{a} \bnfsp \bnfsk,$ where each term is a terminal symbol or a non-terminal symbol with an $F_2$ production and there are at least two terms in the rule.
+2. $\bnfpn{\(\textit{Form}_2\)} \bnfpo \bnfpn{A} \bnfor \bnftd{a} \bnfor \bnfsk,$ where each term is a terminal symbol, the empty string, or a non-terminal symbol with an $F_1$ production and there are at least two terms in the rule except for the special case when there is only production.
+
+To design the normalization, we decided that it should have the following properties.
+Our domain object model represents each rule as a tree of operators and operands. Searching for similar rules and productions is simplified if each rule is composed of a single operator and its operands because this allows set and list based comparisons, which are simpler, to be performed rather than tree based comparisons. Because of this, we require that the normal form has at most single operator for each rule of the normalized grammar.
 2. The size increase induced by normalization is minimal. Larger grammars are more difficult to process. \label{req:size_increase_minimal}
 3. The normalized grammar is unambiguous given a grammar. I.e. there is exactly one normalized grammar for each grammar. \label{req:unambiguous}
 4. \label{req:transformations} One anticipated difficult for searching similar portions of grammars is that refactoring that individual developer introduce that don't change the meaning of the grammar will result in portions of grammars being less similar. To mitigate this, we desire that certain transformations on the input grammar before normalization do not change the normalization result. The transformations we chose are the following

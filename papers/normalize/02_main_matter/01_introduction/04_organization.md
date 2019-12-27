@@ -1,1 +1,3 @@
-## Organization {-}
+<!-- ## Organization {-} -->
+
+The organization of this paper is as follows. [@Sec:background] discusses the theoretical foundations related to this work. [@Sec:approach] details the properties of normalization and the meta-model and algorithms used during the normalization. [@Sec:experimental_design] selects three grammars to demonstrate the normalization process. [@Sec:results] shows the results of normalizing these grammars. Finally, [@sec:conclusions] concludes this paper with a summary and description of future work.
