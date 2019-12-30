@@ -2,34 +2,65 @@
 
 To design the normalization, we needed a normalization process that simplifies merging grammars. This led us to our first design goal: that it is easy to compare productions of normalized grammars. To do this, we constrained the productions of normalized grammars to each be one of two forms:
 
-1. $\bnfpn{\(\textit{Form}_1\)} \bnfpo \bnfpn{A} \bnfsp \bnftd{a} \bnfsp \bnfsk,$ where each term is a terminal symbol or a non-terminal symbol with an $F_2$ production and there are at least two terms in the rule.
-2. $\bnfpn{\(\textit{Form}_2\)} \bnfpo \bnfpn{A} \bnfor \bnftd{a} \bnfor \bnfsk,$ where each term is a terminal symbol, the empty string, or a non-terminal symbol with an $F_1$ production and there are at least two terms in the rule except for the special case when there is only production.
+\textmd{$\textit{Form}_1$}
 
-To design the normalization, we decided that it should have the following properties.
-Our domain object model represents each rule as a tree of operators and operands. Searching for similar rules and productions is simplified if each rule is composed of a single operator and its operands because this allows set and list based comparisons, which are simpler, to be performed rather than tree based comparisons. Because of this, we require that the normal form has at most single operator for each rule of the normalized grammar.
-2. The size increase induced by normalization is minimal. Larger grammars are more difficult to process. \label{req:size_increase_minimal}
-3. The normalized grammar is unambiguous given a grammar. I.e. there is exactly one normalized grammar for each grammar. \label{req:unambiguous}
-4. \label{req:transformations} One anticipated difficult for searching similar portions of grammars is that refactoring that individual developer introduce that don't change the meaning of the grammar will result in portions of grammars being less similar. To mitigate this, we desire that certain transformations on the input grammar before normalization do not change the normalization result. The transformations we chose are the following
-    1. Refactoring common terms of rules into a separate rule.
-    2. Duplicating a rule.
-    3. Introducing an unused non-terminal symbol and its production.
-    4. Replacing a non-terminal symbol with a non-terminal symbol that produces that non-terminal symbol.
-    4. Replacing all usages of a non-terminal symbol with its rule.
+:   The rule of the production only uses the concatenation operator. E.g. $\bnfpn{A} \bnfpo \bnfpn{B} \bnfsp \bnftd{b} \bnfsp \bnfsk.$
 
-To meet these requirements, we decided that the normal form would have each production as one of the following forms.
+\textmd{$\textit{Form}_2$}
 
-1. $\bnfpn{\(\textrm{Form}_1\)} \bnfpo \bnfpn{A} \bnfsp \bnftd{a} \bnfsp \bnfsk,$ where each term is a terminal symbol or a non-terminal symbol with an $F_2$ production and there are at least two terms in the rule.
-2. $\bnfpn{\(\textrm{Form}_2\)} \bnfpo \bnfpn{A} \bnfor \bnftd{a} \bnfor \bnfsk,$ where each term is a terminal symbol, the empty string, or a non-terminal symbol with an $F_1$ production and there are at least two terms in the rule except for the special case when there is only production.
+:   The rule of the production only uses the alternatives (`|`) operator. E.g. $\bnfpn{A} \bnfpo \bnfpn{B} \bnfor \bnftd{b}\bnfor \bnfsk.$
 
-The reason we chose these two forms is that because rules of these forms are relatively easy to compare. This allows rules to easily be compared and merged. The restriction that non-terminal symbols referenced in each rule must have productions of the opposite form is so that examples 
+However, restricting each production to one of these two forms can still introduce problems. Productions defining a portion of a language can be written in several different ways. This can introduce undesired ambiguity. To reduce this ambiguity, we identified and removed five sources of ambiguity. The first is ambiguity introduced by spurious usage of the empty string. The second is ambiguity introduced by the associative properties of operators. The third is ambiguity introduced by the commutative property of the alternatives (`|`) operator. The fourth is ambiguity introduced by unit productions. The fifth source is ambiguity introduced by duplicate productions.
 
-To meet requirement \ref{req:transformations}, our normalization process is performed using only transformation that are the inverse of transformations we do not want to affect our normalization process. To ensure that the size increase is minimal, we do not attempt to reverse transformations that rely on the distributive property between the concatenation and union `|` operators. To reverse transformations of this type, it is required to distribute productions. For example, 
+The first ambiguity just mentioned is spurious usage of the empty string. An example of this would be the rule $\bnfpn{A} \bnfpo \bnfpn{B} \bnfsp \bnfes \bnfsp \bnfts{b}.$ The empty string in the middle of the expression is unnecessary. These unnecessary empty strings are eliminated in Algorithm \ref{alg:simp_prod}.
+
+The second source of ambiguity arises from the associative property of the concatenation and alternative operators. For example, productions $S_1$ and $S_2$ are equivalent in the following productions.
+
 \begin{bnf*}
-    \bnfprod{A}{\bnfts{a} \bnfsp \bnfpn{B}} \\
-    \bnfprod{B}{\bnfts{b} \bnfor \bnfts{c}}
+\bnfprod{$S_1$}{\bnfts{a} \bnfsp \bnfpn{B}} \\
+\bnfprod{B}{\bnfts{b} \bnfsp \bnfts{c}} \\
+\bnfprod{$S_2$}{\bnfpn{A} \bnfsp \bnfts{c}} \\
+\bnfprod{A}{\bnfts{a} \bnfsp \bnfts{b}}
 \end{bnf*}
-\noindent would have to be transformed to
+
+\noindent To remove this source of ambiguity, we can further qualify $\textit{Form}_1$ and $\textit{Form}_2.$ Namely, we add the constraint that a production cannot use non-terminal symbols that are the same form. Algorithm \ref{alg:coll_prod} of the normalization process details how this is accomplished.
+
+The commutative property of the alternative operator causes the third source of ambiguity. For example, the following two productions are identical, but are represented differently:
+
 \begin{bnf*}
-    \bnfprod{A}{\bnfts{a} \bnfsp \bnfts{b} \bnfor \bnfts{a} \bnfsp \bnfts{c}}.
+\bnfprod{A}{\bnfts{a} \bnfor \bnfts{b} \bnfor \bnfts{c}} \\
+\bnfprod{A}{\bnfts{c} \bnfor \bnfts{b} \bnfor \bnfts{a}}
 \end{bnf*}
-\noindent Performing transformations of this kind repeatedly would result in an unreasonable increase in the number of productions. In addition, it would be unable to handle the case when a production indirectly references itself.
+
+\noindent We considered two different approaches to removing this ambiguity. The first approach involved lexicographically ordering the terms. This is unwieldy because it is difficult to define a lexicographic ordering. Instead, we adjusted our domain object model to use a set container for the terms. This eliminated the problem by removing the ordering from our representation.
+
+The fourth source of ambiguity is the use of unit productions. A unit production is a production where the right hand side is a single symbol. Here is an example:
+
+\begin{bnf*}
+\bnfprod{A}{\bnfpn{B}} \\
+\bnfprod{B}{\bnfts{a} \bnfsp \bnfts{b} \bnfsp \bnfts{c}}
+\end{bnf*}
+
+\noindent In almost all cases, this is better represented by removing the unit production. The one exception is when the start symbol directly produces a single terminal symbol. Removal of unit productions is simple and is performed in Algorithm \ref{alg:elim_unit_prod}.
+
+The fifth and last source of ambiguity is ambiguity introduced by duplicate productions. Here is an example production that can be simplified significantly by removing duplicate productions:
+
+\begin{bnf*}
+\bnfprod{A}{\bnfpn{B} \bnfor \bnfpn{C}} \\
+\bnfprod{B}{\bnfts{a} \bnfsp \bnfts{b} \bnfsp \bnfts{c}} \\
+\bnfprod{C}{\bnfts{a} \bnfsp \bnfts{b} \bnfsp \bnfts{c}}
+\end{bnf*}
+
+\noindent Detection and removal of duplicate productions is detailed in algorithm \ref{alg:merge_equiv_prod} of the normalization process.
+
+Aggregating all chosen design choices, the properties of the normalized grammar are as follows. First, each production is one of the two following forms:
+
+\textmd{$\textit{Form}_1$}
+
+:   The rule of the production only uses the concatenation operator to concatenate symbols. E.g. $\bnfpn{A} \bnfpo \bnfpn{B} \bnfsp \bnftd{b} \bnfsp \bnfsk.$
+
+\textmd{$\textit{Form}_2$}
+
+:   The rule of the production only uses the alternation (`|`) operator to combine symbols or the empty string. E.g. $\bnfpn{A} \bnfpo \bnfpn{B} \bnfor \bnftd{b} \bnfor \bnfes \bnfor \bnfsk.$
+
+Second, each symbol in a rule cannot have the same form as that rule. Third, unit rules are not permitted except for the case of the start symbol producing a single terminal symbol. Fourth, no pair of productions can have identical right-hand sides.

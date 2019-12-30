@@ -11,6 +11,7 @@
 \usepackage{algorithm}
 \usepackage{algpseudocode}
 \algnewcommand{\LineComment}[1]{\Statex \(\triangleright\) #1}
+\renewcommand*\Call[2]{\textproc{#1}(#2)}
 
 \usepackage{textcomp}
 \usepackage{xcolor}
