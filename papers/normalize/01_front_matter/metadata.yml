@@ -28,8 +28,7 @@ acm-doi:
 submission_id:
 abstract: |
 !indent(!include(01_front_matter/abstract.md))
-acks: |
-!indent(!include(03_back_matter/acknowledgements.md))
+acks: 
 keywords: Island Grammars, Automated Grammar Formation, Software Language Engineering
 ieeeref: 6
 ...
