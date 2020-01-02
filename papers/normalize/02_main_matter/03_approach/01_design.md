@@ -1,20 +1,26 @@
-## Design
+## Normalization Foundations
 
-To design the normalization, we needed a normalization process that simplifies merging grammars. This led us to our first design goal: that it is easy to compare productions of normalized grammars. To do this, we constrained the productions of normalized grammars to each be one of two forms:
+The constraints were chosen through the identification and resolution of five different issues. These problems revolved around equivalent ways of writing rules that make it difficult for a merging procedure to detect and then combine similar productions across grammars.
 
-\textmd{$\textit{Form}_1$}
+\begin{algorithm}[tb]
+\caption{Simplify Productions}\label{alg:simp_prod}
+ \begin{algorithmic}[1]
+  \Function{SimplifyProductions}{$G$}
+    \ForAll{$\mathcal{o} \in \Call{OperatorNodes}{G}$}
+      \If{$\Call{IsConcatOperator}{\mathcal{o}}$}
+        \ForAll{\{$p \in \Call{Operands}{\mathcal{o}} \mid p = \epsilon$\}}
+          \State \Call{RemoveOperand}{$p$}
+        \EndFor
+      \EndIf
+    \EndFor
+    \State \textbf{return} $G$
+  \EndFunction
+ \end{algorithmic}
+\end{algorithm}
 
-:   The rule of the production only uses the concatenation operator. E.g. $\bnfpn{A} \bnfpo \bnfpn{B} \bnfsp \bnftd{b} \bnfsp \bnfsk.$
+The first issue is spurious usage of the empty string. An example of this would be the production $\bnfpn{A} \bnfpo \bnfpn{B} \bnfsp \bnfes \bnfsp \bnfts{b}.$ The empty string in the middle of the expression is unnecessary. These unnecessary empty strings are eliminated in Algorithm \ref{alg:simp_prod}.
 
-\textmd{$\textit{Form}_2$}
-
-:   The rule of the production only uses the alternatives (`|`) operator. E.g. $\bnfpn{A} \bnfpo \bnfpn{B} \bnfor \bnftd{b}\bnfor \bnfsk.$
-
-However, restricting each production to one of these two forms can still introduce problems. Productions defining a portion of a language can be written in several different ways. This can introduce undesired ambiguity. To reduce this ambiguity, we identified and removed five sources of ambiguity. The first is ambiguity introduced by spurious usage of the empty string. The second is ambiguity introduced by the associative properties of operators. The third is ambiguity introduced by the commutative property of the alternatives (`|`) operator. The fourth is ambiguity introduced by unit productions. The fifth source is ambiguity introduced by duplicate productions.
-
-The first ambiguity just mentioned is spurious usage of the empty string. An example of this would be the rule $\bnfpn{A} \bnfpo \bnfpn{B} \bnfsp \bnfes \bnfsp \bnfts{b}.$ The empty string in the middle of the expression is unnecessary. These unnecessary empty strings are eliminated in Algorithm \ref{alg:simp_prod}.
-
-The second source of ambiguity arises from the associative property of the concatenation and alternative operators. For example, productions $S_1$ and $S_2$ are equivalent in the following productions.
+The second problem arises from the associative property of the concatenation and alternation operators. For example, productions $S_1$ and $S_2$ are equivalent in the following productions.
 
 \begin{bnf*}
 \bnfprod{$S_1$}{\bnfts{a} \bnfsp \bnfpn{B}} \\
@@ -23,9 +29,28 @@ The second source of ambiguity arises from the associative property of the conca
 \bnfprod{A}{\bnfts{a} \bnfsp \bnfts{b}}
 \end{bnf*}
 
-\noindent To remove this source of ambiguity, we can further qualify $\textit{Form}_1$ and $\textit{Form}_2.$ Namely, we add the constraint that a production cannot use non-terminal symbols that are the same form. Algorithm \ref{alg:coll_prod} of the normalization process details how this is accomplished.
+\begin{algorithm}[tb]
+\caption{Collapse Productions}\label{alg:coll_prod}
+ \begin{algorithmic}[1]
+  \Function{CollapseProductions}{$G$}
+    \ForAll{$( p_1, p_2 ) \in \Call{OrderedPairs}{G.P}$}
+      \State{$\mathcal{o}_1 \gets \Call{RootOperator}{p_1}$}
+      \State{$\phi_2 \gets \Call{Symbol}{p_2}$}
+      \If{$\phi_2 \in \Call{Children}{\mathcal{o}_1}$}
+        \State{$\mathcal{o}_2 \gets \Call{RootOperator}{p_2}$}
+        \If{$\Call{Associative}{\mathcal{o}_1, \mathcal{o}_2}$}
+          \State $\mathcal{o}_1.\Call{ReplaceChild}{\phi_2, \Call{Children}{\mathcal{o}_2}}$
+        \EndIf
+      \EndIf
+    \EndFor
+    \State \textbf{return} $G$
+  \EndFunction
+ \end{algorithmic}
+\end{algorithm}
 
-The commutative property of the alternative operator causes the third source of ambiguity. For example, the following two productions are identical, but are represented differently:
+\noindent To address this, we added the constraint that a production cannot use non-terminal symbols that are the same form. Algorithm \ref{alg:coll_prod} of the normalization process transforms each grammar to meet this constraint.
+
+The commutative property of the alternative operator causes the third problem. For example, the following two productions are identical, but are represented differently:
 
 \begin{bnf*}
 \bnfprod{A}{\bnfts{a} \bnfor \bnfts{b} \bnfor \bnfts{c}} \\
@@ -34,16 +59,51 @@ The commutative property of the alternative operator causes the third source of 
 
 \noindent We considered two different approaches to removing this ambiguity. The first approach involved lexicographically ordering the terms. This is unwieldy because it is difficult to define a lexicographic ordering. Instead, we adjusted our domain object model to use a set container for the terms. This eliminated the problem by removing the ordering from our representation.
 
-The fourth source of ambiguity is the use of unit productions. A unit production is a production where the right hand side is a single symbol. Here is an example:
+\begin{algorithm}[tb]
+\caption{Eliminate Unit Productions}\label{alg:elim_unit_prod}
+ \begin{algorithmic}[1]
+  \Function{EliminateUnitProductions}{$G$}
+    \ForAll{$p \in \mathcal{G}.V \setminus \{ G.S \}$}
+      \If{$\Call{IsSymbol}{\Call{Rule}{p}}$}
+        \State \Call{ReplaceUses}{$p, \Call{Rule}{p}$}
+      \EndIf
+    \EndFor
+    \If{$\Call{IsNonTerminalSymbol}{\Call{Rule}{G.S}}$}
+      \State \Call{ReplaceUses}{$G.S, \Call{Rule}{G.S}$}
+    \EndIf
+    \State \textbf{return} $G$
+  \EndFunction
+ \end{algorithmic}
+\end{algorithm}
+
+The fourth issue is the use of unit productions. A unit production is a production where the right hand side is a single symbol. Here is an example:
 
 \begin{bnf*}
 \bnfprod{A}{\bnfpn{B}} \\
 \bnfprod{B}{\bnfts{a} \bnfsp \bnfts{b} \bnfsp \bnfts{c}}
 \end{bnf*}
 
-\noindent In almost all cases, this is better represented by removing the unit production. The one exception is when the start symbol directly produces a single terminal symbol. Removal of unit productions is simple and is performed in Algorithm \ref{alg:elim_unit_prod}.
 
-The fifth and last source of ambiguity is ambiguity introduced by duplicate productions. Here is an example production that can be simplified significantly by removing duplicate productions:
+\noindent In almost all cases, this is better represented by removing the unit production. The one exception is when the start symbol directly produces a single terminal symbol. Removal of unit productions is performed in Algorithm \ref{alg:elim_unit_prod}.
+
+
+\begin{algorithm}[tb]
+\caption{Merge Equivalent Productions}\label{alg:merge_equiv_prod}
+ \begin{algorithmic}[1]
+  \Function{MergeEquivProductions}{$G$}
+    \ForAll{$\{ p_1, p_2 \} \in \Call{UnorderedPairs}{G.P}$}
+      \If{$\Call{Rule}{p_1} = \Call{Rule}{p_2}$}
+        \State $\rho \gets \Call{CombineSymbols}{p_1, p_2}$
+        \State $G.\Call{ReplaceUses}{p_1, \rho}$
+        \State $G.\Call{ReplaceUses}{p_2, \rho}$
+      \EndIf
+    \EndFor
+    \State \textbf{return} $G$
+  \EndFunction
+ \end{algorithmic}
+\end{algorithm}
+
+The fifth and last issue is caused by duplicate productions. Duplicate productions result in multiple symbols producing the same rule. Replacing these multiple symbols with the same symbol can enable other simplifications. In the following example $\bnfpn{A}$'s production can be reduced to a unit rule by replacing the symbols $\bnfpn{B}$ and $\bnfpn{C}$ with a single symbol:
 
 \begin{bnf*}
 \bnfprod{A}{\bnfpn{B} \bnfor \bnfpn{C}} \\
@@ -51,16 +111,4 @@ The fifth and last source of ambiguity is ambiguity introduced by duplicate prod
 \bnfprod{C}{\bnfts{a} \bnfsp \bnfts{b} \bnfsp \bnfts{c}}
 \end{bnf*}
 
-\noindent Detection and removal of duplicate productions is detailed in algorithm \ref{alg:merge_equiv_prod} of the normalization process.
-
-Aggregating all chosen design choices, the properties of the normalized grammar are as follows. First, each production is one of the two following forms:
-
-\textmd{$\textit{Form}_1$}
-
-:   The rule of the production only uses the concatenation operator to concatenate symbols. E.g. $\bnfpn{A} \bnfpo \bnfpn{B} \bnfsp \bnftd{b} \bnfsp \bnfsk.$
-
-\textmd{$\textit{Form}_2$}
-
-:   The rule of the production only uses the alternation (`|`) operator to combine symbols or the empty string. E.g. $\bnfpn{A} \bnfpo \bnfpn{B} \bnfor \bnftd{b} \bnfor \bnfes \bnfor \bnfsk.$
-
-Second, each symbol in a rule cannot have the same form as that rule. Third, unit rules are not permitted except for the case of the start symbol producing a single terminal symbol. Fourth, no pair of productions can have identical right-hand sides.
+\noindent Because of this, we add the condition that normalized grammars cannot have two different symbols that produce the same expression. Detection and removal of duplicate productions is detailed in algorithm \ref{alg:merge_equiv_prod} of the normalization process.

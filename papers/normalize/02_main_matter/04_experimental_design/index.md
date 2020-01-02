@@ -1,4 +1,4 @@
-# Experimental Design {#sec:experimental_design}
+# Pilot Study {#sec:pilot_study}
 
 !include(01_goals_hyp_var.md)
 
